@@ -1,0 +1,14 @@
+<h3>Thanks for registration</h3>
+
+<f:if condition="{error}">
+    <f:then>
+    <div class="alert alert-danger">
+        <f:translate key="error.{error}" default="{error}" />
+    </div>
+    </f:then>
+    <f:else>
+        <div class="alert alert-success">
+         you have done it
+        </div>
+    </f:else>
+</f:if>w

@@ -1,0 +1,3 @@
+
+# cat=records/enable/1; type=string; label=API key:You get the API key at mailchimp.com > Account > Extras > API keys
+apiKey =

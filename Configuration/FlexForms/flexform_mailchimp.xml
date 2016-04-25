@@ -1,0 +1,50 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.title</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+                    <settings.listId>
+                        <TCEforms>
+                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.listId</label>
+                            <config>
+                                <type>select</type>
+                                <onChange>reload</onChange>
+                                <itemsProcFunc>Sup7\Mailchimp\Hooks\Backend\ItemsProcFunc->getLists</itemsProcFunc>
+                                <items>
+                                    <numIndex index="1">
+                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.listId>
+
+                    <settings.interestId>
+                        <TCEforms>
+                            <label>Interest</label>
+                            <config>
+                                <type>select</type>
+                                <itemsProcFunc>Sup7\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests</itemsProcFunc>
+                                <items>
+                                    <numIndex index="1">
+                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.interestId>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <type>module</type>
+        <description>Language labels for mailchimp</description>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+            <label index="plugin.title">Mailchimp</label>
+            <label index="flexform.title">Title</label>
+            <label index="flexform.listId">List ID</label>
+
+            <label index="error.memberExists">You are already registered with this email address!</label>
+            <label index="error.general">A general error occurred, sorry!</label>
+        </languageKey>
+    </data>
+</T3locallang>
