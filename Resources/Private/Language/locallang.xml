@@ -6,13 +6,42 @@
     </meta>
     <data type="array">
         <languageKey index="default" type="array">
+            <!-- Backend -->
             <label index="plugin.title">Mailchimp</label>
             <label index="flexform.title">Title</label>
-            <label index="flexform.listId">List ID</label>
+            <label index="flexform.list">List</label>
+            <label index="flexform.interests">Interests</label>
 
+            <!-- Frontend -->
+            <label index="field.email">Email</label>
+            <label index="field.firstName">First name</label>
+            <label index="field.lastName">Last name</label>
+            <label index="field.email">Email</label>
+            <label index="field.interests">Interests</label>
             <label index="error.memberExists">You are already registered with this email address!</label>
             <label index="error.general">A general error occurred, sorry!</label>
             <label index="success">You have successfully registered!</label>
+            <label index="form.submit">Submit</label>
+        </languageKey>
+
+        <!-- German -->
+        <languageKey index="de" type="array">
+            <!-- Backend -->
+            <label index="plugin.title">Mailchimp</label>
+            <label index="flexform.title">Titel</label>
+            <label index="flexform.list">Liste</label>
+            <label index="flexform.interests">Interessen</label>
+
+            <!-- Frontend -->
+            <label index="field.email">Email</label>
+            <label index="field.firstName">Vorname</label>
+            <label index="field.lastName">Nachname</label>
+            <label index="field.email">Email</label>
+            <label index="field.interests">Interessen</label>
+            <label index="error.memberExists">Sie haben sich mit dieser Email-Adresse bereits registriert!</label>
+            <label index="error.general">Ein Fehler ist aufgetreten, es tut uns leid!</label>
+            <label index="success">Sie haben sich erfolgreich registriert!</label>
+            <label index="form.submit">Abschicken</label>
         </languageKey>
     </data>
 </T3locallang>

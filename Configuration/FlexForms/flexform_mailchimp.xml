@@ -10,13 +10,12 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
-
                     <settings.listId>
                         <TCEforms>
-                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.listId</label>
+                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.list</label>
+                            <onChange>reload</onChange>
                             <config>
                                 <type>select</type>
-                                <onChange>reload</onChange>
                                 <itemsProcFunc>Sup7\Mailchimp\Hooks\Backend\ItemsProcFunc->getLists</itemsProcFunc>
                                 <items>
                                     <numIndex index="1">
@@ -30,7 +29,7 @@
 
                     <settings.interestId>
                         <TCEforms>
-                            <label>Interest</label>
+                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.interest</label>
                             <config>
                                 <type>select</type>
                                 <itemsProcFunc>Sup7\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests</itemsProcFunc>

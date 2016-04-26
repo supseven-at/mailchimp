@@ -36,6 +36,8 @@ class FormController extends ActionController
 
         if ($this->settings['interestId']) {
             $interests = $this->registrationService->getCategories($this->settings['listId'], $this->settings['interestId']);
+        } else {
+            $interests = [];
         }
         $this->view->assignMultiple(array(
             'form' => $form,
@@ -47,12 +49,12 @@ class FormController extends ActionController
      * @param FormDto $form
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function registerAction(FormDto $form = null)
+    public function reponseAction(FormDto $form = null)
     {
         if (is_null($form)) {
             $this->redirect('index');
         }
-        
+
         try {
             $this->registrationService->register($this->settings['listId'], $form);
         } catch (MemberExistsException $e) {
@@ -60,7 +62,7 @@ class FormController extends ActionController
         } catch (GeneralException $e) {
             $this->view->assign('error', 'general');
         }
-        
+
         $this->view->assignMultiple(array(
             'form' => $form
         ));

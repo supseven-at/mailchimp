@@ -45,7 +45,6 @@ class ItemsProcFunc
             $settings = $flexFormService->convertFlexFormContentToArray($contentElement['pi_flexform']);
 
             if ($settings['settings']['listId']) {
-
                 try {
                     $interests = $this->api->getInterestLists($settings['settings']['listId']);
                     if (is_array($interests) && !empty($interests)) {
