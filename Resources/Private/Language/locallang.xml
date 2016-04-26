@@ -7,7 +7,8 @@
     <data type="array">
         <languageKey index="default" type="array">
             <!-- Backend -->
-            <label index="plugin.title">Mailchimp</label>
+            <label index="plugin.title">MailChimp</label>
+            <label index="plugin.description">Create a form to let users register to a specific MailChimp list.</label>
             <label index="flexform.title">Title</label>
             <label index="flexform.list">List</label>
             <label index="flexform.interests">Interests</label>
@@ -27,7 +28,8 @@
         <!-- German -->
         <languageKey index="de" type="array">
             <!-- Backend -->
-            <label index="plugin.title">Mailchimp</label>
+            <label index="plugin.title">MailChimp</label>
+            <label index="plugin.description">Erstelle ein Formular mit dem sich Benutzer in einer MailChimp Liste eintragen können.</label>
             <label index="flexform.title">Titel</label>
             <label index="flexform.list">Liste</label>
             <label index="flexform.interests">Interessen</label>
