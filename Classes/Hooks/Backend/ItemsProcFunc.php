@@ -21,7 +21,8 @@ class ItemsProcFunc
         try {
             $lists = $this->api->getLists();
             foreach ($lists as $id => $value) {
-                array_push($config['items'], array($value, $id));
+                $title = sprintf('%s [%s]', $value, $id);
+                array_push($config['items'], array($title, $id));
             }
         } catch (\Exception $e) {
             // do nothing

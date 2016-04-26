@@ -1,4 +1,4 @@
-<f:form object="{form}" action="response" name="form">
+<f:form object="{form}" action="response" name="form" class="form-horizontal">
 
     <div class="form-group">
         <label>
@@ -22,16 +22,22 @@
     </div>
 
     <f:if condition="{interests}">
+
         <div class="form-group">
-            <div class="checkbox">
+            <label>{f:translate(key:'field.interests')}</label>
             <f:for each="{interests}" as="interest" key="id">
-                <label>
-                    <f:form.checkbox property="interests.{id}" value="1" /> {interest}
-                </label>
+                <div class="checkbox">
+                    <label>
+                        <f:form.checkbox property="interests.{id}" value="1"/>
+                        {interest}
+                    </label>
+                </div>
             </f:for>
-            </div>
         </div>
     </f:if>
 
-    <f:form.submit value="{f:translate(key:'form.submit')}"/>
+    <div class="form-group">
+        <f:form.submit value="{f:translate(key:'form.submit')}" class="btn btn-default"/>
+    </div>
+
 </f:form>

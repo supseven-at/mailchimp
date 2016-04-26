@@ -14,20 +14,23 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * <code>
  * finishers.4.class = Sup7\Mailchimp\Hooks\Frontend\Formhandler\Mailchimp
- * finishers.4.config.listId = 12345
- * finishers.4.config.fieldEmail = email
- * finishers.4.config.fieldFirstName = first_name
- * finishers.4.config.fieldLastName = last_name
+ * finishers.4.config {
+ *   listId = 12345
+ *   fieldEmail = email
+ *   fieldFirstName = first_name
+ *   fieldLastName = last_name
+ * }
  * </code>
  *
  */
-class Mailchimp extends \Typoheads\Formhandler\Finisher\AbstractFinisher
+class Mailchimp extends \Tx_Formhandler_AbstractFinisher
 {
 
     protected $api;
 
     public function process()
     {
+
         $listId = $this->utilityFuncs->getSingle($this->settings, 'listId');
         if (empty($listId)) {
             return;
@@ -41,6 +44,7 @@ class Mailchimp extends \Typoheads\Formhandler\Finisher\AbstractFinisher
         } catch (\Exception $e) {
             // do nothing
         }
+        return;
     }
 
     /**

@@ -28,7 +28,7 @@ class FormController extends ActionController
         if (is_null($form)) {
             /** @var FormDto $form */
             $form = GeneralUtility::makeInstance('Sup7\\Mailchimp\\Domain\\Model\\Dto\\FormDto');
-            $prefill = GeneralUtility::_GET('email');
+            $prefill = GeneralUtility::_GP('email');
             if ($prefill) {
                 $form->setEmail($prefill);
             }
