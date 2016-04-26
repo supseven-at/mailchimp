@@ -21,7 +21,8 @@
             <label index="field.interests">Interests</label>
             <label index="error.memberExists">You are already registered with this email address!</label>
             <label index="error.general">A general error occurred, sorry!</label>
-            <label index="success">You have successfully registered!</label>
+            <label index="success.title">You have successfully registered!</label>
+            <label index="success.description">Please check your emails to activate the registration!</label>
             <label index="form.submit">Submit</label>
         </languageKey>
 
@@ -42,7 +43,8 @@
             <label index="field.interests">Interessen</label>
             <label index="error.memberExists">Sie haben sich mit dieser Email-Adresse bereits registriert!</label>
             <label index="error.general">Ein Fehler ist aufgetreten, es tut uns leid!</label>
-            <label index="success">Sie haben sich erfolgreich registriert!</label>
+            <label index="success.title">Sie haben sich erfolgreich registriert!</label>
+            <label index="success.description">Bitte prüfen Sie ihre Emails um die Registrierung zu aktivieren.</label>
             <label index="form.submit">Abschicken</label>
         </languageKey>
     </data>

@@ -49,7 +49,7 @@ class FormController extends ActionController
      * @param FormDto $form
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function reponseAction(FormDto $form = null)
+    public function responseAction(FormDto $form = null)
     {
         if (is_null($form)) {
             $this->redirect('index');

@@ -1,5 +1,3 @@
-<h3>Thanks for registration</h3>
-
 <f:if condition="{error}">
     <f:then>
         <div class="alert alert-danger">
@@ -8,7 +6,8 @@
     </f:then>
     <f:else>
         <div class="alert alert-success">
-            <f:translate key="success"/>
+            <h3><f:translate key="success.title"/></h3>
+            <f:translate key="success.description"/>
         </div>
     </f:else>
-</f:if>s
+</f:if>
