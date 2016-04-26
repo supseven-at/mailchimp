@@ -29,17 +29,28 @@ class ApiService
         $this->logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
     }
 
+    /**
+     * Get all lists
+     * 
+     * @return array
+     */
     public function getLists()
     {
         $groups = array();
         $list = $this->api->get('lists');
-//print_R($list);die;
+
         foreach ($list['lists'] as $item) {
             $groups[$item['id']] = $item['name'];
         }
         return $groups;
     }
 
+    /**
+     * Get all interest groups of a given list
+     * 
+     * @param string $listId
+     * @return array
+     */
     public function getInterestLists($listId)
     {
         $groups = array();
@@ -51,6 +62,12 @@ class ApiService
         return $groups;
     }
 
+    /**
+     * Get all interest categories of a given list & interest
+     * @param string $listId
+     * @param string $interestId
+     * @return array
+     */
     public function getCategories($listId, $interestId)
     {
         $groups = array();
@@ -63,8 +80,12 @@ class ApiService
     }
 
     /**
+     * Register a user
+     *
      * @param string $listId
      * @param FormDto $form
+     * @throws GeneralException
+     * @throws MemberExistsException
      */
     public function register($listId, FormDto $form)
     {

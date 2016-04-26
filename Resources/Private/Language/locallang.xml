@@ -12,6 +12,7 @@
 
             <label index="error.memberExists">You are already registered with this email address!</label>
             <label index="error.general">A general error occurred, sorry!</label>
+            <label index="success">You have successfully registered!</label>
         </languageKey>
     </data>
 </T3locallang>

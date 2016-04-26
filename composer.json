@@ -1,0 +1,64 @@
+{
+  "name": "sup7even/mailchimp",
+  "type": "typo3-cms-extension",
+  "description": "Simple mailchimp integration to let users register to a specific list",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "mailchimp",
+    "newsletter"
+  ],
+  "homepage": "http://supeven.at",
+  "authors": [
+    {
+      "name": "Georg Ringer",
+      "role": "Developer",
+      "homepage": "http://sup7even.at"
+    }
+  ],
+  "license": [
+    "GPL-2.0+"
+  ],
+  "require": {
+    "typo3/cms-core": ">=7.6.0,<8.3"
+  },
+  "require-dev": {
+    "mikey179/vfsStream": "1.4.*@dev",
+    "phpunit/phpunit": "~4.8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sup7\\Mailchimp\\": "Classes"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Sup7\\Mailchimp\\Tests\\": "Tests",
+      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/",
+      "TYPO3\\CMS\\Fluid\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/fluid/Tests/"
+    }
+  },
+  "replace": {
+    "mailchimp": "self.version",
+    "typo3-ter/mailchimp": "self.version"
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/Web/typo3conf/ext/",
+      "[ -L .Build/Web/typo3conf/ext/mailchimp ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/mailchimp"
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    },
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/Web"
+    }
+  }
+}
