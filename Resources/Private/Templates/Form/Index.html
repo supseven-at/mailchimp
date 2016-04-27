@@ -1,5 +1,22 @@
-<f:form object="{form}" action="response" name="form" class="form-horizontal">
+{namespace mc=Sup7\Mailchimp\ViewHelpers}
 
+<f:form object="{form}" action="response" name="form" class="form-horizontal">
+    <f:form.validationResults>
+        <f:if condition="{validationResults.flattenedErrors}">
+            <ul class="errors">
+                <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+
+                    <f:for each="{errors}" as="error">
+                        <li>
+                            <f:translate key="error.{propertyPath}.{error.code}"
+                                         default="Error in {propertyPath}: {error.code}"/>
+                        </li>
+                    </f:for>
+
+                </f:for>
+            </ul>
+        </f:if>
+    </f:form.validationResults>
     <div class="form-group">
         <label>
             <f:form.textfield property="firstName" class="form-control"/>
@@ -16,7 +33,7 @@
 
     <div class="form-group">
         <label>
-            <f:form.textfield property="email" type="email" required="1" class="form-control"/>
+            <f:form.textfield property="email" type="email" class="form-control" required="1"/>
             {f:translate(key:'field.email')}
         </label>
     </div>
@@ -29,7 +46,7 @@
                 <div class="checkbox">
                     <label>
                         <f:form.checkbox property="interests.{id}" value="1"/>
-                        {interest}
+                        <f:translate key="interest.{interest -> mc:simplifyLabel()}" default="{interest -> f:format.htmlspecialchars()}" />
                     </label>
                 </div>
             </f:for>

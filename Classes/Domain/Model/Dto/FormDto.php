@@ -10,7 +10,11 @@ class FormDto {
     /** @var string */
     protected $lastName;
 
-    /** @var string */
+    /**
+     * @var string
+     * @validate NotEmpty
+     * @validate EmailAddress
+     */
     protected $email;
 
     /** @var array */

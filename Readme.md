@@ -45,9 +45,26 @@ You can integrate `formhandler` by using the following finisher:
 
 You can prefill the email address by providing either *GET* or *POST* parameter `email`. A url could look like `http://www.domain.tld/index.php?id=758&email=admin@domain.tld`.
 
+### Translate group categories
+
+To be able to translate groups of MailChimp, please use TypoScript. The key is the name of the category, umlauts are transformed and all characters except numbers and letters are stripped away.
+As an example: The string `Öffentliche Verwaltung & Technologie` will be transformed to `OeffentlicheVerwaltungTechnologie`
+
+```
+plugin.tx_mailchimp {
+    _LOCAL_LANG {
+        de {
+        }
+        en {
+            interest.OeffentlicheVerwaltung = Civil Service
+        }
+    }
+}
+```
+
 ## Roadmap
 
-This xtension is in its early beginnings. It is not yet defined if more features will be added or not!
+This extension is in its early beginnings. It is not yet defined if more features will be added or not!
 
 ## Tests
 

@@ -21,6 +21,8 @@
             <label index="field.interests">Interests</label>
             <label index="error.memberExists">You are already registered with this email address!</label>
             <label index="error.general">A general error occurred, sorry!</label>
+            <label index="error.form.email.1221560718">Please provide an email address!</label>
+            <label index="error.form.email.1221559976">The provided email address is invalid!</label>
             <label index="success.title">You have successfully registered!</label>
             <label index="success.description">Please check your emails to activate the registration!</label>
             <label index="form.submit">Submit</label>
@@ -43,6 +45,8 @@
             <label index="field.interests">Interessen</label>
             <label index="error.memberExists">Sie haben sich mit dieser Email-Adresse bereits registriert!</label>
             <label index="error.general">Ein Fehler ist aufgetreten, es tut uns leid!</label>
+            <label index="error.form.email.1221560718">Bitte geben Sie Ihre Emailadresse an!</label>
+            <label index="error.form.email.1221559976">Die angegebene Emailadresse ist leider ungültig!</label>
             <label index="success.title">Sie haben sich erfolgreich registriert!</label>
             <label index="success.description">Bitte prüfen Sie ihre Emails um die Registrierung zu aktivieren.</label>
             <label index="form.submit">Abschicken</label>
