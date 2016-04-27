@@ -70,13 +70,18 @@ class ApiService
      */
     public function getCategories($listId, $interestId)
     {
-        $groups = array();
+        $groupData = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId .'/');
+        $result = array(
+            'title' => $groupData['title'],
+            'type' => $groupData['type']
+        );
+        
         $list = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/interests');
         foreach ($list['interests'] as $group) {
-            $groups[$group['id']] = $group['name'];
+            $result['options'][$group['id']] = $group['name'];
         }
 
-        return $groups;
+        return $result;
     }
 
     /**

@@ -38,11 +38,11 @@
         </label>
     </div>
 
-    <f:if condition="{interests}">
+    <f:if condition="{interests.options}">
 
         <div class="form-group">
-            <label>{f:translate(key:'field.interests')}</label>
-            <f:for each="{interests}" as="interest" key="id">
+            <label>{interests.title}</label>
+            <f:for each="{interests.options}" as="interest" key="id">
                 <div class="checkbox">
                     <label>
                         <f:form.checkbox property="interests.{id}" value="1"/>

@@ -29,7 +29,7 @@
 
                     <settings.interestId>
                         <TCEforms>
-                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.interest</label>
+                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.interests</label>
                             <config>
                                 <type>select</type>
                                 <itemsProcFunc>Sup7\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests</itemsProcFunc>

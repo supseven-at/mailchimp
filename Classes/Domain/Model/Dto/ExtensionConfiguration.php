@@ -2,7 +2,10 @@
 
 namespace Sup7\Mailchimp\Domain\Model\Dto;
 
-class ExtensionConfiguration {
+use Sup7\Mailchimp\Exception\ApiKeyMissingException;
+
+class ExtensionConfiguration
+{
 
     /** @var string */
     protected $apiKey;
@@ -19,9 +22,13 @@ class ExtensionConfiguration {
 
     /**
      * @return string
+     * @throws ApiKeyMissingException
      */
     public function getApiKey()
     {
+        if (empty($this->apiKey)) {
+            throw new ApiKeyMissingException('API key is missing');
+        }
         return $this->apiKey;
     }
 
