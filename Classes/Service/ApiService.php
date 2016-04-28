@@ -31,7 +31,7 @@ class ApiService
 
     /**
      * Get all lists
-     * 
+     *
      * @return array
      */
     public function getLists()
@@ -46,8 +46,16 @@ class ApiService
     }
 
     /**
+     * @param string $list
+     * @return array|false
+     */
+    public function getList($list) {
+        return $this->api->get('lists/' . $list);
+    }
+
+    /**
      * Get all interest groups of a given list
-     * 
+     *
      * @param string $listId
      * @return array
      */
@@ -75,7 +83,7 @@ class ApiService
             'title' => $groupData['title'],
             'type' => $groupData['type']
         );
-        
+
         $list = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/interests');
         foreach ($list['interests'] as $group) {
             $result['options'][$group['id']] = $group['name'];
