@@ -13,7 +13,7 @@ class PageLayoutViewHook
      *
      * @var string
      */
-    const KEY = 'news';
+    const KEY = 'mailchimp';
 
     /**
      * Path to the locallang file
