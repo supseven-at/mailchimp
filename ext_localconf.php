@@ -14,7 +14,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 if (TYPO3_MODE === 'BE') {
-    if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0')) {
+    if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('7.0')) {
         /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         $iconRegistry->registerIcon(

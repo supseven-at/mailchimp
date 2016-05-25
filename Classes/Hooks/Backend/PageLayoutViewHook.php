@@ -55,6 +55,7 @@ class PageLayoutViewHook
         $result = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'plugin.title')) . '</strong><br>';
 
         $this->getListInformation();
+        $this->getInterestGroupInformation();
 
         $result .= $this->renderSettingsAsTable();
         return $result;
@@ -64,17 +65,37 @@ class PageLayoutViewHook
     {
         $listId = $this->getFieldFromFlexform('settings.listId');
         if (!$listId) {
-            $value = '<div class="alert alert-warning">No list selected</div>';
+            $this->tableData[] = array(
+                $this->getLabel('flexform.list'),
+                '<div class="alert alert-warning">No list selected</div>'
+            );
         } else {
             $list = $this->api->getList($listId);
-            $value = sprintf('<strong>%s</strong> (%s)', htmlspecialchars($list['name']),
-                (int)$list['stats']['member_count']);
+            $this->tableData[] = array(
+                $this->getLabel('flexform.list'),
+                sprintf('<strong>%s</strong>', htmlspecialchars($list['name']))
+            );
+            $this->tableData[] = array(
+                $this->getLabel('memberCount'),
+                (int)$list['stats']['member_count']
+            );
         }
+    }
 
-        $this->tableData[] = array(
-            $this->getLabel('flexform.list'),
-            $value
-        );
+    protected function getInterestGroupInformation()
+    {
+        $interestId = $this->getFieldFromFlexform('settings.interestId');
+        $listId = $this->getFieldFromFlexform('settings.listId');
+        if ($listId && $interestId) {
+            $interests = $this->api->getCategories($listId, $interestId);
+
+            if ($interests) {
+                $this->tableData[] = array(
+                    $this->getLabel('flexform.interests'),
+                    $interests['title']
+                );
+            }
+        }
     }
 
     /**

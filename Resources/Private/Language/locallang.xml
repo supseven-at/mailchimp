@@ -26,6 +26,7 @@
             <label index="success.title">You have successfully registered!</label>
             <label index="success.description">Please check your emails to activate the registration!</label>
             <label index="form.submit">Submit</label>
+            <label index="memberCount">Count of members</label>
         </languageKey>
 
         <!-- German -->
