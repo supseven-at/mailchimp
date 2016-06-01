@@ -71,5 +71,5 @@ This extension is in its early beginnings. It is not yet defined if more feature
 Unit Tests can be started by using
 
 ```
-./typo3_src/bin/phpunit --colors  -c ./typo3/sysext/core/Build/UnitTests.xml ./typo3conf/ext/mailchimp/Tests/
+./typo3_src/bin/phpunit -c ./typo3/sysext/core/Build/UnitTests.xml ./typo3conf/ext/mailchimp/Tests/
 ```
