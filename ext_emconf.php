@@ -17,6 +17,8 @@ $EM_CONF[$_EXTKEY] = array(
             'typo3' => '6.2.0-7.6.99'
         ),
         'conflicts' => array(),
-        'suggests' => array(),
+        'suggests' => array(
+            'typoscript_rendering' => '1.0.5-1.99.999'
+        ),
     ),
 );

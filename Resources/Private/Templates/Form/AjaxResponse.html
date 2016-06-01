@@ -1,0 +1,13 @@
+<f:if condition="{error}">
+    <f:then>
+        <div class="alert alert-danger">
+            <f:translate key="error.{error}" default="{error}"/>
+        </div>
+    </f:then>
+    <f:else>
+        <div class="alert alert-success">
+            <h3><f:translate key="success.title"/></h3>
+            <f:translate key="success.description"/>
+        </div>
+    </f:else>
+</f:if>

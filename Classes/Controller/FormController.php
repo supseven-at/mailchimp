@@ -21,7 +21,7 @@ class FormController extends ActionController
     }
 
     /**
-     * @param @dontvalidate $form
+     * @dontvalidate $form
      */
     public function indexAction(FormDto $form = null)
     {
@@ -47,7 +47,15 @@ class FormController extends ActionController
 
     /**
      * @param FormDto $form
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     * @dontvalidate $form
+     */
+    public function ajaxResponseAction(FormDto $form = null)
+    {
+        $this->handleRegistration($form);
+    }
+
+    /**
+     * @param FormDto $form
      */
     public function responseAction(FormDto $form = null)
     {
@@ -55,6 +63,14 @@ class FormController extends ActionController
             $this->redirect('index');
         }
 
+        $this->handleRegistration($form);
+    }
+
+    /**
+     * @param FormDto|null $form
+     */
+    protected function handleRegistration(FormDto $form = null)
+    {
         try {
             $this->registrationService->register($this->settings['listId'], $form);
         } catch (MemberExistsException $e) {

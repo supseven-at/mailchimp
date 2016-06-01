@@ -12,6 +12,7 @@
             <label index="flexform.title">Title</label>
             <label index="flexform.list">List</label>
             <label index="flexform.interests">Interests</label>
+            <label index="flexform.useAjax">Use Ajax (EXT:typoscript_rendering required)</label>
 
             <!-- Frontend -->
             <label index="field.email">Email</label>

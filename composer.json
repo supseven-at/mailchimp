@@ -22,6 +22,9 @@
   "require": {
     "typo3/cms-core": ">=7.6.0,<8.3"
   },
+  "suggest": {
+    "typo3-ter/typoscript-rendering": "~1.0"
+  },
   "require-dev": {
     "mikey179/vfsStream": "1.4.*@dev",
     "phpunit/phpunit": "~4.8.0"

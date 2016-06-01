@@ -6,10 +6,10 @@ if (!defined('TYPO3_MODE')) {
     'Sup7.' . $_EXTKEY,
     'Registration',
     array(
-        'Form' => 'index,response'
+        'Form' => 'index,response,ajaxResponse'
     ),
     array(
-        'Form' => 'index,response'
+        'Form' => 'index,response,ajaxResponse'
     )
 );
 

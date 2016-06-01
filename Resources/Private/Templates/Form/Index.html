@@ -1,60 +1,77 @@
 {namespace mc=Sup7\Mailchimp\ViewHelpers}
 
-<f:form object="{form}" action="response" name="form" class="form-horizontal">
-    <f:form.validationResults>
-        <f:if condition="{validationResults.flattenedErrors}">
-            <ul class="errors">
-                <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
 
-                    <f:for each="{errors}" as="error">
-                        <li>
-                            <f:translate key="error.{propertyPath}.{error.code}"
-                                         default="Error in {propertyPath}: {error.code}"/>
-                        </li>
+<f:layout name="General"/>
+
+<f:section name="content">
+    <f:form object="{form}" action="response" name="form" id="mailchimp-form" class="form-horizontal"
+            data="{url:'{f:render(section:\'formUrl\') -> f:spaceless() -> f:format.htmlentitiesDecode()}'}">
+        <f:form.validationResults>
+            <f:if condition="{validationResults.flattenedErrors}">
+                <ul class="errors">
+                    <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+
+                        <f:for each="{errors}" as="error">
+                            <li>
+                                <f:translate key="error.{propertyPath}.{error.code}"
+                                             default="Error in {propertyPath}: {error.code}"/>
+                            </li>
+                        </f:for>
                     </f:for>
-
-                </f:for>
-            </ul>
-        </f:if>
-    </f:form.validationResults>
-    <div class="form-group">
-        <label>
-            <f:form.textfield property="firstName" class="form-control"/>
-            {f:translate(key:'field.firstName')}
-        </label>
-    </div>
-
-    <div class="form-group">
-        <label>
-            <f:form.textfield property="lastName" class="form-control"/>
-            {f:translate(key:'field.lastName')}
-        </label>
-    </div>
-
-    <div class="form-group">
-        <label>
-            <f:form.textfield property="email" type="email" class="form-control" required="1"/>
-            {f:translate(key:'field.email')}
-        </label>
-    </div>
-
-    <f:if condition="{interests.options}">
+                </ul>
+            </f:if>
+        </f:form.validationResults>
 
         <div class="form-group">
-            <label>{interests.title}</label>
-            <f:for each="{interests.options}" as="interest" key="id">
-                <div class="checkbox">
-                    <label>
-                        <f:form.checkbox property="interests.{id}" value="1"/>
-                        <f:translate key="interest.{interest -> mc:simplifyLabel()}" default="{interest -> f:format.htmlspecialchars()}" />
-                    </label>
-                </div>
-            </f:for>
+            <label class="col-sm-3 control-label">{f:translate(key:'field.firstName')}</label>
+            <div class="col-sm-9">
+                <f:form.textfield property="firstName" class="form-control"/>
+            </div>
         </div>
-    </f:if>
 
-    <div class="form-group">
-        <f:form.submit value="{f:translate(key:'form.submit')}" class="btn btn-default"/>
-    </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">{f:translate(key:'field.lastName')}</label>
+            <div class="col-sm-9">
+                <f:form.textfield property="lastName" class="form-control"/>
+            </div>
+        </div>
 
-</f:form>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">{f:translate(key:'field.email')}</label>
+            <div class="col-sm-9">
+                <f:form.textfield property="email" type="email" class="form-control" required="1"/>
+            </div>
+        </div>
+
+        <f:if condition="{interests.options}">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{interests.title}</label>
+                <div class="col-sm-9">
+                    <f:for each="{interests.options}" as="interest" key="id">
+                        <div class="checkbox">
+                            <label>
+                                <f:form.checkbox property="interests.{id}" value="1"/>
+                                <f:translate key="interest.{interest -> mc:simplifyLabel()}"
+                                             default="{interest -> f:format.htmlspecialchars()}"/>
+                            </label>
+                        </div>
+                    </f:for>
+                </div>
+            </div>
+        </f:if>
+
+        <div class="form-group">
+            <f:form.submit value="{f:translate(key:'form.submit')}" class="btn btn-default"/>
+        </div>
+        <mc:footerData>
+            <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/mailchimp.js')}"></script>
+        </mc:footerData>
+        <div id="mailchimp-ajax-response"></div>
+    </f:form>
+</f:section>
+
+<f:section name="formUrl">
+    <mc:ajaxEnabled isEnabled="{settings.useAjax}">
+        <f:render partial="FormAjaxUrl"/>
+    </mc:ajaxEnabled>
+</f:section>

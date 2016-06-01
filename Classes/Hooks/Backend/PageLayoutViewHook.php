@@ -56,9 +56,20 @@ class PageLayoutViewHook
 
         $this->getListInformation();
         $this->getInterestGroupInformation();
+        $this->getAjaxUsage();
 
         $result .= $this->renderSettingsAsTable();
         return $result;
+    }
+
+    protected function getAjaxUsage()
+    {
+        $usage = $this->getFieldFromFlexform('settings.useAjax');
+
+        $this->tableData[] = array(
+            $this->getLabel('flexform.useAjax'),
+            $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_common.xlf:' . ($usage ? 'yes' : 'no'))
+        );
     }
 
     protected function getListInformation()
