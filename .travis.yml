@@ -9,6 +9,11 @@ env:
     - TYPO3_VERSION=7.6.*
     - TYPO3_VERSION=8.1.*
 
+matrix:
+  exclude:
+  - php: 7.0
+    env: TYPO3_VERSION=8.1.*
+
 sudo: false
 
 addons:
