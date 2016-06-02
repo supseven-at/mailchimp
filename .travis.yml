@@ -12,7 +12,7 @@ env:
 matrix:
   exclude:
   - php: 5.6
-    env: TYPO3_VERSION=8.1.*
+    env: TYPO3_VERSION=8.1.* COVERAGE=1
 
 sudo: false
 
