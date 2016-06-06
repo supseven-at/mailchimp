@@ -27,6 +27,7 @@
     "typo3-ter/typoscript-rendering": "~1.0"
   },
   "require-dev": {
+    "php": ">=5.6.0",
     "phpunit/phpunit": "~5.3.0"
   },
   "autoload": {
