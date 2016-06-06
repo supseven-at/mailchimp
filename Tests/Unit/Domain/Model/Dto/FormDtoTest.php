@@ -50,4 +50,16 @@ class FormDtoTest extends UnitTestCase
         $domainModelInstance->setInterests($subject);
         $this->assertEquals($subject, $domainModelInstance->getInterests());
     }
+
+
+    /**
+     * @test
+     */
+    public function interestCanBeSet()
+    {
+        $domainModelInstance = new FormDto();
+        $subject = '12345';
+        $domainModelInstance->setInterest($subject);
+        $this->assertEquals($subject, $domainModelInstance->getInterest());
+    }
 }

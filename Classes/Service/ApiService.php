@@ -2,6 +2,7 @@
 
 namespace Sup7\Mailchimp\Service;
 
+use DrewM\MailChimp\MailChimp;
 use Sup7\Mailchimp\Domain\Model\Dto\FormDto;
 use Sup7\Mailchimp\Exception\GeneralException;
 use Sup7\Mailchimp\Exception\MemberExistsException;
@@ -11,7 +12,7 @@ use TYPO3\CMS\Core\Log\Logger;
 
 class ApiService
 {
-
+    /** @var MailChimp  */
     protected $api;
 
     /** @var $logger Logger */
@@ -25,7 +26,7 @@ class ApiService
         $extensionConfiguration = GeneralUtility::makeInstance('Sup7\\Mailchimp\\Domain\\Model\\Dto\\ExtensionConfiguration');
         $apiKey = $extensionConfiguration->getApiKey();
 
-        $this->api = new \DrewM\MailChimp\MailChimp($apiKey);
+        $this->api = new MailChimp($apiKey);
         $this->logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
     }
 
@@ -49,7 +50,8 @@ class ApiService
      * @param string $list
      * @return array|false
      */
-    public function getList($list) {
+    public function getList($list)
+    {
         return $this->api->get('lists/' . $list);
     }
 
@@ -78,17 +80,18 @@ class ApiService
      */
     public function getCategories($listId, $interestId)
     {
-        $groupData = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId .'/');
+        $groupData = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/');
         $result = array(
             'title' => $groupData['title'],
             'type' => $groupData['type']
         );
 
         $list = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/interests');
-        foreach ($list['interests'] as $group) {
-            $result['options'][$group['id']] = $group['name'];
+        if (isset($list['interests']) && is_array($list['interests'])) {
+            foreach ($list['interests'] as $group) {
+                $result['options'][$group['id']] = $group['name'];
+            }
         }
-
         return $result;
     }
 
@@ -109,19 +112,11 @@ class ApiService
                 'FNAME' => $form->getFirstName(),
                 'LNAME' => $form->getLastName(),
             ),
-            'intxerests' => array(),
+            'interests' => array(),
         );
-        $interests = $form->getInterests();
-        if ($interests) {
-            $interestData = array();
-            foreach ($interests as $id => $state) {
-                if ($state) {
-                    $interestData[$id] = true;
-                }
-            }
-            if ($interestData) {
-                $data['interests'] = $interestData;
-            }
+        $interestData = $this->getInterests($form);
+        if ($interestData) {
+            $data['interests'] = $interestData;
         }
 
         $response = $this->api->post("lists/$listId/members", $data);
@@ -135,5 +130,30 @@ class ApiService
 
             throw new GeneralException($response['detail']);
         }
+    }
+
+    /**
+     * @param FormDto $form
+     * @return array
+     */
+    protected function getInterests(FormDto $form)
+    {
+        $interestData = array();
+        // multi interests
+        $interests = $form->getInterests();
+        if ($interests) {
+            foreach ($interests as $id => $state) {
+                if ($state) {
+                    $interestData[$id] = true;
+                }
+            }
+        }
+        // single interests
+        $interest = $form->getInterest();
+        if ($interests) {
+            $interestData[$interest] = true;
+            return $interestData;
+        }
+        return $interestData;
     }
 }

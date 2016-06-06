@@ -20,6 +20,9 @@ class FormDto {
     /** @var array */
     protected $interests;
 
+    /** @var string */
+    protected $interest;
+
     /**
      * @return string
      */
@@ -82,6 +85,22 @@ class FormDto {
     public function setInterests($interests)
     {
         $this->interests = $interests;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInterest()
+    {
+        return $this->interest;
+    }
+
+    /**
+     * @param string $interest
+     */
+    public function setInterest($interest)
+    {
+        $this->interest = $interest;
     }
     
 

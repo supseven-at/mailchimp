@@ -1,4 +1,4 @@
-# TYPO3 CMS Extension mailchimp
+# TYPO3 CMS Extension ``mailchimp`
 
 [![Build Status](https://travis-ci.org/sup7even/mailchimp.svg?branch=master)](https://travis-ci.org/sup7even/mailchimp)
 
@@ -6,7 +6,8 @@ This extension implements the most important feature of MailChimp: Let the users
 
 ## Requirements
 
-- TYPO3 CMS 6.2+
+- TYPO3 CMS 6.2+ - 8.2
+- PHP 5.6 - 7
 - MailChimp API key
 - License: GPL 2
 
@@ -14,11 +15,11 @@ This extension implements the most important feature of MailChimp: Let the users
 
 1) Install the extension as any other extension.
 2) Add the Mailchimp API key in the Extension Manager configuration.
-3) Create a new plugin `MailChimp`on any page
-4) Select a list you want the users register to and press *Save*
+3) Create a new plugin `MailChimp` on any page.
+4) Select a list you want the users register to and press *Save*.
 5) Optional: Select an interest group and save again.
 
-### Integration in EXT:formhandler`
+### Integration in ``EXT:formhandler`
 
 You can integrate `formhandler` by using the following finisher:
 
@@ -64,11 +65,11 @@ plugin.tx_mailchimp {
 }
 ```
 
-## Roadmap
+## Roadmap & Development
 
 This extension is in its early beginnings. It is not yet defined if more features will be added or not!
 
-## Tests
+### UnitTests
 
 Unit Tests can be started by using
 
