@@ -1,8 +1,8 @@
 <?php
 
-namespace Sup7\Mailchimp\Hooks\Backend;
+namespace Sup7even\Mailchimp\Hooks\Backend;
 
-use Sup7\Mailchimp\Service\ApiService;
+use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -13,7 +13,7 @@ class ItemsProcFunc
 
     public function __construct()
     {
-        $this->api = GeneralUtility::makeInstance('Sup7\Mailchimp\Service\ApiService');
+        $this->api = GeneralUtility::makeInstance('Sup7even\Mailchimp\Service\ApiService');
     }
 
     public function getLists(array &$config)

@@ -1,12 +1,12 @@
 <?php
 
-namespace Sup7\Mailchimp\Controller;
+namespace Sup7even\Mailchimp\Controller;
 
-use Sup7\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
-use Sup7\Mailchimp\Domain\Model\Dto\FormDto;
-use Sup7\Mailchimp\Exception\GeneralException;
-use Sup7\Mailchimp\Exception\MemberExistsException;
-use Sup7\Mailchimp\Service\ApiService;
+use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
+use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
+use Sup7even\Mailchimp\Exception\GeneralException;
+use Sup7even\Mailchimp\Exception\MemberExistsException;
+use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -17,7 +17,7 @@ class FormController extends ActionController
 
     public function initializeAction()
     {
-        $this->registrationService = GeneralUtility::makeInstance('Sup7\\Mailchimp\\Service\\ApiService');
+        $this->registrationService = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
     }
 
     /**
@@ -27,7 +27,7 @@ class FormController extends ActionController
     {
         if (is_null($form)) {
             /** @var FormDto $form */
-            $form = GeneralUtility::makeInstance('Sup7\\Mailchimp\\Domain\\Model\\Dto\\FormDto');
+            $form = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\FormDto');
             $prefill = GeneralUtility::_GP('email');
             if ($prefill) {
                 $form->setEmail($prefill);

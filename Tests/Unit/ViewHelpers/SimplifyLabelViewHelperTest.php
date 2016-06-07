@@ -1,8 +1,8 @@
 <?php
 
-namespace Sup7\Mailchimp\Tests\Unit\ViewHelpers;
+namespace Sup7even\Mailchimp\Tests\Unit\ViewHelpers;
 
-use Sup7\Mailchimp\ViewHelpers\SimplifyLabelViewHelper;
+use Sup7even\Mailchimp\ViewHelpers\SimplifyLabelViewHelper;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 class SimplifyLabelViewHelperTest extends UnitTestCase

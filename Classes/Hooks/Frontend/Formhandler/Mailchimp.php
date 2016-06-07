@@ -1,9 +1,9 @@
 <?php
 
-namespace Sup7\Mailchimp\Hooks\Frontend\Formhandler;
+namespace Sup7even\Mailchimp\Hooks\Frontend\Formhandler;
 
-use Sup7\Mailchimp\Domain\Model\Dto\FormDto;
-use Sup7\Mailchimp\Service\ApiService;
+use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
+use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -13,7 +13,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Sample configuration:
  *
  * <code>
- * finishers.4.class = Sup7\Mailchimp\Hooks\Frontend\Formhandler\Mailchimp
+ * finishers.4.class = Sup7even\Mailchimp\Hooks\Frontend\Formhandler\Mailchimp
  * finishers.4.config {
  *   listId = 12345
  *   fieldEmail = email
@@ -37,7 +37,7 @@ class Mailchimp extends \Tx_Formhandler_AbstractFinisher
         }
         try {
             /** @var ApiService $api */
-            $api = GeneralUtility::makeInstance('Sup7\\Mailchimp\\Service\\ApiService');
+            $api = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
 
             $data = $this->getData();
             $api->register($listId, $data);
@@ -53,7 +53,7 @@ class Mailchimp extends \Tx_Formhandler_AbstractFinisher
     protected function getData()
     {
         /** @var FormDto $data */
-        $data = GeneralUtility::makeInstance('Sup7\\Mailchimp\\Domain\\Model\\Dto\\FormDto');
+        $data = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\FormDto');
 
         $emailField = $this->utilityFuncs->getSingle($this->settings, 'fieldEmail');
         if ($emailField && $this->gp[$emailField]) {

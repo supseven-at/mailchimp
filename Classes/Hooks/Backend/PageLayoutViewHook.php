@@ -1,8 +1,8 @@
 <?php
 
-namespace Sup7\Mailchimp\Hooks\Backend;
+namespace Sup7even\Mailchimp\Hooks\Backend;
 
-use Sup7\Mailchimp\Service\ApiService;
+use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -44,7 +44,7 @@ class PageLayoutViewHook
     {
         /** @var DatabaseConnection databaseConnection */
         $this->databaseConnection = $GLOBALS['TYPO3_DB'];
-        $this->api = GeneralUtility::makeInstance('Sup7\\Mailchimp\\Service\\ApiService');
+        $this->api = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
     }
 
 

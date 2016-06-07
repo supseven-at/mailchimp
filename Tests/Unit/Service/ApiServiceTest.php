@@ -1,9 +1,9 @@
 <?php
 
-namespace Sup7\Mailchimp\Tests\Unit\Service;
+namespace Sup7even\Mailchimp\Tests\Unit\Service;
 
-use Sup7\Mailchimp\Domain\Model\Dto\FormDto;
-use Sup7\Mailchimp\Service\ApiService;
+use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
+use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 class ApiServiceTest extends UnitTestCase

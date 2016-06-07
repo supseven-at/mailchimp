@@ -1,9 +1,9 @@
 <?php
 
-namespace Sup7\Mailchimp\Tests\Unit\Domain\Model\Dto;
+namespace Sup7even\Mailchimp\Tests\Unit\Domain\Model\Dto;
 
-use Sup7\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
-use Sup7\Mailchimp\Exception\ApiKeyMissingException;
+use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
+use Sup7even\Mailchimp\Exception\ApiKeyMissingException;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 class ExtensionConfigurationTest extends UnitTestCase

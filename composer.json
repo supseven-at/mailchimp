@@ -32,12 +32,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Sup7\\Mailchimp\\": "Classes"
+      "Sup7even\\Mailchimp\\": "Classes"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Sup7\\Mailchimp\\Tests\\": "Tests",
+      "Sup7even\\Mailchimp\\Tests\\": "Tests",
       "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
     }
   },

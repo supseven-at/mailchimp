@@ -1,8 +1,8 @@
 <?php
 
-namespace Sup7\Mailchimp\Domain\Model\Dto;
+namespace Sup7even\Mailchimp\Domain\Model\Dto;
 
-use Sup7\Mailchimp\Exception\ApiKeyMissingException;
+use Sup7even\Mailchimp\Exception\ApiKeyMissingException;
 
 class ExtensionConfiguration
 {

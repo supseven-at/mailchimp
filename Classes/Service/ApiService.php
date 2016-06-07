@@ -1,11 +1,11 @@
 <?php
 
-namespace Sup7\Mailchimp\Service;
+namespace Sup7even\Mailchimp\Service;
 
 use DrewM\MailChimp\MailChimp;
-use Sup7\Mailchimp\Domain\Model\Dto\FormDto;
-use Sup7\Mailchimp\Exception\GeneralException;
-use Sup7\Mailchimp\Exception\MemberExistsException;
+use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
+use Sup7even\Mailchimp\Exception\GeneralException;
+use Sup7even\Mailchimp\Exception\MemberExistsException;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Log\Logger;
@@ -22,8 +22,8 @@ class ApiService
     {
         require_once(ExtensionManagementUtility::extPath('mailchimp', 'Resources/Private/Contrib/MailChimp/MailChimp.php'));
 
-        /** @var \Sup7\Mailchimp\Domain\Model\Dto\ExtensionConfiguration $extensionConfiguration */
-        $extensionConfiguration = GeneralUtility::makeInstance('Sup7\\Mailchimp\\Domain\\Model\\Dto\\ExtensionConfiguration');
+        /** @var \Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration $extensionConfiguration */
+        $extensionConfiguration = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\ExtensionConfiguration');
         $apiKey = $extensionConfiguration->getApiKey();
 
         $this->api = new MailChimp($apiKey);

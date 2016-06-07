@@ -1,6 +1,6 @@
 <?php
 
-namespace Sup7\Mailchimp\Domain\Model\Dto;
+namespace Sup7even\Mailchimp\Domain\Model\Dto;
 
 class FormDto {
 

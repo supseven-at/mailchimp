@@ -1,6 +1,6 @@
 <?php
 
-namespace Sup7\Mailchimp\ViewHelpers;
+namespace Sup7even\Mailchimp\ViewHelpers;
 
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
