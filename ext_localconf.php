@@ -3,7 +3,7 @@ if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Sup7.' . $_EXTKEY,
+    'Sup7even.' . $_EXTKEY,
     'Registration',
     array(
         'Form' => 'index,response,ajaxResponse'
