@@ -2,7 +2,9 @@
 
 namespace Sup7even\Mailchimp\Domain\Model\Dto;
 
-class FormDto {
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+
+class FormDto extends AbstractEntity{
 
     /** @var string */
     protected $firstName;

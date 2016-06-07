@@ -12,7 +12,7 @@ use TYPO3\CMS\Core\Log\Logger;
 
 class ApiService
 {
-    /** @var MailChimp  */
+    /** @var MailChimp */
     protected $api;
 
     /** @var $logger Logger */
@@ -105,6 +105,27 @@ class ApiService
      */
     public function register($listId, FormDto $form)
     {
+        $data = $this->getRegistrationData($listId, $form);
+        $response = $this->api->post("lists/$listId/members", $data);
+
+        if ($response['status'] === 400 || $response['status'] === 401 || $response['status'] === 404) {
+            $this->logger->error($response['status']);
+            $this->logger->error($response['detail'], (array)$response['errors']);
+            if ($response['title'] === 'Member Exists') {
+                throw new MemberExistsException($response['detail']);
+            }
+
+            throw new GeneralException($response['detail']);
+        }
+    }
+
+    /**
+     * @param string $listId
+     * @param FormDto $form
+     * @return array
+     */
+    protected function getRegistrationData($listId, FormDto $form)
+    {
         $data = array(
             'email_address' => $form->getEmail(),
             'status' => 'pending',
@@ -119,17 +140,18 @@ class ApiService
             $data['interests'] = $interestData;
         }
 
-        $response = $this->api->post("lists/$listId/members", $data);
-
-        if ($response['status'] === 400 || $response['status'] === 401 || $response['status'] === 404) {
-            $this->logger->error($response['status']);
-            $this->logger->error($response['detail'], (array)$response['errors']);
-            if ($response['title'] === 'Member Exists') {
-                throw new MemberExistsException($response['detail']);
+        if (isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData']) && is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'])) {
+            $_params = array(
+                'data' => &$data,
+                'listId' => $listId,
+                'form' => $form
+            );
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'] as $funcName) {
+                GeneralUtility::callUserFunction($funcName, $_params, $this);
             }
-
-            throw new GeneralException($response['detail']);
+            return $data;
         }
+        return $data;
     }
 
     /**

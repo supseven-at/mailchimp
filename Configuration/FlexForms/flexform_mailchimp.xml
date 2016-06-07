@@ -17,7 +17,7 @@
                             <onChange>reload</onChange>
                             <config>
                                 <type>select</type>
-                                <itemsProcFunc>Sup7\Mailchimp\Hooks\Backend\ItemsProcFunc->getLists</itemsProcFunc>
+                                <itemsProcFunc>Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getLists</itemsProcFunc>
                                 <items>
                                     <numIndex index="1">
                                         <numIndex index="0"></numIndex>
@@ -34,7 +34,7 @@
                             <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.interests</label>
                             <config>
                                 <type>select</type>
-                                <itemsProcFunc>Sup7\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests</itemsProcFunc>
+                                <itemsProcFunc>Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests</itemsProcFunc>
                                 <items>
                                     <numIndex index="1">
                                         <numIndex index="0"></numIndex>
