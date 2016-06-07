@@ -1,4 +1,4 @@
-mod.wizards.newContentElement.wizardItems.plugins {
+mod.wizards.newContentElement.wizardItems.forms {
 	elements {
 		mailchimp {
 			icon = ../typo3conf/ext/mailchimp/ext_icon.png
@@ -11,4 +11,5 @@ mod.wizards.newContentElement.wizardItems.plugins {
 			}
 		}
 	}
+	show :=addToList(mailchimp)
 }

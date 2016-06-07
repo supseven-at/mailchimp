@@ -10,15 +10,7 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
-                    <settings.useAjax>
-                        <TCEforms>
-                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.useAjax</label>
-                            <config>
-                                <type>check</type>
-                                <default>0</default>
-                            </config>
-                        </TCEforms>
-                    </settings.useAjax>
+                    <!-- List -->
                     <settings.listId>
                         <TCEforms>
                             <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.list</label>
@@ -36,6 +28,7 @@
                         </TCEforms>
                     </settings.listId>
 
+                    <!-- Interest group -->
                     <settings.interestId>
                         <TCEforms>
                             <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.interests</label>
@@ -51,6 +44,17 @@
                             </config>
                         </TCEforms>
                     </settings.interestId>
+
+                    <!-- Use ajax -->
+                    <settings.useAjax>
+                        <TCEforms>
+                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.useAjax</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.useAjax>
                 </el>
             </ROOT>
         </sDEF>
