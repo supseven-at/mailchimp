@@ -148,7 +148,6 @@ class ApiService
             foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'] as $funcName) {
                 GeneralUtility::callUserFunction($funcName, $_params, $this);
             }
-            return $data;
         }
         return $data;
     }
@@ -171,9 +170,8 @@ class ApiService
         }
         // single interests
         $interest = $form->getInterest();
-        if ($interests) {
+        if ($interest) {
             $interestData[$interest] = true;
-            return $interestData;
         }
         return $interestData;
     }
