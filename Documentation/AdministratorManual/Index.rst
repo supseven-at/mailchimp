@@ -19,6 +19,30 @@ This section containts a collection of helpful snippets you can use to impove th
         :local:
         :depth: 1
 
+Change the templates
+--------------------
+If you want to change the templates, copy those to your site extension or any other directory and specify the path.
+
+.. code-block:: typoscript
+
+        plugin.tx_mailchimp {
+            view {
+                templateRootPaths {
+                    0 = typo3conf/ext/mailchimp/Resources/Private/Templates/
+                    1 = typo3conf/ext/<your-extkey>/Resources/Private/Templates/
+                }
+                partialRootPaths {
+                    0 = typo3conf/ext/mailchimp/Resources/Private/Partials/
+                    1 = typo3conf/ext/<your-extkey>/Resources/Private/Partials/
+                }
+                layoutRootPaths {
+                    0 = typo3conf/ext/mailchimp/Resources/Private/Layouts/
+                    1 = typo3conf/ext/<your-extkey>/Resources/Private/Layouts/
+                }
+            }
+        }
+
+
 Prefill email address
 ---------------------
 
