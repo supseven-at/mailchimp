@@ -68,6 +68,16 @@ As an example: The string `Öffentliche Verwaltung & Technologie` will be transf
             }
         }
 
+Handling of custom fields
+-------------------------
+It is possible to handle additional fields in the mailchimp extension. Uo to 10 fields can be used in the template which are named ``mergeField1`` to ``mergeField10``. The mapping to the actual fields must be done in a custom hook implementation. Use the following hook
+
+.. code-block:: php
+
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'][]
+            = 'Sup7even\MailchimpIqmobile\Hooks\IqMobileFieldHook->run';
+
+.. warning:: Currently there is no server side validation possible if you set fields in the MailChimp interface to required!
 
 Integration in EXT:``formhandler``
 ----------------------------------
