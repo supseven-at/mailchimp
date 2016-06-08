@@ -28,6 +28,7 @@
             <label index="success.description">Please check your emails to activate the registration!</label>
             <label index="form.submit">Submit</label>
             <label index="memberCount">Count of members</label>
+            <label index="ajaxEnabledWithoutExtension">Ajax is enabled but the extension "typoscript_rendering" is not installed!</label>
         </languageKey>
 
         <!-- German -->

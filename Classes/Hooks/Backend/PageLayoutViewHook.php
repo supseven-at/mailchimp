@@ -4,6 +4,7 @@ namespace Sup7even\Mailchimp\Hooks\Backend;
 
 use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class PageLayoutViewHook
@@ -70,6 +71,13 @@ class PageLayoutViewHook
             $this->getLabel('flexform.useAjax'),
             $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_common.xlf:' . ($usage ? 'yes' : 'no'))
         );
+
+        if ($usage && !ExtensionManagementUtility::isLoaded('typoscript_rendering')) {
+            $this->tableData[] = array(
+                '',
+                '<div class="alert alert-warning typo3-message message-danger">' . $this->getLabel('ajaxEnabledWithoutExtension') . '</div>'
+            );
+        }
     }
 
     protected function getListInformation()
@@ -113,9 +121,13 @@ class PageLayoutViewHook
      * @param string $string
      * @return string
      */
-    protected function getLabel($string)
+    protected function getLabel($string, $hsc = true)
     {
-        return $this->getLanguageService()->sL(self::LLPATH . $string);
+        $label = $this->getLanguageService()->sL(self::LLPATH . $string);
+        if ($hsc) {
+            $label = htmlspecialchars($label);
+        }
+        return $label;
     }
 
     /**
@@ -142,7 +154,7 @@ class PageLayoutViewHook
 
         $content = '';
         foreach ($this->tableData as $line) {
-            $content .= '<strong>' . $line[0] . '</strong>' . ' ' . $line[1] . '<br />';
+            $content .= ($line[0] ? ('<strong>' . $line[0] . '</strong>' . ' ') : '') . $line[1] . '<br />';
         }
 
         return '<pre style="white-space:normal">' . $content . '</pre>';
