@@ -2,19 +2,19 @@
 
 $EM_CONF[$_EXTKEY] = array(
     'title' => 'Mailchimp subscription',
-    'description' => '',
+    'description' => 'Simple MailChimp integration to let users register to a specific list',
     'category' => 'plugin',
     'author' => 'Georg Ringer',
     'author_email' => 'g.ringer@supseven.at',
-    'state' => 'stable',
+    'state' => 'beta',
     'internal' => '',
     'uploadfolder' => '1',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '1.1.0',
+    'version' => '1.2.0',
     'constraints' => array(
         'depends' => array(
-            'typo3' => '6.2.0-7.6.99'
+            'typo3' => '6.2.0-8.9.99'
         ),
         'conflicts' => array(),
         'suggests' => array(
