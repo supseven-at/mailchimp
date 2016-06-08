@@ -109,7 +109,7 @@ class ApiService
         $response = $this->api->post("lists/$listId/members", $data);
 
         if ($response['status'] === 400 || $response['status'] === 401 || $response['status'] === 404) {
-            $this->logger->error($response['status']);
+            $this->logger->error($response['status'] . ' ' . $response['detail']);
             $this->logger->error($response['detail'], (array)$response['errors']);
             if ($response['title'] === 'Member Exists') {
                 throw new MemberExistsException($response['detail']);
@@ -132,8 +132,7 @@ class ApiService
             'merge_fields' => array(
                 'FNAME' => $form->getFirstName(),
                 'LNAME' => $form->getLastName(),
-            ),
-            'interests' => array(),
+            )
         );
         $interestData = $this->getInterests($form);
         if ($interestData) {
