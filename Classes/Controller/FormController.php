@@ -23,12 +23,11 @@ class FormController extends ActionController
     /**
      * @dontvalidate $form
      */
-    public function indexAction($form = null)
+    public function indexAction(FormDto $form = null)
     {
         if (is_null($form)) {
             /** @var FormDto $form */
-            $formClass = $this->settings['formClass'] ? $this->settings['formClass'] : 'Sup7even\\Mailchimp\\Domain\\Model\\Dto\\FormDto';
-            $form = GeneralUtility::makeInstance($formClass);
+            $form = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\FormDto');
             $prefill = GeneralUtility::_GP('email');
             if ($prefill) {
                 $form->setEmail($prefill);
@@ -50,7 +49,7 @@ class FormController extends ActionController
      * @param FormDto $form
      * @dontvalidate $form
      */
-    public function ajaxResponseAction($form = null)
+    public function ajaxResponseAction(FormDto $form = null)
     {
         $this->handleRegistration($form);
     }
@@ -58,7 +57,7 @@ class FormController extends ActionController
     /**
      * @param FormDto $form
      */
-    public function responseAction($form = null)
+    public function responseAction(FormDto $form = null)
     {
         if (is_null($form)) {
             $this->redirect('index');

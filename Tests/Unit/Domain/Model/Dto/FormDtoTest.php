@@ -51,7 +51,6 @@ class FormDtoTest extends UnitTestCase
         $this->assertEquals($subject, $domainModelInstance->getInterests());
     }
 
-
     /**
      * @test
      */
@@ -61,5 +60,21 @@ class FormDtoTest extends UnitTestCase
         $subject = '12345';
         $domainModelInstance->setInterest($subject);
         $this->assertEquals($subject, $domainModelInstance->getInterest());
+    }
+
+    /**
+     * @test
+     */
+    public function mergeFieldsCanBeTest()
+    {
+        $domainModelInstance = new FormDto();
+        for ($i = 1; $i <= 10; $i++) {
+            $subject = 'content' . $i;
+            $getter = 'getMergeField' . $i;
+            $setter = 'setMergeField' . $i;
+
+            $domainModelInstance->$setter($subject);
+            $this->assertEquals($subject, $domainModelInstance->$getter());
+        }
     }
 }
