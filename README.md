@@ -13,4 +13,4 @@ This extension implements the most important feature of MailChimp: Let the users
 
 ## Manual
 
-Please take a look at the full manual inside the Documentation directory and later at https://docs.typo3.org/typo3cms/extensions/mailchimp/.
+Please take a look at the full manual inside the Documentation directory or rendered at https://docs.typo3.org/typo3cms/extensions/mailchimp/.
