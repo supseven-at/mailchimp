@@ -4,7 +4,8 @@ namespace Sup7even\Mailchimp\Domain\Model\Dto;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class FormDto extends AbstractEntity{
+class FormDto extends AbstractEntity
+{
 
     /** @var string */
     protected $firstName;
@@ -294,5 +295,4 @@ class FormDto extends AbstractEntity{
     {
         $this->mergeField10 = $mergeField10;
     }
-
 }

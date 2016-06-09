@@ -14,7 +14,8 @@ class SimplifyLabelViewHelperTest extends UnitTestCase
      * @dataProvider checkViewHelperOutputDataProvider
      * @test
      */
-    public function checkViewHelperOutput($input, $expected) {
+    public function checkViewHelperOutput($input, $expected)
+    {
         $viewHelper = new SimplifyLabelViewHelper();
 
         $this->assertEquals($expected, $viewHelper->render($input));
@@ -23,7 +24,8 @@ class SimplifyLabelViewHelperTest extends UnitTestCase
     /**
      * @return array
      */
-    public function checkViewHelperOutputDataProvider() {
+    public function checkViewHelperOutputDataProvider()
+    {
         return [
             'simply text' => [
                 'A normal Label', 'AnormalLabel'
@@ -33,5 +35,4 @@ class SimplifyLabelViewHelperTest extends UnitTestCase
             ],
         ];
     }
-
 }

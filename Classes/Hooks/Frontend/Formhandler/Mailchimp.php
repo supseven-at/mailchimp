@@ -30,7 +30,6 @@ class Mailchimp extends \Tx_Formhandler_AbstractFinisher
 
     public function process()
     {
-
         $listId = $this->utilityFuncs->getSingle($this->settings, 'listId');
         if (empty($listId)) {
             return;
@@ -72,6 +71,4 @@ class Mailchimp extends \Tx_Formhandler_AbstractFinisher
 
         return $data;
     }
-
-
 }

@@ -31,5 +31,4 @@ class ExtensionConfiguration
         }
         return $this->apiKey;
     }
-
 }

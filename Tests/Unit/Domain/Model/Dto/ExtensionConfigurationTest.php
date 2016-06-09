@@ -28,5 +28,4 @@ class ExtensionConfigurationTest extends UnitTestCase
         $config = new ExtensionConfiguration();
         $this->assertEquals($config->getApiKey(), $key);
     }
-
 }

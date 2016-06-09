@@ -271,7 +271,6 @@ class MailChimp
         $this->last_response = $response;
 
         if (!empty($response['body'])) {
-
             $d = json_decode($response['body'], true);
 
             if (isset($d['status']) && $d['status'] != '200' && isset($d['detail'])) {

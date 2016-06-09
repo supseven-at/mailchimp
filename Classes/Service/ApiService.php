@@ -6,9 +6,9 @@ use DrewM\MailChimp\MailChimp;
 use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
 use Sup7even\Mailchimp\Exception\GeneralException;
 use Sup7even\Mailchimp\Exception\MemberExistsException;
+use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Log\Logger;
 
 class ApiService
 {

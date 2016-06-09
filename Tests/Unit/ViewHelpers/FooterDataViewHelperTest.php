@@ -3,7 +3,6 @@
 namespace Sup7even\Mailchimp\Tests\Unit\ViewHelpers;
 
 use Sup7even\Mailchimp\ViewHelpers\FooterDataViewHelper;
-use Sup7even\Mailchimp\ViewHelpers\SimplifyLabelViewHelper;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 
@@ -26,5 +25,4 @@ class FooterDataViewHelperTest extends UnitTestCase
 
         $viewHelper->_call('render');
     }
-
 }

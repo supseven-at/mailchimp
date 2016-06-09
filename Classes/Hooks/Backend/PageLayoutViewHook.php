@@ -48,7 +48,6 @@ class PageLayoutViewHook
         $this->api = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
     }
 
-
     public function getExtensionSummary(array $params = array())
     {
         $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
@@ -182,5 +181,4 @@ class PageLayoutViewHook
 
         return null;
     }
-
 }

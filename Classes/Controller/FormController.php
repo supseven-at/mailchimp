@@ -2,7 +2,6 @@
 
 namespace Sup7even\Mailchimp\Controller;
 
-use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
 use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
 use Sup7even\Mailchimp\Exception\GeneralException;
 use Sup7even\Mailchimp\Exception\MemberExistsException;
