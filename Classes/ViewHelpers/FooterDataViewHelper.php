@@ -12,13 +12,22 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 class FooterDataViewHelper extends AbstractViewHelper
 {
 
+    /** @var PageRenderer */
+    protected $pageRenderer;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+    }
+
     /**
      * Renders footer data
      */
     public function render()
     {
-        /** @var PageRenderer $pageRenderer */
-        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $pageRenderer->addFooterData($this->renderChildren());
+        $this->pageRenderer->addFooterData($this->renderChildren());
     }
 }
