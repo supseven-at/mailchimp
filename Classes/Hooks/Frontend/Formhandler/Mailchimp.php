@@ -5,6 +5,7 @@ namespace Sup7even\Mailchimp\Hooks\Frontend\Formhandler;
 use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
 use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Typoheads\Formhandler\Finisher\AbstractFinisher;
 
 /**
  * Sample implementation of a Finisher Class used by Formhandler redirecting to another page.
@@ -23,7 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </code>
  *
  */
-class Mailchimp extends \Tx_Formhandler_AbstractFinisher
+class Mailchimp extends AbstractFinisher
 {
 
     protected $api;
@@ -32,7 +33,7 @@ class Mailchimp extends \Tx_Formhandler_AbstractFinisher
     {
         $listId = $this->utilityFuncs->getSingle($this->settings, 'listId');
         if (empty($listId)) {
-            return;
+            return $this->gp;
         }
         try {
             /** @var ApiService $api */
@@ -43,7 +44,7 @@ class Mailchimp extends \Tx_Formhandler_AbstractFinisher
         } catch (\Exception $e) {
             // do nothing
         }
-        return;
+        return $this->gp;
     }
 
     /**
