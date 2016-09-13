@@ -130,8 +130,8 @@ class ApiService
             'email_address' => $form->getEmail(),
             'status' => 'pending',
             'merge_fields' => array(
-                'FNAME' => $form->getFirstName(),
-                'LNAME' => $form->getLastName(),
+				'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
+                'LNAME' => (!empty($form->getLastName())) ? $form->getLastName() : '',
             )
         );
         $interestData = $this->getInterests($form);
