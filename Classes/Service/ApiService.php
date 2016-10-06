@@ -118,9 +118,9 @@ class ApiService
                 } else {
                   throw new MemberExistsException($response['detail']);
                 }
+            } else {
+                throw new GeneralException($response['detail']);
             }
-
-            throw new GeneralException($response['detail']);
         }
     }
 
