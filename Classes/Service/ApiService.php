@@ -112,10 +112,15 @@ class ApiService
             $this->logger->error($response['status'] . ' ' . $response['detail']);
             $this->logger->error($response['detail'], (array)$response['errors']);
             if ($response['title'] === 'Member Exists') {
-                throw new MemberExistsException($response['detail']);
+                $getResponse = $this->api->get("lists/$listId/members/" . $this->api->subscriberHash($data['email_address']));
+                if ($getResponse['status'] !== 'subscribed') {
+                    $this->api->put("lists/$listId/members/" . $this->api->subscriberHash($data['email_address']), $data);
+                } else {
+                  throw new MemberExistsException($response['detail']);
+                }
+            } else {
+                throw new GeneralException($response['detail']);
             }
-
-            throw new GeneralException($response['detail']);
         }
     }
 
@@ -130,7 +135,7 @@ class ApiService
             'email_address' => $form->getEmail(),
             'status' => 'pending',
             'merge_fields' => array(
-				'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
+				        'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
                 'LNAME' => (!empty($form->getLastName())) ? $form->getLastName() : '',
             )
         );
