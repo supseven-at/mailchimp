@@ -15,6 +15,16 @@ class MailChimp
     private $api_key;
     private $api_endpoint = 'https://<dc>.api.mailchimp.com/3.0';
 
+    /**
+     * @var string
+     */
+    protected $proxy = '';
+
+    /**
+     * @var string
+     */
+    protected $proxyPort = '';
+
     /*  SSL Verification
         Read before disabling: 
         http://snippets.webaware.com.au/howto/stop-turning-off-curlopt_ssl_verifypeer-and-fix-your-php-config/
@@ -29,11 +39,17 @@ class MailChimp
     /**
      * Create a new instance
      * @param string $api_key Your MailChimp API key
+     * @param string $curlProxy
+     * @param string $curlProxyPort
      * @throws \Exception
      */
-    public function __construct($api_key)
+    public function __construct($api_key, $curlProxy, $curlProxyPort)
     {
         $this->api_key = $api_key;
+
+        $this->proxy = $curlProxy;
+
+        $this->proxyPort = $curlProxyPort;
 
         if (strpos($this->api_key, '-') === false) {
             throw new \Exception('Invalid MailChimp API key supplied.');
@@ -169,12 +185,12 @@ class MailChimp
      * @param  array $args Assoc array of parameters to be passed
      * @param int $timeout
      * @return array|false Assoc array of decoded result
-     * @throws Exception
+     * @throws \Exception
      */
     private function makeRequest($http_verb, $method, $args = array(), $timeout = 10)
     {
         if (!function_exists('curl_init') || !function_exists('curl_setopt')) {
-            throw new Exception("cURL support is required, but can't be found.");
+            throw new \Exception("cURL support is required, but can't be found.");
         }
 
         $url = $this->api_endpoint . '/' . $method;
@@ -206,6 +222,14 @@ class MailChimp
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+
+        if (!empty($this->proxy)) {
+            curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        }
+
+        if (!empty($this->proxyPort)) {
+            curl_setopt($ch, CURLOPT_PROXYPORT, $this->proxyPort);
+        }
 
         switch ($http_verb) {
             case 'post':

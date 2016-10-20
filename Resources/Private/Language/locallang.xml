@@ -14,6 +14,8 @@
             <label index="flexform.interests">Interests</label>
             <label index="flexform.useAjax">Use Ajax (EXT:typoscript_rendering required)</label>
             <label index="extMgm.apiKey">API key:You get the API key at mailchimp.com > Account > Extras > API keys</label>
+            <label index="extMgm.proxy">If you have to use a proxy for curl enter it here</label>
+            <label index="extMgm.proxyPort">Enter the proxy port for here</label>
 
             <!-- Frontend -->
             <label index="field.email">Email</label>

@@ -25,8 +25,10 @@ class ApiService
         /** @var \Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration $extensionConfiguration */
         $extensionConfiguration = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\ExtensionConfiguration');
         $apiKey = $extensionConfiguration->getApiKey();
+        $curlProxy = $extensionConfiguration->getProxy();
+        $curlProxyPort = $extensionConfiguration->getProxyPort();
 
-        $this->api = new MailChimp($apiKey);
+        $this->api = new MailChimp($apiKey, $curlProxy, $curlProxyPort);
         $this->logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
     }
 
