@@ -90,7 +90,7 @@ You can integrate `formhandler` by using the following finisher:
             plugin.Tx_Formhandler.settings.predef.contact {
                 finishers {
                     2 {
-                        class = Sup7\Mailchimp\Hooks\Frontend\Formhandler\Mailchimp
+                        class = Sup7even\Mailchimp\Hooks\Frontend\Formhandler\Mailchimp
                         config {
                             // ID of the list you want the user to be added to
                             listId = b1891812812
