@@ -1,0 +1,8 @@
+plugin.tx_mailchimp {
+	settings {
+		apiKey = {$plugin.tx_mailchimp.settings.apiKey}
+		proxy = {$plugin.tx_mailchimp.settings.proxy}
+		proxyPort = {$plugin.tx_mailchimp.settings.proxyPort}
+	}
+}
+

@@ -3,6 +3,9 @@
 namespace Sup7even\Mailchimp\Domain\Model\Dto;
 
 use Sup7even\Mailchimp\Exception\ApiKeyMissingException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 class ExtensionConfiguration
 {
@@ -22,10 +25,18 @@ class ExtensionConfiguration
 
     public function __construct()
     {
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $configurationManager = $objectManager->get(ConfigurationManagerInterface::class);
+        $typoScript = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT)["plugin."]["tx_mailchimp."]["settings."];
+
         $settings = (array)unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailchimp']);
         foreach ($settings as $key => $value) {
             if (property_exists(__CLASS__, $key)) {
-                $this->$key = $value;
+                if (empty($typoScript[$key])) {
+                    $this->$key = $value;
+                } else {
+                    $this->$key = $typoScript[$key];
+                }
             }
         }
     }
@@ -45,16 +56,17 @@ class ExtensionConfiguration
     /**
      * @return string
      */
-    public function getProxy() {
+    public function getProxy()
+    {
         return $this->proxy;
     }
 
     /**
      * @return string
      */
-    public function getProxyPort() {
+    public function getProxyPort()
+    {
         return $this->proxyPort;
     }
-
 
 }
