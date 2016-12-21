@@ -55,6 +55,32 @@
                             </config>
                         </TCEforms>
                     </settings.useAjax>
+
+                    <!-- Override api key -->
+                    <settings.overrideApiKey>
+                        <TCEforms>
+                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.overrideApiKey</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.overrideApiKey>
+
+                    <!-- api key -->
+                    <settings.apiKey>
+                        <TCEforms>
+                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.apiKey</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>input</type>
+                                <size>30</size>
+                            </config>
+                            <displayCond>FIELD:settings.overrideApiKey:=:1</displayCond>
+                        </TCEforms>
+                    </settings.apiKey>
+
                 </el>
             </ROOT>
         </sDEF>
