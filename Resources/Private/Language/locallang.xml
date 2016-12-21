@@ -45,7 +45,7 @@
             <label index="flexform.list">Liste</label>
             <label index="flexform.interests">Interessen</label>
             <label index="flexform.useAjax">Nutze Ajax (EXT:typoscript_rendering benötigt)</label>
-            <label index="flexform.overrideApiKey">ApiKey überschreiben</label>
+            <label index="flexform.overrideApiKey">Api key überschreiben</label>
             <label index="flexform.apiKey">API key</label>
 
             <!-- Frontend -->
