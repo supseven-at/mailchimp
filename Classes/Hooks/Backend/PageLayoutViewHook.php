@@ -57,9 +57,33 @@ class PageLayoutViewHook
         $this->getListInformation();
         $this->getInterestGroupInformation();
         $this->getAjaxUsage();
+        $this->getApiKeyOverride();
+        $this->getApiKey();
 
         $result .= $this->renderSettingsAsTable();
         return $result;
+    }
+
+    protected function getApiKey()
+    {
+        $usage = $this->getFieldFromFlexform('settings.overrideApiKey');
+
+        if($usage) {
+            $this->tableData[] = array(
+                $this->getLabel('flexform.apiKey'),
+                $this->getFieldFromFlexform('settings.apiKey')
+            );
+        }
+    }
+
+    protected function getApiKeyOverride()
+    {
+        $usage = $this->getFieldFromFlexform('settings.overrideApiKey');
+
+        $this->tableData[] = array(
+            $this->getLabel('flexform.overrideApiKey'),
+            $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_common.xlf:' . ($usage ? 'yes' : 'no'))
+        );
     }
 
     protected function getAjaxUsage()

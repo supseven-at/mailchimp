@@ -18,13 +18,17 @@ class ApiService
     /** @var $logger Logger */
     protected $logger;
 
-    public function __construct()
+    /**
+     * ApiService constructor.
+     * @param string $overrideApiKey
+     */
+    public function __construct($overrideApiKey = '')
     {
         require_once(ExtensionManagementUtility::extPath('mailchimp', 'Resources/Private/Contrib/MailChimp/MailChimp.php'));
 
         /** @var \Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration $extensionConfiguration */
         $extensionConfiguration = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\ExtensionConfiguration');
-        $apiKey = $extensionConfiguration->getApiKey();
+        $apiKey = !empty($overrideApiKey) ? $overrideApiKey : $extensionConfiguration->getApiKey();
         $curlProxy = $extensionConfiguration->getProxy();
         $curlProxyPort = $extensionConfiguration->getProxyPort();
 

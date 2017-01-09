@@ -16,7 +16,7 @@ class FormController extends ActionController
 
     public function initializeAction()
     {
-        $this->registrationService = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
+        $this->registrationService = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService', $this->settings['apiKey']);
     }
 
     /**

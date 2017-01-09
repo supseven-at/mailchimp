@@ -18,14 +18,22 @@ class ItemsProcFunc
 
     public function getLists(array &$config)
     {
-        try {
-            $lists = $this->api->getLists();
-            foreach ($lists as $id => $value) {
-                $title = sprintf('%s [%s]', $value, $id);
-                array_push($config['items'], array($title, $id));
+        $settings = $this->getSettings($config);
+        if(!empty($settings)) {
+            if ($settings['settings']["overrideApiKey"]) {
+                unset($this->api);
+                $this->api = GeneralUtility::makeInstance('Sup7even\Mailchimp\Service\ApiService', $settings['settings']["apiKey"]);
             }
-        } catch (\Exception $e) {
-            // do nothing
+
+            try {
+                $lists = $this->api->getLists();
+                foreach ($lists as $id => $value) {
+                    $title = sprintf('%s [%s]', $value, $id);
+                    array_push($config['items'], array($title, $id));
+                }
+            } catch (\Exception $e) {
+                // do nothing
+            }
         }
     }
 
@@ -36,14 +44,12 @@ class ItemsProcFunc
      */
     public function getInterests(array &$config)
     {
-        $elementId = $config['row']['uid'];
-
-        if ((int)$elementId > 0) {
-            $contentElement = BackendUtility::getRecord('tt_content', $elementId);
-
-            /** @var \TYPO3\CMS\Extbase\Service\FlexFormService $flexFormService */
-            $flexFormService = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Service\FlexFormService');
-            $settings = $flexFormService->convertFlexFormContentToArray($contentElement['pi_flexform']);
+        $settings = $this->getSettings($config);
+        if(!empty($settings)) {
+            if ($settings['settings']["overrideApiKey"]) {
+                unset($this->api);
+                $this->api = GeneralUtility::makeInstance('Sup7even\Mailchimp\Service\ApiService', $settings['settings']["apiKey"]);
+            }
 
             if ($settings['settings']['listId']) {
                 try {
@@ -58,5 +64,22 @@ class ItemsProcFunc
                 }
             }
         }
+    }
+
+    /**
+     * @param $config
+     * @return array
+     */
+    protected function getSettings($config) {
+        $elementId = $config['row']['uid'];
+
+        if ((int)$elementId > 0) {
+            $contentElement = BackendUtility::getRecord('tt_content', $elementId);
+
+            /** @var \TYPO3\CMS\Extbase\Service\FlexFormService $flexFormService */
+            $flexFormService = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Service\FlexFormService');
+            return $flexFormService->convertFlexFormContentToArray($contentElement['pi_flexform']);
+        }
+        return [];
     }
 }
