@@ -14,7 +14,7 @@ class ApiServiceTest extends UnitTestCase
      */
     public function properInterestsAreReturned()
     {
-        $mockedApiService = $this->getAccessibleMock(ApiService::class, array('dummy'), [], '', false);
+        $mockedApiService = $this->getAccessibleMock(ApiService::class, ['dummy'], [], '', false);
         $form = new FormDto();
         $interests = [
             '123' => 0,

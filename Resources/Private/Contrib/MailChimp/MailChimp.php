@@ -26,15 +26,15 @@ class MailChimp
     protected $proxyPort = '';
 
     /*  SSL Verification
-        Read before disabling: 
+        Read before disabling:
         http://snippets.webaware.com.au/howto/stop-turning-off-curlopt_ssl_verifypeer-and-fix-your-php-config/
     */
     public $verify_ssl = true;
 
     private $request_successful = false;
     private $last_error         = '';
-    private $last_response      = array();
-    private $last_request       = array();
+    private $last_response      = [];
+    private $last_request       = [];
 
     /**
      * Create a new instance
@@ -58,7 +58,7 @@ class MailChimp
         list(, $data_center) = explode('-', $this->api_key);
         $this->api_endpoint  = str_replace('<dc>', $data_center, $this->api_endpoint);
 
-        $this->last_response = array('headers' => null, 'body' => null);
+        $this->last_response = ['headers' => null, 'body' => null];
     }
 
     /**
@@ -125,7 +125,7 @@ class MailChimp
      * @param   int $timeout Timeout limit for request in seconds
      * @return  array|false   Assoc array of API response, decoded from JSON
      */
-    public function delete($method, $args = array(), $timeout = 10)
+    public function delete($method, $args = [], $timeout = 10)
     {
         return $this->makeRequest('delete', $method, $args, $timeout);
     }
@@ -137,7 +137,7 @@ class MailChimp
      * @param   int $timeout Timeout limit for request in seconds
      * @return  array|false   Assoc array of API response, decoded from JSON
      */
-    public function get($method, $args = array(), $timeout = 10)
+    public function get($method, $args = [], $timeout = 10)
     {
         return $this->makeRequest('get', $method, $args, $timeout);
     }
@@ -149,7 +149,7 @@ class MailChimp
      * @param   int $timeout Timeout limit for request in seconds
      * @return  array|false   Assoc array of API response, decoded from JSON
      */
-    public function patch($method, $args = array(), $timeout = 10)
+    public function patch($method, $args = [], $timeout = 10)
     {
         return $this->makeRequest('patch', $method, $args, $timeout);
     }
@@ -161,7 +161,7 @@ class MailChimp
      * @param   int $timeout Timeout limit for request in seconds
      * @return  array|false   Assoc array of API response, decoded from JSON
      */
-    public function post($method, $args = array(), $timeout = 10)
+    public function post($method, $args = [], $timeout = 10)
     {
         return $this->makeRequest('post', $method, $args, $timeout);
     }
@@ -173,7 +173,7 @@ class MailChimp
      * @param   int $timeout Timeout limit for request in seconds
      * @return  array|false   Assoc array of API response, decoded from JSON
      */
-    public function put($method, $args = array(), $timeout = 10)
+    public function put($method, $args = [], $timeout = 10)
     {
         return $this->makeRequest('put', $method, $args, $timeout);
     }
@@ -187,7 +187,7 @@ class MailChimp
      * @return array|false Assoc array of decoded result
      * @throws \Exception
      */
-    private function makeRequest($http_verb, $method, $args = array(), $timeout = 10)
+    private function makeRequest($http_verb, $method, $args = [], $timeout = 10)
     {
         if (!function_exists('curl_init') || !function_exists('curl_setopt')) {
             throw new \Exception("cURL support is required, but can't be found.");
@@ -197,24 +197,24 @@ class MailChimp
 
         $this->last_error         = '';
         $this->request_successful = false;
-        $response                 = array('headers' => null, 'body' => null);
+        $response                 = ['headers' => null, 'body' => null];
         $this->last_response      = $response;
 
-        $this->last_request = array(
+        $this->last_request = [
             'method'  => $http_verb,
             'path'    => $method,
             'url'     => $url,
             'body'    => '',
             'timeout' => $timeout,
-        );
+        ];
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Accept: application/vnd.api+json',
             'Content-Type: application/vnd.api+json',
             'Authorization: apikey ' . $this->api_key
-        ));
+        ]);
         curl_setopt($ch, CURLOPT_USERAGENT, 'DrewM/MailChimp-API/3.0 (github.com/drewm/mailchimp-api)');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);

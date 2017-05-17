@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title' => 'Mailchimp subscription',
     'description' => 'Simple MailChimp integration to let users register to a specific list',
     'category' => 'plugin',
@@ -12,13 +12,13 @@ $EM_CONF[$_EXTKEY] = array(
     'createDirs' => '',
     'clearCacheOnLoad' => 1,
     'version' => '2.0.0',
-    'constraints' => array(
-        'depends' => array(
+    'constraints' => [
+        'depends' => [
             'typo3' => '7.6.0-8.9.99'
-        ),
-        'conflicts' => array(),
-        'suggests' => array(
+        ],
+        'conflicts' => [],
+        'suggests' => [
             'typoscript_rendering' => '1.0.5-1.99.999'
-        ),
-    ),
-);
+        ],
+    ],
+];

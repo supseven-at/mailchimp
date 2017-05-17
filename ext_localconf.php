@@ -5,12 +5,12 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'Sup7even.' . $_EXTKEY,
     'Registration',
-    array(
+    [
         'Form' => 'index,response,ajaxResponse'
-    ),
-    array(
+    ],
+    [
         'Form' => 'index,response,ajaxResponse'
-    )
+    ]
 );
 
 if (TYPO3_MODE === 'BE') {
@@ -20,7 +20,7 @@ if (TYPO3_MODE === 'BE') {
         $iconRegistry->registerIcon(
             'ext-mailchimp-wizard-icon',
             \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            array('source' => 'EXT:mailchimp/ext_icon.png')
+            ['source' => 'EXT:mailchimp/ext_icon.png']
         );
     }
 

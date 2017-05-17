@@ -22,7 +22,7 @@ class ItemsProcFunc
             $lists = $this->api->getLists();
             foreach ($lists as $id => $value) {
                 $title = sprintf('%s [%s]', $value, $id);
-                array_push($config['items'], array($title, $id));
+                array_push($config['items'], [$title, $id]);
             }
         } catch (\Exception $e) {
             // do nothing
@@ -50,7 +50,7 @@ class ItemsProcFunc
                     $interests = $this->api->getInterestLists($settings['settings']['listId']);
                     if (is_array($interests) && !empty($interests)) {
                         foreach ($interests as $id => $value) {
-                            array_push($config['items'], array($value, $id));
+                            array_push($config['items'], [$value, $id]);
                         }
                     }
                 } catch (\Exception $e) {

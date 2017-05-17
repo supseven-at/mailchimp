@@ -26,7 +26,6 @@ use Typoheads\Formhandler\Finisher\AbstractFinisher;
  */
 class Mailchimp extends AbstractFinisher
 {
-
     protected $api;
 
     public function process()

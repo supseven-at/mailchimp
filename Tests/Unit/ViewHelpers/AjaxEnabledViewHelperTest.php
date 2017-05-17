@@ -14,8 +14,7 @@ class AjaxEnabledViewHelperTest extends UnitTestCase
      */
     public function ajaxEnabledWorks($setting, $extIsLoaded, $expeted)
     {
-        
-        $viewHelper = $this->getAccessibleMock(AjaxEnabledViewHelper::class, array('renderChildren'), array(), '', false);
+        $viewHelper = $this->getAccessibleMock(AjaxEnabledViewHelper::class, ['renderChildren'], [], '', false);
         $viewHelper->method('renderChildren')->willReturn($code);
 
         $pageRender = $this->prophesize(PageRenderer::class);
@@ -28,10 +27,10 @@ class AjaxEnabledViewHelperTest extends UnitTestCase
 
     protected function ajaxEnabledWorksDataProvider()
     {
-        return array(
-            'nothing enabled' => array(
-                array('0', false, false)
-            )
-        );
+        return [
+            'nothing enabled' => [
+                ['0', false, false]
+            ]
+        ];
     }
 }

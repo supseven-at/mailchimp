@@ -48,7 +48,7 @@ class PageLayoutViewHook
         $this->api = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
     }
 
-    public function getExtensionSummary(array $params = array())
+    public function getExtensionSummary(array $params = [])
     {
         $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
 
@@ -66,16 +66,16 @@ class PageLayoutViewHook
     {
         $usage = $this->getFieldFromFlexform('settings.useAjax');
 
-        $this->tableData[] = array(
+        $this->tableData[] = [
             $this->getLabel('flexform.useAjax'),
             $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_common.xlf:' . ($usage ? 'yes' : 'no'))
-        );
+        ];
 
         if ($usage && !ExtensionManagementUtility::isLoaded('typoscript_rendering')) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 '',
                 '<div class="alert alert-warning typo3-message message-danger">' . $this->getLabel('ajaxEnabledWithoutExtension') . '</div>'
-            );
+            ];
         }
     }
 
@@ -83,20 +83,20 @@ class PageLayoutViewHook
     {
         $listId = $this->getFieldFromFlexform('settings.listId');
         if (!$listId) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLabel('flexform.list'),
                 '<div class="alert alert-warning">No list selected</div>'
-            );
+            ];
         } else {
             $list = $this->api->getList($listId);
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLabel('flexform.list'),
                 sprintf('<strong>%s</strong>', htmlspecialchars($list['name']))
-            );
-            $this->tableData[] = array(
+            ];
+            $this->tableData[] = [
                 $this->getLabel('memberCount'),
                 (int)$list['stats']['member_count']
-            );
+            ];
         }
     }
 
@@ -108,10 +108,10 @@ class PageLayoutViewHook
             $interests = $this->api->getCategories($listId, $interestId);
 
             if ($interests) {
-                $this->tableData[] = array(
+                $this->tableData[] = [
                     $this->getLabel('flexform.interests'),
                     $interests['title']
-                );
+                ];
             }
         }
     }

@@ -45,16 +45,16 @@ class ExtensionConfiguration
     /**
      * @return string
      */
-    public function getProxy() {
+    public function getProxy()
+    {
         return $this->proxy;
     }
 
     /**
      * @return string
      */
-    public function getProxyPort() {
+    public function getProxyPort()
+    {
         return $this->proxyPort;
     }
-
-
 }

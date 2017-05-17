@@ -16,7 +16,7 @@ class SimplifyLabelViewHelper extends AbstractViewHelper
     {
         $label = $label ? $label : $this->renderChildren();
 
-        $label = str_replace(array('Ö', 'Ü', 'Ä', 'ö', 'ü', 'ä', 'ß'), array('Oe', 'Ue', 'Ae', 'oe', 'ue', 'ae', 'ss'), $label);
+        $label = str_replace(['Ö', 'Ü', 'Ä', 'ö', 'ü', 'ä', 'ß'], ['Oe', 'Ue', 'Ae', 'oe', 'ue', 'ae', 'ss'], $label);
         $filter = preg_replace('/[^a-zA-Z0-9]/', '', $label);
         if ($toLowerCase) {
             $filter = strtolower($filter);
