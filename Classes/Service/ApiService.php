@@ -3,10 +3,12 @@
 namespace Sup7even\Mailchimp\Service;
 
 use DrewM\MailChimp\MailChimp;
+use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
 use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
 use Sup7even\Mailchimp\Exception\GeneralException;
 use Sup7even\Mailchimp\Exception\MemberExistsException;
 use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -22,14 +24,14 @@ class ApiService
     {
         require_once(ExtensionManagementUtility::extPath('mailchimp', 'Resources/Private/Contrib/MailChimp/MailChimp.php'));
 
-        /** @var \Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration $extensionConfiguration */
-        $extensionConfiguration = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\ExtensionConfiguration');
+        /** @var ExtensionConfiguration $extensionConfiguration */
+        $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $apiKey = $extensionConfiguration->getApiKey();
         $curlProxy = $extensionConfiguration->getProxy();
         $curlProxyPort = $extensionConfiguration->getProxyPort();
 
         $this->api = new MailChimp($apiKey, $curlProxy, $curlProxyPort);
-        $this->logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 
     /**

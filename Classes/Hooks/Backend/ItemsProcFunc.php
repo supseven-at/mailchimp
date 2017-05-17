@@ -5,6 +5,7 @@ namespace Sup7even\Mailchimp\Hooks\Backend;
 use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Service\FlexFormService;
 
 class ItemsProcFunc
 {
@@ -13,7 +14,7 @@ class ItemsProcFunc
 
     public function __construct()
     {
-        $this->api = GeneralUtility::makeInstance('Sup7even\Mailchimp\Service\ApiService');
+        $this->api = GeneralUtility::makeInstance(ApiService::class);
     }
 
     public function getLists(array &$config)
@@ -41,8 +42,7 @@ class ItemsProcFunc
         if ((int)$elementId > 0) {
             $contentElement = BackendUtility::getRecord('tt_content', $elementId);
 
-            /** @var \TYPO3\CMS\Extbase\Service\FlexFormService $flexFormService */
-            $flexFormService = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Service\FlexFormService');
+            $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
             $settings = $flexFormService->convertFlexFormContentToArray($contentElement['pi_flexform']);
 
             if ($settings['settings']['listId']) {

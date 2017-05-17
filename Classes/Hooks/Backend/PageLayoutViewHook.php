@@ -45,7 +45,7 @@ class PageLayoutViewHook
     {
         /** @var DatabaseConnection databaseConnection */
         $this->databaseConnection = $GLOBALS['TYPO3_DB'];
-        $this->api = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
+        $this->api = GeneralUtility::makeInstance(ApiService::class);
     }
 
     public function getExtensionSummary(array $params = [])
@@ -147,7 +147,7 @@ class PageLayoutViewHook
      */
     protected function renderSettingsAsTable()
     {
-        if (count($this->tableData) == 0) {
+        if (count($this->tableData) === 0) {
             return '';
         }
 

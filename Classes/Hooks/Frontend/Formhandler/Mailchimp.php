@@ -36,7 +36,7 @@ class Mailchimp extends AbstractFinisher
         }
         try {
             /** @var ApiService $api */
-            $api = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
+            $api = GeneralUtility::makeInstance(ApiService::class);
 
             $data = $this->getData();
             $api->register($listId, $data);
@@ -52,7 +52,7 @@ class Mailchimp extends AbstractFinisher
     protected function getData()
     {
         /** @var FormDto $data */
-        $data = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\FormDto');
+        $data = GeneralUtility::makeInstance(FormDto::class);
 
         $emailField = $this->utilityFuncs->getSingle($this->settings, 'fieldEmail');
         if ($emailField && $this->gp[$emailField]) {
