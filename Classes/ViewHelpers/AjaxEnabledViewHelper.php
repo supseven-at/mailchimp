@@ -26,6 +26,6 @@ class AjaxEnabledViewHelper extends AbstractConditionViewHelper
      */
     protected static function evaluateCondition($arguments = null)
     {
-        return ((int)$arguments['isEnabled'] === 1 && ExtensionManagementUtility::isLoaded('typoscript_rendering'));
+        return (int)$arguments['isEnabled'] === 1 && ExtensionManagementUtility::isLoaded('typoscript_rendering');
     }
 }

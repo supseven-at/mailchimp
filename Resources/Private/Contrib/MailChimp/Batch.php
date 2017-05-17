@@ -12,7 +12,7 @@ class Batch
 {
     private $MailChimp;
 
-    private $operations = array();
+    private $operations = [];
     private $batch_id;
 
     public function __construct(MailChimp $MailChimp, $batch_id = null)
@@ -39,7 +39,7 @@ class Batch
      * @param   array $args Assoc array of arguments (usually your data)
      * @return  void
      */
-    public function get($id, $method, $args = array())
+    public function get($id, $method, $args = [])
     {
         $this->queue_operation('GET', $id, $method, $args);
     }
@@ -51,7 +51,7 @@ class Batch
      * @param   array $args Assoc array of arguments (usually your data)
      * @return  void
      */
-    public function patch($id, $method, $args = array())
+    public function patch($id, $method, $args = [])
     {
         $this->queue_operation('PATCH', $id, $method, $args);
     }
@@ -63,7 +63,7 @@ class Batch
      * @param   array $args Assoc array of arguments (usually your data)
      * @return  void
      */
-    public function post($id, $method, $args = array())
+    public function post($id, $method, $args = [])
     {
         $this->queue_operation('POST', $id, $method, $args);
     }
@@ -75,7 +75,7 @@ class Batch
      * @param   array $args Assoc array of arguments (usually your data)
      * @return  void
      */
-    public function put($id, $method, $args = array())
+    public function put($id, $method, $args = [])
     {
         $this->queue_operation('PUT', $id, $method, $args);
     }
@@ -87,7 +87,7 @@ class Batch
      */
     public function execute($timeout = 10)
     {
-        $req = array('operations' => $this->operations);
+        $req = ['operations' => $this->operations];
 
         $result = $this->MailChimp->post('batches', $req, $timeout);
 
@@ -123,11 +123,11 @@ class Batch
      */
     private function queue_operation($http_verb, $id, $method, $args = null)
     {
-        $operation = array(
+        $operation = [
             'operation_id' => $id,
             'method' => $http_verb,
             'path' => $method,
-        );
+        ];
 
         if ($args) {
             $key = ($http_verb == 'GET' ? 'params' : 'body');

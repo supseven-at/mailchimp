@@ -38,10 +38,10 @@ class FormController extends ActionController
         } else {
             $interests = [];
         }
-        $this->view->assignMultiple(array(
+        $this->view->assignMultiple([
             'form' => $form,
             'interests' => $interests,
-        ));
+        ]);
     }
 
     /**
@@ -78,8 +78,8 @@ class FormController extends ActionController
             $this->view->assign('error', 'general');
         }
 
-        $this->view->assignMultiple(array(
+        $this->view->assignMultiple([
             'form' => $form
-        ));
+        ]);
     }
 }
