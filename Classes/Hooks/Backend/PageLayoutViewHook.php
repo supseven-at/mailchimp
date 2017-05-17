@@ -64,18 +64,20 @@ class PageLayoutViewHook
 
     protected function getAjaxUsage()
     {
-        $usage = $this->getFieldFromFlexform('settings.useAjax');
+        $usage = (bool)$this->getFieldFromFlexform('settings.useAjax');
 
-        $this->tableData[] = [
-            $this->getLabel('flexform.useAjax'),
-            $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_common.xlf:' . ($usage ? 'yes' : 'no'))
-        ];
-
-        if ($usage && !ExtensionManagementUtility::isLoaded('typoscript_rendering')) {
+        if ($usage) {
             $this->tableData[] = [
-                '',
-                '<div class="alert alert-warning typo3-message message-danger">' . $this->getLabel('ajaxEnabledWithoutExtension') . '</div>'
+                $this->getLabel('flexform.useAjax'),
+                '<i class="fa fa-check"></i>'
             ];
+
+            if (!ExtensionManagementUtility::isLoaded('typoscript_rendering')) {
+                $this->tableData[] = [
+                    '',
+                    '<div class="alert alert-warning typo3-message message-danger">' . $this->getLabel('ajaxEnabledWithoutExtension') . '</div>'
+                ];
+            }
         }
     }
 
