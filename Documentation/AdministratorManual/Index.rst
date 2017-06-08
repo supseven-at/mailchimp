@@ -75,7 +75,7 @@ It is possible to handle additional fields in the mailchimp extension. Uo to 10 
 .. code-block:: php
 
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'][]
-            = 'Vendor\Extension\Hooks\IqMobileFieldHook->run';
+            = 'Vendor\Extension\Hooks\MailchimpHook->run';
 
 .. warning:: Currently there is no server side validation possible if you set fields in the MailChimp interface to required!
 
