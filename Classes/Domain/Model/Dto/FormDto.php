@@ -56,6 +56,9 @@ class FormDto extends AbstractEntity
     /** @var string */
     protected $mergeField10;
 
+    /** @var string */
+    protected $formName;
+
     /**
      * @return string
      */
@@ -295,4 +298,21 @@ class FormDto extends AbstractEntity
     {
         $this->mergeField10 = $mergeField10;
     }
+
+    /**
+     * @return string
+     */
+    public function getFormName()
+    {
+        return $this->formName;
+    }
+
+    /**
+     * @param string $formName
+     */
+    public function setFormName($formName)
+    {
+        $this->formName = $formName;
+    }
+
 }
