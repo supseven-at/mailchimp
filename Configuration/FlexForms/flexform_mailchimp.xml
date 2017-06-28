@@ -62,8 +62,7 @@
                         <TCEforms>
                             <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.identifier</label>
                             <config>
-                                <type>check</type>
-                                <default>0</default>
+                                <type>input</type>
                             </config>
                         </TCEforms>
                     </settings.identifier>
