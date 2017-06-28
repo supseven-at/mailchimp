@@ -18,6 +18,7 @@
                             <config>
                                 <type>select</type>
                                 <itemsProcFunc>Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getLists</itemsProcFunc>
+                                <renderType>selectSingle</renderType>
                                 <items>
                                     <numIndex index="1">
                                         <numIndex index="0"></numIndex>
@@ -35,6 +36,7 @@
                             <config>
                                 <type>select</type>
                                 <itemsProcFunc>Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests</itemsProcFunc>
+                                <renderType>selectSingle</renderType>
                                 <items>
                                     <numIndex index="1">
                                         <numIndex index="0"></numIndex>
