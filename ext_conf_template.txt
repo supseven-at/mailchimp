@@ -1,3 +1,9 @@
 
 # cat=general/enable/1; type=string; label=LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:extMgm.apiKey
 apiKey =
+
+# cat=general/enable/1; type=string; label=LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:extMgm.proxy
+proxy =
+
+# cat=general/enable/1; type=string; label=LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:extMgm.proxyPort
+proxyPort =

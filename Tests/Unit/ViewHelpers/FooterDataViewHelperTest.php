@@ -15,7 +15,7 @@ class FooterDataViewHelperTest extends UnitTestCase
     public function footerDataIsAdded()
     {
         $code = '<script>alert(1)</script>';
-        $viewHelper = $this->getAccessibleMock(FooterDataViewHelper::class, array('renderChildren'), array(), '', false);
+        $viewHelper = $this->getAccessibleMock(FooterDataViewHelper::class, ['renderChildren'], [], '', false);
         $viewHelper->method('renderChildren')->willReturn($code);
 
         $pageRender = $this->prophesize(PageRenderer::class);

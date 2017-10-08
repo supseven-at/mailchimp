@@ -16,7 +16,7 @@ class FormController extends ActionController
 
     public function initializeAction()
     {
-        $this->registrationService = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
+        $this->registrationService = GeneralUtility::makeInstance(ApiService::class);
     }
 
     /**
@@ -25,8 +25,7 @@ class FormController extends ActionController
     public function indexAction(FormDto $form = null)
     {
         if (is_null($form)) {
-            /** @var FormDto $form */
-            $form = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\FormDto');
+            $form = GeneralUtility::makeInstance(FormDto::class);
             $prefill = GeneralUtility::_GP('email');
             if ($prefill) {
                 $form->setEmail($prefill);
@@ -38,10 +37,10 @@ class FormController extends ActionController
         } else {
             $interests = [];
         }
-        $this->view->assignMultiple(array(
+        $this->view->assignMultiple([
             'form' => $form,
             'interests' => $interests,
-        ));
+        ]);
     }
 
     /**
@@ -78,8 +77,8 @@ class FormController extends ActionController
             $this->view->assign('error', 'general');
         }
 
-        $this->view->assignMultiple(array(
+        $this->view->assignMultiple([
             'form' => $form
-        ));
+        ]);
     }
 }

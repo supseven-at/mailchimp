@@ -24,7 +24,7 @@ class ExtensionConfigurationTest extends UnitTestCase
     public function apiKeyIsReturned()
     {
         $key = 'test123';
-        $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailchimp'] = serialize(array('apiKey' => $key));
+        $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailchimp'] = serialize(['apiKey' => $key]);
         $config = new ExtensionConfiguration();
         $this->assertEquals($config->getApiKey(), $key);
     }

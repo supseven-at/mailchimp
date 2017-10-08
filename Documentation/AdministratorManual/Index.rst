@@ -75,7 +75,7 @@ It is possible to handle additional fields in the mailchimp extension. Uo to 10 
 .. code-block:: php
 
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'][]
-            = 'Sup7even\MailchimpIqmobile\Hooks\IqMobileFieldHook->run';
+            = 'Vendor\Extension\Hooks\MailchimpHook->run';
 
 .. warning:: Currently there is no server side validation possible if you set fields in the MailChimp interface to required!
 
@@ -90,7 +90,7 @@ You can integrate `formhandler` by using the following finisher:
             plugin.Tx_Formhandler.settings.predef.contact {
                 finishers {
                     2 {
-                        class = Sup7\Mailchimp\Hooks\Frontend\Formhandler\Mailchimp
+                        class = Sup7even\Mailchimp\Hooks\Frontend\Formhandler\Mailchimp
                         config {
                             // ID of the list you want the user to be added to
                             listId = b1891812812

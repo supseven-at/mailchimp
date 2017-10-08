@@ -3,10 +3,12 @@
 namespace Sup7even\Mailchimp\Service;
 
 use DrewM\MailChimp\MailChimp;
+use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
 use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
 use Sup7even\Mailchimp\Exception\GeneralException;
 use Sup7even\Mailchimp\Exception\MemberExistsException;
 use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -22,12 +24,14 @@ class ApiService
     {
         require_once(ExtensionManagementUtility::extPath('mailchimp', 'Resources/Private/Contrib/MailChimp/MailChimp.php'));
 
-        /** @var \Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration $extensionConfiguration */
-        $extensionConfiguration = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Domain\\Model\\Dto\\ExtensionConfiguration');
+        /** @var ExtensionConfiguration $extensionConfiguration */
+        $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $apiKey = $extensionConfiguration->getApiKey();
+        $curlProxy = $extensionConfiguration->getProxy();
+        $curlProxyPort = $extensionConfiguration->getProxyPort();
 
-        $this->api = new MailChimp($apiKey);
-        $this->logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+        $this->api = new MailChimp($apiKey, $curlProxy, $curlProxyPort);
+        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 
     /**
@@ -37,7 +41,7 @@ class ApiService
      */
     public function getLists()
     {
-        $groups = array();
+        $groups = [];
         $list = $this->api->get('lists');
 
         foreach ($list['lists'] as $item) {
@@ -63,7 +67,7 @@ class ApiService
      */
     public function getInterestLists($listId)
     {
-        $groups = array();
+        $groups = [];
         $list = $this->api->get('lists/' . $listId . '/interest-categories/');
 
         foreach ($list['categories'] as $group) {
@@ -81,10 +85,10 @@ class ApiService
     public function getCategories($listId, $interestId)
     {
         $groupData = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/');
-        $result = array(
+        $result = [
             'title' => $groupData['title'],
             'type' => $groupData['type']
-        );
+        ];
 
         $list = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/interests');
         if (isset($list['interests']) && is_array($list['interests'])) {
@@ -116,7 +120,7 @@ class ApiService
                 if ($getResponse['status'] !== 'subscribed') {
                     $this->api->put("lists/$listId/members/" . $this->api->subscriberHash($data['email_address']), $data);
                 } else {
-                  throw new MemberExistsException($response['detail']);
+                    throw new MemberExistsException($response['detail']);
                 }
             } else {
                 throw new GeneralException($response['detail']);
@@ -131,25 +135,25 @@ class ApiService
      */
     protected function getRegistrationData($listId, FormDto $form)
     {
-        $data = array(
+        $data = [
             'email_address' => $form->getEmail(),
             'status' => 'pending',
-            'merge_fields' => array(
-				        'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
+            'merge_fields' => [
+                        'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
                 'LNAME' => (!empty($form->getLastName())) ? $form->getLastName() : '',
-            )
-        );
+            ]
+        ];
         $interestData = $this->getInterests($form);
         if ($interestData) {
             $data['interests'] = $interestData;
         }
 
         if (isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData']) && is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'])) {
-            $_params = array(
+            $_params = [
                 'data' => &$data,
                 'listId' => $listId,
                 'form' => $form
-            );
+            ];
             foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'] as $funcName) {
                 GeneralUtility::callUserFunction($funcName, $_params, $this);
             }
@@ -163,7 +167,7 @@ class ApiService
      */
     protected function getInterests(FormDto $form)
     {
-        $interestData = array();
+        $interestData = [];
         // multi interests
         $interests = $form->getInterests();
         if ($interests) {

@@ -10,6 +10,16 @@ class ExtensionConfiguration
     /** @var string */
     protected $apiKey;
 
+    /**
+     * @var string
+     */
+    protected $proxy = '';
+
+    /**
+     * @var string
+     */
+    protected $proxyPort = '';
+
     public function __construct()
     {
         $settings = (array)unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailchimp']);
@@ -30,5 +40,21 @@ class ExtensionConfiguration
             throw new ApiKeyMissingException('API key is missing');
         }
         return $this->apiKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProxy()
+    {
+        return $this->proxy;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProxyPort()
+    {
+        return $this->proxyPort;
     }
 }

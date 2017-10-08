@@ -45,10 +45,10 @@ class PageLayoutViewHook
     {
         /** @var DatabaseConnection databaseConnection */
         $this->databaseConnection = $GLOBALS['TYPO3_DB'];
-        $this->api = GeneralUtility::makeInstance('Sup7even\\Mailchimp\\Service\\ApiService');
+        $this->api = GeneralUtility::makeInstance(ApiService::class);
     }
 
-    public function getExtensionSummary(array $params = array())
+    public function getExtensionSummary(array $params = [])
     {
         $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
 
@@ -64,18 +64,20 @@ class PageLayoutViewHook
 
     protected function getAjaxUsage()
     {
-        $usage = $this->getFieldFromFlexform('settings.useAjax');
+        $usage = (bool)$this->getFieldFromFlexform('settings.useAjax');
 
-        $this->tableData[] = array(
-            $this->getLabel('flexform.useAjax'),
-            $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_common.xlf:' . ($usage ? 'yes' : 'no'))
-        );
+        if ($usage) {
+            $this->tableData[] = [
+                $this->getLabel('flexform.useAjax'),
+                '<i class="fa fa-check"></i>'
+            ];
 
-        if ($usage && !ExtensionManagementUtility::isLoaded('typoscript_rendering')) {
-            $this->tableData[] = array(
-                '',
-                '<div class="alert alert-warning typo3-message message-danger">' . $this->getLabel('ajaxEnabledWithoutExtension') . '</div>'
-            );
+            if (!ExtensionManagementUtility::isLoaded('typoscript_rendering')) {
+                $this->tableData[] = [
+                    '',
+                    '<div class="alert alert-warning typo3-message message-danger">' . $this->getLabel('ajaxEnabledWithoutExtension') . '</div>'
+                ];
+            }
         }
     }
 
@@ -83,20 +85,20 @@ class PageLayoutViewHook
     {
         $listId = $this->getFieldFromFlexform('settings.listId');
         if (!$listId) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLabel('flexform.list'),
                 '<div class="alert alert-warning">No list selected</div>'
-            );
+            ];
         } else {
             $list = $this->api->getList($listId);
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLabel('flexform.list'),
                 sprintf('<strong>%s</strong>', htmlspecialchars($list['name']))
-            );
-            $this->tableData[] = array(
+            ];
+            $this->tableData[] = [
                 $this->getLabel('memberCount'),
                 (int)$list['stats']['member_count']
-            );
+            ];
         }
     }
 
@@ -108,10 +110,10 @@ class PageLayoutViewHook
             $interests = $this->api->getCategories($listId, $interestId);
 
             if ($interests) {
-                $this->tableData[] = array(
+                $this->tableData[] = [
                     $this->getLabel('flexform.interests'),
                     $interests['title']
-                );
+                ];
             }
         }
     }
@@ -147,7 +149,7 @@ class PageLayoutViewHook
      */
     protected function renderSettingsAsTable()
     {
-        if (count($this->tableData) == 0) {
+        if (count($this->tableData) === 0) {
             return '';
         }
 
