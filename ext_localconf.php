@@ -9,7 +9,7 @@ if (!defined('TYPO3_MODE')) {
         'Form' => 'index,response,ajaxResponse'
     ],
     [
-        'Form' => 'index,response,ajaxResponse'
+        'Form' => 'response,ajaxResponse'
     ]
 );
 
