@@ -1,7 +1,6 @@
 {
   "name": "sup7even/mailchimp",
   "type": "typo3-cms-extension",
-  "version": "1.2.0",
   "description": "Simple MailChimp integration to let users register to a specific list",
   "keywords": [
     "TYPO3",
