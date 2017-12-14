@@ -2,8 +2,8 @@
 
 namespace Sup7even\Mailchimp\Hooks\Backend;
 
+use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
 use Sup7even\Mailchimp\Service\ApiService;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -35,31 +35,36 @@ class PageLayoutViewHook
      */
     protected $flexformData = [];
 
-    /** @var  DatabaseConnection */
-    protected $databaseConnection;
-
     /** @var ApiService */
     protected $api;
 
-    public function __construct()
-    {
-        /** @var DatabaseConnection databaseConnection */
-        $this->databaseConnection = $GLOBALS['TYPO3_DB'];
-        $this->api = GeneralUtility::makeInstance(ApiService::class);
-    }
+    /** @var ExtensionConfiguration */
+    protected $extensionConfiguration;
 
     public function getExtensionSummary(array $params = [])
     {
         $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
+        $this->initializeApi();
 
         $result = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'plugin.title')) . '</strong><br>';
 
+        $this->getApiKey();
         $this->getListInformation();
         $this->getInterestGroupInformation();
         $this->getAjaxUsage();
 
         $result .= $this->renderSettingsAsTable();
         return $result;
+    }
+
+    protected function getApiKey()
+    {
+
+        $apiKeyHash = $this->getFieldFromFlexform('settings.apiKey');
+        $this->tableData[] = [
+            $this->getLabel('flexform.apiKey'),
+            $this->extensionConfiguration->getApiKeyLabel($apiKeyHash)
+        ];
     }
 
     protected function getAjaxUsage()
@@ -182,5 +187,16 @@ class PageLayoutViewHook
         }
 
         return null;
+    }
+
+    /**
+     * @return ApiService
+     */
+    private function initializeApi()
+    {
+        $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+
+        $apiKeyHash = $this->getFieldFromFlexform('settings.apiKey');
+        $this->api = GeneralUtility::makeInstance(ApiService::class, $apiKeyHash);
     }
 }

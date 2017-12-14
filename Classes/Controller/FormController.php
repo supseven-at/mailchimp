@@ -11,16 +11,9 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 class FormController extends ActionController
 {
-    /** @var ApiService $service */
-    protected $registrationService;
-
-    public function initializeAction()
-    {
-        $this->registrationService = GeneralUtility::makeInstance(ApiService::class);
-    }
 
     /**
-     * @dontvalidate $form
+     * @ignorevalidation $form
      */
     public function indexAction(FormDto $form = null)
     {
@@ -32,20 +25,23 @@ class FormController extends ActionController
             }
         }
 
+        $apiService = $this->getApiService($this->settings['apiKey']);
+
         if ($this->settings['interestId']) {
-            $interests = $this->registrationService->getCategories($this->settings['listId'], $this->settings['interestId']);
+            $interests = $apiService->getCategories($this->settings['listId'], $this->settings['interestId']);
         } else {
             $interests = [];
         }
         $this->view->assignMultiple([
             'form' => $form,
             'interests' => $interests,
+            'apiKey' => $apiService->getApiKey()
         ]);
     }
 
     /**
      * @param FormDto $form
-     * @dontvalidate $form
+     * @ignorevalidation $form
      */
     public function ajaxResponseAction(FormDto $form = null)
     {
@@ -70,7 +66,8 @@ class FormController extends ActionController
     protected function handleRegistration(FormDto $form = null)
     {
         try {
-            $this->registrationService->register($this->settings['listId'], $form);
+            $apiService = $this->getApiService($this->settings['apiKey']);
+            $apiService->register($this->settings['listId'], $form);
         } catch (MemberExistsException $e) {
             $this->view->assign('error', 'memberExists');
         } catch (GeneralException $e) {
@@ -80,5 +77,10 @@ class FormController extends ActionController
         $this->view->assignMultiple([
             'form' => $form
         ]);
+    }
+
+    private function getApiService($hash = null)
+    {
+        return GeneralUtility::makeInstance(ApiService::class, $hash);
     }
 }

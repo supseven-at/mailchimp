@@ -4,30 +4,27 @@ namespace Sup7even\Mailchimp\ViewHelpers;
 
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * Class FooterDataViewHelper
  */
-class FooterDataViewHelper extends AbstractViewHelper
+class FooterDataViewHelper extends AbstractViewHelper implements CompilableInterface
 {
 
-    /** @var PageRenderer */
-    protected $pageRenderer;
+    use CompileWithRenderStatic;
 
     /**
-     * Constructor
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
      */
-    public function __construct()
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
     {
-        $this->pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-    }
-
-    /**
-     * Renders footer data
-     */
-    public function render()
-    {
-        $this->pageRenderer->addFooterData($this->renderChildren());
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->addFooterData($renderChildrenClosure());
     }
 }

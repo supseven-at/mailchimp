@@ -17,7 +17,6 @@ class AjaxEnabledViewHelper extends AbstractConditionViewHelper
     public function initializeArguments()
     {
         $this->registerArgument('isEnabled', 'bool', 'Is enabled', false);
-        parent::initializeArguments();
     }
 
     /**

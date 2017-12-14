@@ -7,14 +7,11 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Georg Ringer',
     'author_email' => 'g.ringer@supseven.at',
     'state' => 'stable',
-    'internal' => '',
-    'uploadfolder' => '1',
-    'createDirs' => '',
     'clearCacheOnLoad' => 1,
-    'version' => '2.0.0',
+    'version' => '3.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '7.6.0-8.9.99'
+            'typo3' => '7.6.0-9.0.99'
         ],
         'conflicts' => [],
         'suggests' => [

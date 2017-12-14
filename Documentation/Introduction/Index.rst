@@ -46,13 +46,13 @@ The requirements are low:
 About us
 --------
 
-Author of this extension is the company **sup7even**.
+Author of this extension is the company **supseven**.
 
 .. figure:: ../Images/logo-sup7even.png
 	:alt: Sup7even
 	:width: 190px
 
-    	http://www.sup7even.at
+    	http://www.supseven.at
 
 
 Issue tracking & development

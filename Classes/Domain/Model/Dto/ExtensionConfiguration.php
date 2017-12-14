@@ -3,43 +3,85 @@
 namespace Sup7even\Mailchimp\Domain\Model\Dto;
 
 use Sup7even\Mailchimp\Exception\ApiKeyMissingException;
+use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class ExtensionConfiguration
+class ExtensionConfiguration implements SingletonInterface
 {
 
-    /** @var string */
-    protected $apiKey;
+    /** @var array */
+    protected $apiKeys = [];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $proxy = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $proxyPort = '';
 
     public function __construct()
     {
         $settings = (array)unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailchimp']);
-        foreach ($settings as $key => $value) {
-            if (property_exists(__CLASS__, $key)) {
-                $this->$key = $value;
-            }
-        }
+
+        $this->setApiKeys($settings['apiKey'])
+            ->setProxy($settings['proxy'])
+            ->setProxyPort($settings['proxyPort']);
     }
 
     /**
-     * @return string
+     * Get all API key configurations
+     *
+     * @return array
      * @throws ApiKeyMissingException
      */
-    public function getApiKey()
+    public function getApiKeys()
     {
-        if (empty($this->apiKey)) {
+        if (empty($this->apiKeys)) {
             throw new ApiKeyMissingException('API key is missing');
         }
-        return $this->apiKey;
+        return $this->apiKeys;
+    }
+
+    /**
+     * Get 1st API key configuration
+     *
+     * @return array
+     */
+    public function getFirstApiKey()
+    {
+        $firstItem = current($this->apiKeys);
+        return $firstItem['key'];
+    }
+
+    /**
+     * @param string $hash
+     * @return string
+     */
+    public function getApiKeyByHash($hash)
+    {
+        $settings = $this->getApiKeyConfiguration($hash);
+        return $settings['key'];
+    }
+
+    /**
+     * @param string $hash
+     * @return string
+     */
+    public function getApiKeyLabel($hash)
+    {
+        $settings = $this->getApiKeyConfiguration($hash);
+        return $settings['label'];
+    }
+
+    /**
+     * @param string $hash
+     * @return array
+     */
+    private function getApiKeyConfiguration($hash)
+    {
+        if (!isset($this->apiKeys[$hash])) {
+            throw new \UnexpectedValueException(sprintf('For hash "%s" no API key found', $hash), 1513232660);
+        }
+        return $this->apiKeys[$hash];
     }
 
     /**
@@ -57,4 +99,62 @@ class ExtensionConfiguration
     {
         return $this->proxyPort;
     }
+
+    /**
+     * @param string $apiKey
+     * @return ExtensionConfiguration
+     */
+    private function setApiKeys($apiKey)
+    {
+        $keys = GeneralUtility::trimExplode(',', $apiKey, true);
+        if (count($keys) === 1) {
+            $split = GeneralUtility::trimExplode(':', $keys[0], true, 2);
+            if (count($split) === 1) {
+                $this->addApiKey($split[0]);
+            } else {
+                $this->addApiKey($split[0], $split[1]);
+            }
+        } else {
+            foreach ($keys as $key) {
+                $split = GeneralUtility::trimExplode(':', $key, true, 2);
+                if (count($split) === 1) {
+                    $this->addApiKey($split[0]);
+                } else {
+                    $this->addApiKey($split[0], $split[1]);
+                }
+            }
+        }
+        return $this;
+    }
+
+    private function addApiKey($key, $label = 'default')
+    {
+        $hash = md5($key);
+        $this->apiKeys[$hash] = [
+            'key' => $key,
+            'label' => $label
+        ];
+    }
+
+    /**
+     * @param string $proxy
+     * @return ExtensionConfiguration
+     */
+    private function setProxy($proxy)
+    {
+        $this->proxy = $proxy;
+        return $this;
+    }
+
+    /**
+     * @param string $proxyPort
+     * @return ExtensionConfiguration
+     */
+    private function setProxyPort($proxyPort)
+    {
+        $this->proxyPort = $proxyPort;
+        return $this;
+    }
+
+
 }

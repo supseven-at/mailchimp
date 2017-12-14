@@ -10,6 +10,25 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
+                    <!-- API key -->
+                    <settings.apiKey>
+                        <TCEforms>
+                            <label>LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:flexform.apiKey</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>select</type>
+                                <itemsProcFunc>Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getApiKeys</itemsProcFunc>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="1">
+                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.apiKey>
+
                     <!-- List -->
                     <settings.listId>
                         <TCEforms>

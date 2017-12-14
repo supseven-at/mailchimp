@@ -15,17 +15,7 @@ class ExtensionConfigurationTest extends UnitTestCase
     {
         $this->expectException(ApiKeyMissingException::class);
         $config = new ExtensionConfiguration();
-        $config->getApiKey();
+        $config->getApiKeys();
     }
 
-    /**
-     * @test
-     */
-    public function apiKeyIsReturned()
-    {
-        $key = 'test123';
-        $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailchimp'] = serialize(['apiKey' => $key]);
-        $config = new ExtensionConfiguration();
-        $this->assertEquals($config->getApiKey(), $key);
-    }
 }

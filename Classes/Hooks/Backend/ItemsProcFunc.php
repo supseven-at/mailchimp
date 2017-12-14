@@ -2,28 +2,63 @@
 
 namespace Sup7even\Mailchimp\Hooks\Backend;
 
+use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
 use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\FlexFormService;
+use TYPO3\CMS\Lang\LanguageService;
 
 class ItemsProcFunc
 {
-    /** @var ApiService */
-    protected $api;
+
+    /** @var ExtensionConfiguration */
+    protected $extensionConfiguration;
 
     public function __construct()
     {
-        $this->api = GeneralUtility::makeInstance(ApiService::class);
+        $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
     }
 
+    /**
+     * Get API keys and its labels
+     *
+     * @param array $config
+     * @throws \Sup7even\Mailchimp\Exception\ApiKeyMissingException
+     */
+    public function getApiKeys(array &$config)
+    {
+        $keyList = $this->extensionConfiguration->getApiKeys();
+        foreach ($keyList as $hash => $item) {
+            $label = $this->getLanguageService()->sL($item['label']);
+            $label = $label ?: $item['label'];
+            $config['items'][] = [
+                $label,
+                $hash
+            ];
+        }
+    }
+
+    /**
+     * Get lists
+     *
+     * @param array $config
+     */
     public function getLists(array &$config)
     {
+        $apiKeyHash = null;
         try {
-            $lists = $this->api->getLists();
+            $elementId = $config['row']['uid'];
+            if ((int)$elementId > 0) {
+                $settings = $this->extractSettingsFromRecord($elementId);
+                $apiKeyHash = isset($settings['apiKey']) ? $settings['apiKey'] : null;
+            }
+
+            $api = $this->getApiService($apiKeyHash);
+            $lists = $api->getLists();
             foreach ($lists as $id => $value) {
                 $title = sprintf('%s [%s]', $value, $id);
-                array_push($config['items'], [$title, $id]);
+                $config['items'][] = [$title, $id];
             }
         } catch (\Exception $e) {
             // do nothing
@@ -40,17 +75,16 @@ class ItemsProcFunc
         $elementId = $config['row']['uid'];
 
         if ((int)$elementId > 0) {
-            $contentElement = BackendUtility::getRecord('tt_content', $elementId);
+            $settings = $this->extractSettingsFromRecord($elementId);
 
-            $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-            $settings = $flexFormService->convertFlexFormContentToArray($contentElement['pi_flexform']);
-
-            if ($settings['settings']['listId']) {
+            if ($settings['listId']) {
                 try {
-                    $interests = $this->api->getInterestLists($settings['settings']['listId']);
+                    $apiKeyHash = isset($settings['apiKey']) ? $settings['apiKey'] : null;
+                    $api = $this->getApiService($apiKeyHash);
+                    $interests = $api->getInterestLists($settings['listId']);
                     if (is_array($interests) && !empty($interests)) {
                         foreach ($interests as $id => $value) {
-                            array_push($config['items'], [$value, $id]);
+                            $config['items'][] = [$value, $id];
                         }
                     }
                 } catch (\Exception $e) {
@@ -58,5 +92,39 @@ class ItemsProcFunc
                 }
             }
         }
+    }
+
+    /**
+     * Get settings from given content element uid
+     * @param int $elementId
+     * @return array
+     */
+    private function extractSettingsFromRecord(int $elementId)
+    {
+        $contentElement = BackendUtility::getRecord('tt_content', $elementId);
+
+        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
+        $settings = $flexFormService->convertFlexFormContentToArray($contentElement['pi_flexform']);
+        if (!isset($settings['settings'])) {
+            return [];
+        }
+        return $settings['settings'];
+    }
+
+    /**
+     * @return ApiService
+     */
+    private function getApiService($hash = null)
+    {
+        return GeneralUtility::makeInstance(ApiService::class, $hash);
+    }
+
+
+    /**
+     * @return LanguageService
+     */
+    private function getLanguageService()
+    {
+        return $GLOBALS['LANG'];
     }
 }

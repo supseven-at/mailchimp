@@ -20,18 +20,25 @@ class ApiService
     /** @var $logger Logger */
     protected $logger;
 
-    public function __construct()
+    /** @var string */
+    protected $apiKey = '';
+
+    public function __construct($usedApiKeyHash = null)
     {
         require_once(ExtensionManagementUtility::extPath('mailchimp', 'Resources/Private/Contrib/MailChimp/MailChimp.php'));
 
-        /** @var ExtensionConfiguration $extensionConfiguration */
         $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
-        $apiKey = $extensionConfiguration->getApiKey();
+        $this->apiKey = $usedApiKeyHash ? $extensionConfiguration->getApiKeyByHash($usedApiKeyHash) : $extensionConfiguration->getFirstApiKey();
         $curlProxy = $extensionConfiguration->getProxy();
         $curlProxyPort = $extensionConfiguration->getProxyPort();
 
-        $this->api = new MailChimp($apiKey, $curlProxy, $curlProxyPort);
+        $this->api = new MailChimp($this->apiKey, $curlProxy, $curlProxyPort);
         $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+    }
+
+    public function getApiKey()
+    {
+        return $this->apiKey;
     }
 
     /**
@@ -139,7 +146,7 @@ class ApiService
             'email_address' => $form->getEmail(),
             'status' => 'pending',
             'merge_fields' => [
-                        'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
+                'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
                 'LNAME' => (!empty($form->getLastName())) ? $form->getLastName() : '',
             ]
         ];
