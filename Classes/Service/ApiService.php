@@ -44,12 +44,13 @@ class ApiService
     /**
      * Get all lists
      *
+     * @param int $maxCount max lists to be returned
      * @return array
      */
-    public function getLists()
+    public function getLists($maxCount = 50)
     {
         $groups = [];
-        $list = $this->api->get('lists');
+        $list = $this->api->get('lists', ['count' => $maxCount]);
 
         foreach ($list['lists'] as $item) {
             $groups[$item['id']] = $item['name'];
