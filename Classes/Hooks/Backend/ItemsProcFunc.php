@@ -119,7 +119,6 @@ class ItemsProcFunc
         return GeneralUtility::makeInstance(ApiService::class, $hash);
     }
 
-
     /**
      * @return LanguageService
      */
