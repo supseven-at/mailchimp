@@ -99,7 +99,7 @@ class ItemsProcFunc
      * @param int $elementId
      * @return array
      */
-    private function extractSettingsFromRecord(int $elementId)
+    private function extractSettingsFromRecord($elementId)
     {
         $contentElement = BackendUtility::getRecord('tt_content', $elementId);
 
@@ -118,7 +118,6 @@ class ItemsProcFunc
     {
         return GeneralUtility::makeInstance(ApiService::class, $hash);
     }
-
 
     /**
      * @return LanguageService
