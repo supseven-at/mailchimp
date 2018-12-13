@@ -1,4 +1,3 @@
-
 $(document).on('submit', '#mailchimp-form', function (e) {
     'use strict';
 

@@ -80,7 +80,7 @@ class FormController extends ActionController
         ]);
     }
 
-    protected function getApiService($hash = null)
+    protected function getApiService($hash = null): ApiService
     {
         return GeneralUtility::makeInstance(ApiService::class, $hash);
     }

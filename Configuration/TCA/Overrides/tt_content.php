@@ -7,7 +7,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['mailchimp_re
     'FILE:EXT:mailchimp/Configuration/FlexForms/flexform_mailchimp.xml');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    'Sup7.mailchimp',
+    'Sup7even.mailchimp',
     'Registration',
     'Mailchimp'
 );

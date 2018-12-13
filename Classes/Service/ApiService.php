@@ -25,8 +25,7 @@ class ApiService
 
     public function __construct($usedApiKeyHash = null)
     {
-        require_once(ExtensionManagementUtility::extPath('mailchimp', 'Resources/Private/Contrib/MailChimp/MailChimp.php'));
-
+        $this->requireClass();
         $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $this->apiKey = $usedApiKeyHash ? $extensionConfiguration->getApiKeyByHash($usedApiKeyHash) : $extensionConfiguration->getFirstApiKey();
         $curlProxy = $extensionConfiguration->getProxy();
@@ -36,7 +35,13 @@ class ApiService
         $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 
-    public function getApiKey()
+    protected function requireClass()
+    {
+        // todo check composer
+        require_once(ExtensionManagementUtility::extPath('mailchimp', 'Resources/Private/Contrib/MailChimp/MailChimp.php'));
+    }
+
+    public function getApiKey(): string
     {
         return $this->apiKey;
     }
@@ -47,7 +52,7 @@ class ApiService
      * @param int $maxCount max lists to be returned
      * @return array
      */
-    public function getLists($maxCount = 50)
+    public function getLists(int $maxCount = 50): array
     {
         $groups = [];
         $list = $this->api->get('lists', ['count' => $maxCount]);
@@ -62,7 +67,7 @@ class ApiService
      * @param string $list
      * @return array|false
      */
-    public function getList($list)
+    public function getList(string $list)
     {
         return $this->api->get('lists/' . $list);
     }
@@ -73,7 +78,7 @@ class ApiService
      * @param string $listId
      * @return array
      */
-    public function getInterestLists($listId)
+    public function getInterestLists(string $listId): array
     {
         $groups = [];
         $list = $this->api->get('lists/' . $listId . '/interest-categories/');
@@ -86,11 +91,12 @@ class ApiService
 
     /**
      * Get all interest categories of a given list & interest
+     *
      * @param string $listId
      * @param string $interestId
      * @return array
      */
-    public function getCategories($listId, $interestId)
+    public function getCategories(string $listId, string $interestId): array
     {
         $groupData = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/');
         $result = [
@@ -99,7 +105,7 @@ class ApiService
         ];
 
         $list = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/interests');
-        if (isset($list['interests']) && is_array($list['interests'])) {
+        if (isset($list['interests']) && \is_array($list['interests'])) {
             foreach ($list['interests'] as $group) {
                 $result['options'][$group['id']] = $group['name'];
             }
@@ -115,18 +121,18 @@ class ApiService
      * @throws GeneralException
      * @throws MemberExistsException
      */
-    public function register($listId, FormDto $form)
+    public function register(string $listId, FormDto $form)
     {
         $data = $this->getRegistrationData($listId, $form);
-        $response = $this->api->post("lists/$listId/members", $data);
+        $response = $this->api->post('lists/' . $listId . '/members', $data);
 
         if ($response['status'] === 400 || $response['status'] === 401 || $response['status'] === 404) {
             $this->logger->error($response['status'] . ' ' . $response['detail']);
             $this->logger->error($response['detail'], (array)$response['errors']);
             if ($response['title'] === 'Member Exists') {
-                $getResponse = $this->api->get("lists/$listId/members/" . $this->api->subscriberHash($data['email_address']));
+                $getResponse = $this->api->get('lists/' . $listId . '/members/' . $this->api->subscriberHash($data['email_address']));
                 if ($getResponse['status'] !== 'subscribed') {
-                    $this->api->put("lists/$listId/members/" . $this->api->subscriberHash($data['email_address']), $data);
+                    $this->api->put('lists/' . $listId . '/members/' . $this->api->subscriberHash($data['email_address']), $data);
                 } else {
                     throw new MemberExistsException($response['detail']);
                 }
@@ -141,14 +147,14 @@ class ApiService
      * @param FormDto $form
      * @return array
      */
-    protected function getRegistrationData($listId, FormDto $form)
+    protected function getRegistrationData(string $listId, FormDto $form): array
     {
         $data = [
             'email_address' => $form->getEmail(),
             'status' => 'pending',
             'merge_fields' => [
-                'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
-                'LNAME' => (!empty($form->getLastName())) ? $form->getLastName() : '',
+                'FNAME' => !empty($form->getFirstName()) ? $form->getFirstName() : '',
+                'LNAME' => !empty($form->getLastName()) ? $form->getLastName() : '',
             ]
         ];
         $interestData = $this->getInterests($form);
@@ -156,7 +162,7 @@ class ApiService
             $data['interests'] = $interestData;
         }
 
-        if (isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData']) && is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'])) {
+        if (isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData']) && \is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['mailchimp']['memberData'])) {
             $_params = [
                 'data' => &$data,
                 'listId' => $listId,
@@ -173,7 +179,7 @@ class ApiService
      * @param FormDto $form
      * @return array
      */
-    protected function getInterests(FormDto $form)
+    protected function getInterests(FormDto $form): array
     {
         $interestData = [];
         // multi interests

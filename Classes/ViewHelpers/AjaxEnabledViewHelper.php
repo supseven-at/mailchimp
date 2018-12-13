@@ -3,7 +3,7 @@
 namespace Sup7even\Mailchimp\ViewHelpers;
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 /**
  * Class AjaxEnabledViewHelper

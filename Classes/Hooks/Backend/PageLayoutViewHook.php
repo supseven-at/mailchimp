@@ -6,6 +6,7 @@ use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
 use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Lang\LanguageService;
 
 class PageLayoutViewHook
 {
@@ -40,6 +41,11 @@ class PageLayoutViewHook
 
     /** @var ExtensionConfiguration */
     protected $extensionConfiguration;
+
+    public function __construct()
+    {
+        $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+    }
 
     public function getExtensionSummary(array $params = [])
     {
@@ -127,21 +133,16 @@ class PageLayoutViewHook
      * @param string $string
      * @return string
      */
-    protected function getLabel($string, $hsc = true)
+    protected function getLabel($string): string
     {
         $label = $this->getLanguageService()->sL(self::LLPATH . $string);
-        if ($hsc) {
-            $label = htmlspecialchars($label);
-        }
-        return $label;
+        return htmlspecialchars($label);
     }
 
     /**
-     * Return language service instance
-     *
-     * @return \TYPO3\CMS\Lang\LanguageService
+     * @return LanguageService
      */
-    public function getLanguageService()
+    public function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }
@@ -152,7 +153,7 @@ class PageLayoutViewHook
      *
      * @return string
      */
-    protected function renderSettingsAsTable()
+    protected function renderSettingsAsTable(): string
     {
         if (count($this->tableData) === 0) {
             return '';
@@ -194,8 +195,6 @@ class PageLayoutViewHook
      */
     private function initializeApi()
     {
-        $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
-
         $apiKeyHash = $this->getFieldFromFlexform('settings.apiKey');
         $this->api = GeneralUtility::makeInstance(ApiService::class, $apiKeyHash);
     }

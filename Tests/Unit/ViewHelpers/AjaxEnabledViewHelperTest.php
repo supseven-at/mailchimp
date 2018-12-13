@@ -10,7 +10,6 @@ class AjaxEnabledViewHelperTest extends BaseTestCase
 
     /**
      * @test
-     * @dataProvider ajaxEnabledWorksDataProvider
      */
     public function ajaxEnabledWorks()
     {
