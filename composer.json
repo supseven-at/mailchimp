@@ -16,16 +16,17 @@
       "homepage": "http://sup7even.at"
     }
   ],
-  "license": ["GPL-2.0-or-later"],
+  "license": "GPL-2.0-or-later",
   "require": {
-    "typo3/cms-core": ">=7.6.0,<9.1"
+    "typo3/cms-core": "^8.7 || ^9.5",
+    "php": ">=7.0"
   },
-  "suggest": {
-    "typo3-ter/typoscript-rendering": "~1.0"
-  },
-  "require-dev": {
-    "php": ">=5.6.0",
-    "phpunit/phpunit": "~5.3.0"
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "mailchimp",
+      "app-dir": ".Build",
+      "web-dir": ".Build/Web"
+    }
   },
   "autoload": {
     "psr-4": {
@@ -34,13 +35,15 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Sup7even\\Mailchimp\\Tests\\": "Tests",
-      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
+      "Sup7even\\Mailchimp\\Tests\\": "Tests"
     }
   },
   "replace": {
     "mailchimp": "self.version",
     "typo3-ter/mailchimp": "self.version"
+  },
+  "require-dev": {
+    "php-coveralls/php-coveralls": "^2.1"
   },
   "config": {
     "vendor-dir": ".Build/vendor",
@@ -48,17 +51,7 @@
   },
   "scripts": {
     "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/mailchimp ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/mailchimp"
+      "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
     ]
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0.x-dev"
-    },
-    "typo3/cms": {
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web"
-    }
   }
 }

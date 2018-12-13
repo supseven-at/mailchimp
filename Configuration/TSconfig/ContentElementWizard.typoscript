@@ -1,0 +1,16 @@
+mod.wizards.newContentElement.wizardItems.forms {
+    elements {
+        mailchimp {
+            icon = ../typo3conf/ext/mailchimp/ext_icon.png
+            iconIdentifier = ext-mailchimp-wizard-icon
+            title = LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:plugin.title
+            description = LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:plugin.description
+            tt_content_defValues {
+                CType = list
+                list_type = mailchimp_registration
+            }
+        }
+    }
+
+    show :=addToList(mailchimp)
+}

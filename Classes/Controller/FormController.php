@@ -17,7 +17,7 @@ class FormController extends ActionController
      */
     public function indexAction(FormDto $form = null)
     {
-        if (is_null($form)) {
+        if ($form === null) {
             $form = GeneralUtility::makeInstance(FormDto::class);
             $prefill = GeneralUtility::_GP('email');
             if ($prefill) {

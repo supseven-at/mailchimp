@@ -4,8 +4,9 @@ namespace Sup7even\Mailchimp\Tests\Unit\Domain\Model\Dto;
 
 use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
-class FormDtoTest extends UnitTestCase
+class FormDtoTest extends BaseTestCase
 {
     /**
      * @test
