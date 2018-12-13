@@ -29,6 +29,9 @@
     }
   },
   "autoload": {
+    "classmap": [
+      "Resources/Private/Contrib/MailChimp/"
+    ],
     "psr-4": {
       "Sup7even\\Mailchimp\\": "Classes"
     }
