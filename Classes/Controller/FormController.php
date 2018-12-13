@@ -13,12 +13,13 @@ class FormController extends ActionController
 {
 
     /**
+     * @param FormDto $form
      * @ignorevalidation $form
      */
     public function indexAction(FormDto $form = null)
     {
         if ($form === null) {
-            $form = GeneralUtility::makeInstance(FormDto::class);
+            $form = $this->objectManager->get(FormDto::class);
             $prefill = GeneralUtility::_GP('email');
             if ($prefill) {
                 $form->setEmail($prefill);
@@ -53,7 +54,7 @@ class FormController extends ActionController
      */
     public function responseAction(FormDto $form = null)
     {
-        if (is_null($form)) {
+        if ($form === null) {
             $this->redirect('index');
         }
 
@@ -79,7 +80,7 @@ class FormController extends ActionController
         ]);
     }
 
-    private function getApiService($hash = null)
+    protected function getApiService($hash = null)
     {
         return GeneralUtility::makeInstance(ApiService::class, $hash);
     }

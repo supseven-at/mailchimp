@@ -107,9 +107,9 @@ class ExtensionConfiguration implements SingletonInterface
     private function setApiKeys($apiKey)
     {
         $keys = GeneralUtility::trimExplode(',', $apiKey, true);
-        if (count($keys) === 1) {
+        if (\count($keys) === 1) {
             $split = GeneralUtility::trimExplode(':', $keys[0], true, 2);
-            if (count($split) === 1) {
+            if (\count($split) === 1) {
                 $this->addApiKey($split[0]);
             } else {
                 $this->addApiKey($split[0], $split[1]);
@@ -117,7 +117,7 @@ class ExtensionConfiguration implements SingletonInterface
         } else {
             foreach ($keys as $key) {
                 $split = GeneralUtility::trimExplode(':', $key, true, 2);
-                if (count($split) === 1) {
+                if (\count($split) === 1) {
                     $this->addApiKey($split[0]);
                 } else {
                     $this->addApiKey($split[0], $split[1]);

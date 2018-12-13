@@ -14,7 +14,6 @@ class ApiServiceTest extends BaseTestCase
      */
     public function properInterestsAreReturned()
     {
-        $this->markTestSkipped('not functional');
         $mockedApiService = $this->getAccessibleMock(ApiService::class, ['dummy'], [], '', false);
         $form = new FormDto();
         $interests = [
