@@ -35,6 +35,7 @@ class MailChimp
     private $last_error         = '';
     private $last_response      = [];
     private $last_request       = [];
+    private $forceIp4 = false;
 
     /**
      * Create a new instance
@@ -59,6 +60,10 @@ class MailChimp
         $this->api_endpoint  = str_replace('<dc>', $data_center, $this->api_endpoint);
 
         $this->last_response = ['headers' => null, 'body' => null];
+    }
+
+    public function forceIpAddressv4() {
+        $this->forceIp4 = true;
     }
 
     /**
@@ -221,6 +226,9 @@ class MailChimp
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->verify_ssl);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
         curl_setopt($ch, CURLOPT_ENCODING, '');
+        if ($this->forceIp4) {
+            curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        }
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 
         if (!empty($this->proxy)) {

@@ -18,6 +18,9 @@ class ExtensionConfiguration implements SingletonInterface
     /** @var string */
     protected $proxyPort = '';
 
+    /** @var bool */
+    protected $forceIp4 = false;
+
     public function __construct()
     {
         $settings = (array)unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mailchimp']);
@@ -25,6 +28,7 @@ class ExtensionConfiguration implements SingletonInterface
         $this->setApiKeys($settings['apiKey'])
             ->setProxy($settings['proxy'])
             ->setProxyPort($settings['proxyPort']);
+        $this->forceIp4 = (bool)$settings['forceIp4'];
     }
 
     /**
@@ -156,5 +160,12 @@ class ExtensionConfiguration implements SingletonInterface
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function isForceIp4(): bool
+    {
+        return $this->forceIp4;
+    }
 
 }

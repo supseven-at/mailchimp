@@ -18,6 +18,7 @@
             <label index="extMgm.apiKey">API keys:You get the API key at mailchimp.com > Account > Extras > API keys. For multiple accounts use key1:label1,key2:label2,key3:label3</label>
             <label index="extMgm.proxy">If you have to use a proxy for curl enter it here</label>
             <label index="extMgm.proxyPort">Enter the proxy port for here</label>
+            <label index="extMgm.forceIp4">Force IP4 usage in API</label>
 
             <!-- Frontend -->
             <label index="field.email">Email</label>

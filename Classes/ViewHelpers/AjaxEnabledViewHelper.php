@@ -3,6 +3,7 @@
 namespace Sup7even\Mailchimp\ViewHelpers;
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 /**
@@ -10,13 +11,12 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
  */
 class AjaxEnabledViewHelper extends AbstractConditionViewHelper
 {
-
     /**
-     * Initialize additional argument
      */
     public function initializeArguments()
     {
         $this->registerArgument('isEnabled', 'bool', 'Is enabled', false);
+        parent::initializeArguments();
     }
 
     /**
@@ -26,5 +26,16 @@ class AjaxEnabledViewHelper extends AbstractConditionViewHelper
     protected static function evaluateCondition($arguments = null)
     {
         return (int)$arguments['isEnabled'] === 1 && ExtensionManagementUtility::isLoaded('typoscript_rendering');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function render()
+    {
+        if (static::evaluateCondition($this->arguments)) {
+            return $this->renderThenChild();
+        }
+        return $this->renderElseChild();
     }
 }

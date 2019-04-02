@@ -17,7 +17,7 @@ class FormController extends ActionController
      */
     public function indexAction(FormDto $form = null)
     {
-        if (is_null($form)) {
+        if ($form === null) {
             $form = GeneralUtility::makeInstance(FormDto::class);
             $prefill = GeneralUtility::_GP('email');
             if ($prefill) {
@@ -53,7 +53,7 @@ class FormController extends ActionController
      */
     public function responseAction(FormDto $form = null)
     {
-        if (is_null($form)) {
+        if ($form === null) {
             $this->redirect('index');
         }
 
@@ -79,7 +79,7 @@ class FormController extends ActionController
         ]);
     }
 
-    private function getApiService($hash = null)
+    private function getApiService($hash = null): ApiService
     {
         return GeneralUtility::makeInstance(ApiService::class, $hash);
     }

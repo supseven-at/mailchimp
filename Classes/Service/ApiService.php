@@ -33,6 +33,9 @@ class ApiService
         $curlProxyPort = $extensionConfiguration->getProxyPort();
 
         $this->api = new MailChimp($this->apiKey, $curlProxy, $curlProxyPort);
+        if ($extensionConfiguration->isForceIp4()) {
+            $this->api->forceIpAddressv4();
+        }
         $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 
