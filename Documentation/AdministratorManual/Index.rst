@@ -79,6 +79,16 @@ It is possible to handle additional fields in the mailchimp extension. Uo to 10 
 
 .. warning:: Currently there is no server side validation possible if you set fields in the MailChimp interface to required!
 
+Skip double opt in
+------------------
+If double opt-in is disabled in MailChimp itself, it can also be disabled in the extension using
+
+.. code-block:: typoscript
+
+   plugin.tx_mailchimp.settings.skipDoubleOptIn = 1
+
+.. tip:: You should always use double opt in
+
 Integration in EXT:``formhandler``
 ----------------------------------
 

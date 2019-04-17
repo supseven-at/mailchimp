@@ -115,12 +115,13 @@ class ApiService
      *
      * @param string $listId
      * @param FormDto $form
+     * @param bool $doubleOptIn
      * @throws GeneralException
      * @throws MemberExistsException
      */
-    public function register($listId, FormDto $form)
+    public function register($listId, FormDto $form, bool $doubleOptIn = true)
     {
-        $data = $this->getRegistrationData($listId, $form);
+        $data = $this->getRegistrationData($listId, $form, $doubleOptIn);
         $response = $this->api->post("lists/$listId/members", $data);
 
         if ($response['status'] === 400 || $response['status'] === 401 || $response['status'] === 404) {
@@ -142,13 +143,14 @@ class ApiService
     /**
      * @param string $listId
      * @param FormDto $form
+     * @param bool $doubleOptIn
      * @return array
      */
-    protected function getRegistrationData($listId, FormDto $form)
+    protected function getRegistrationData($listId, FormDto $form, bool $doubleOptIn)
     {
         $data = [
             'email_address' => $form->getEmail(),
-            'status' => 'pending',
+            'status' => $doubleOptIn ? 'pending' : 'subscribed',
             'merge_fields' => [
                 'FNAME' => (!empty($form->getFirstName())) ? $form->getFirstName() : '',
                 'LNAME' => (!empty($form->getLastName())) ? $form->getLastName() : '',
