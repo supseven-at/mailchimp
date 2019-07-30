@@ -43,17 +43,21 @@ class PageLayoutViewHook
 
     public function getExtensionSummary(array $params = [])
     {
-        $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
-        $this->initializeApi();
+        try {
+            $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
+            $this->initializeApi();
 
-        $result = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'plugin.title')) . '</strong><br>';
+            $result = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'plugin.title')) . '</strong><br>';
 
-        $this->getApiKey();
-        $this->getListInformation();
-        $this->getInterestGroupInformation();
-        $this->getAjaxUsage();
+            $this->getApiKey();
+            $this->getListInformation();
+            $this->getInterestGroupInformation();
+            $this->getAjaxUsage();
 
-        $result .= $this->renderSettingsAsTable();
+            $result .= $this->renderSettingsAsTable();
+        } catch (\Exception $e) {
+            $result = '<div class="alert alert-danger">Configuration error</div>';
+        }
         return $result;
     }
 
