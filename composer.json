@@ -38,7 +38,6 @@
     }
   },
   "replace": {
-    "mailchimp": "self.version",
     "typo3-ter/mailchimp": "self.version"
   },
   "config": {
@@ -53,6 +52,7 @@
   },
   "extra": {
     "typo3/cms": {
+      "extension-key": "mailchimp",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": ".Build/Web"
     }
