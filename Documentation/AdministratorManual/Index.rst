@@ -88,29 +88,3 @@ If double opt-in is disabled in MailChimp itself, it can also be disabled in the
    plugin.tx_mailchimp.settings.skipDoubleOptIn = 1
 
 .. tip:: You should always use double opt in
-
-Integration in EXT:``formhandler``
-----------------------------------
-
-You can integrate `formhandler` by using the following finisher:
-
-.. code-block:: typoscript
-
-        [globalVar = GP:contact|newsletter = 1]
-            plugin.Tx_Formhandler.settings.predef.contact {
-                finishers {
-                    2 {
-                        class = Sup7even\Mailchimp\Hooks\Frontend\Formhandler\Mailchimp
-                        config {
-                            // ID of the list you want the user to be added to
-                            listId = b1891812812
-
-                            // Define the name of the field used in the form
-                            fieldEmail = email
-                            fieldFirstName = firstname
-                            fieldLastName = lastname
-                        }
-                    }
-                }
-            }
-        [global]

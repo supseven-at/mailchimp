@@ -55,8 +55,10 @@ class ApiService
         $groups = [];
         $list = $this->api->get('lists', ['count' => $maxCount]);
 
-        foreach ($list['lists'] as $item) {
-            $groups[$item['id']] = $item['name'];
+        if (is_array($list) && array_key_exists('lists', $list)) {
+            foreach ($list['lists'] as $item) {
+                $groups[$item['id']] = $item['name'];
+            }
         }
         return $groups;
     }

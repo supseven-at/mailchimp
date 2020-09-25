@@ -2,8 +2,8 @@
 $(document).on('submit', '#mailchimp-form', function (e) {
     'use strict';
 
-    var $this = $(this);
-    var url = $this.data('url');
+    let $this = $(this),
+        url = $this.data('url');
 
     if (url) {
         e.preventDefault();

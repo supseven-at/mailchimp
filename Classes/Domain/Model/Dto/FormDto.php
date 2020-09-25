@@ -15,8 +15,8 @@ class FormDto extends AbstractEntity
 
     /**
      * @var string
-     * @validate NotEmpty
-     * @validate EmailAddress
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("EmailAddress")
      */
     protected $email;
 
