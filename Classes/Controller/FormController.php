@@ -8,16 +8,19 @@ use Sup7even\Mailchimp\Exception\MemberExistsException;
 use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 
 class FormController extends ActionController
 {
 
     /**
+     * @param FormDto|null $form
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("form")
      */
     public function indexAction(FormDto $form = null)
     {
         if ($form === null) {
+            /** @var FormDto $form */
             $form = GeneralUtility::makeInstance(FormDto::class);
             $prefill = GeneralUtility::_GP('email');
             if ($prefill) {
@@ -40,7 +43,7 @@ class FormController extends ActionController
     }
 
     /**
-     * @param FormDto $form
+     * @param FormDto|null $form
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("form")
      */
     public function ajaxResponseAction(FormDto $form = null)
@@ -49,9 +52,8 @@ class FormController extends ActionController
     }
 
     /**
-     * @param FormDto $form
-     *
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @param FormDto|null $form
+     * @throws StopActionException
      */
     public function responseAction(FormDto $form = null)
     {
@@ -62,9 +64,6 @@ class FormController extends ActionController
         $this->handleRegistration($form);
     }
 
-    /**
-     * @param FormDto|null $form
-     */
     protected function handleRegistration(FormDto $form = null)
     {
         $doublOptIn = true;
@@ -72,7 +71,7 @@ class FormController extends ActionController
             $doublOptIn = false;
         }
         try {
-            $apiService = $this->getApiService($this->settings['apiKey']);
+            $apiService = $this->getApiService($this->settings['apiKey'] ?? '');
             $apiService->register($this->settings['listId'], $form, $doublOptIn);
         } catch (MemberExistsException $e) {
             $this->view->assign('error', 'memberExists');
@@ -85,7 +84,7 @@ class FormController extends ActionController
         ]);
     }
 
-    private function getApiService($hash = null): ApiService
+    private function getApiService(string $hash = null): ApiService
     {
         return GeneralUtility::makeInstance(ApiService::class, $hash);
     }

@@ -3,6 +3,7 @@
 namespace Sup7even\Mailchimp\Hooks\Backend;
 
 use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
+use Sup7even\Mailchimp\Exception\ApiKeyMissingException;
 use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Localization\LanguageService;
@@ -24,7 +25,7 @@ class ItemsProcFunc
      * Get API keys and its labels
      *
      * @param array $config
-     * @throws \Sup7even\Mailchimp\Exception\ApiKeyMissingException
+     * @throws ApiKeyMissingException
      */
     public function getApiKeys(array &$config)
     {
@@ -48,8 +49,8 @@ class ItemsProcFunc
     {
         $apiKeyHash = null;
         try {
-            $elementId = $config['row']['uid'];
-            if ((int)$elementId > 0) {
+            $elementId = (int)$config['row']['uid'];
+            if ($elementId > 0) {
                 $settings = $this->extractSettingsFromRecord($elementId);
                 $apiKeyHash = isset($settings['apiKey']) ? $settings['apiKey'] : null;
             }
@@ -72,9 +73,8 @@ class ItemsProcFunc
      */
     public function getInterests(array &$config)
     {
-        $elementId = $config['row']['uid'];
-
-        if ((int)$elementId > 0) {
+        $elementId = (int)$config['row']['uid'];
+        if ($elementId > 0) {
             $settings = $this->extractSettingsFromRecord($elementId);
 
             if ($settings['listId']) {
@@ -99,10 +99,9 @@ class ItemsProcFunc
      * @param int $elementId
      * @return array
      */
-    private function extractSettingsFromRecord($elementId)
+    private function extractSettingsFromRecord(int $elementId)
     {
         $contentElement = BackendUtility::getRecord('tt_content', $elementId);
-
         $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
         $settings = $flexFormService->convertFlexFormContentToArray($contentElement['pi_flexform']);
         if (!isset($settings['settings'])) {
@@ -112,9 +111,10 @@ class ItemsProcFunc
     }
 
     /**
+     * @param string|null $hash
      * @return ApiService
      */
-    private function getApiService($hash = null)
+    private function getApiService(string $hash = null)
     {
         return GeneralUtility::makeInstance(ApiService::class, $hash);
     }

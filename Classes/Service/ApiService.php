@@ -27,6 +27,7 @@ class ApiService
     {
         require_once(ExtensionManagementUtility::extPath('mailchimp', 'Resources/Private/Contrib/MailChimp/MailChimp.php'));
 
+        /** @var ExtensionConfiguration $extensionConfiguration */
         $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $this->apiKey = $usedApiKeyHash ? $extensionConfiguration->getApiKeyByHash($usedApiKeyHash) : $extensionConfiguration->getFirstApiKey();
         $curlProxy = $extensionConfiguration->getProxy();
@@ -67,7 +68,7 @@ class ApiService
      * @param string $list
      * @return array|false
      */
-    public function getList($list)
+    public function getList(string $list)
     {
         return $this->api->get('lists/' . $list);
     }
@@ -78,7 +79,7 @@ class ApiService
      * @param string $listId
      * @return array
      */
-    public function getInterestLists($listId)
+    public function getInterestLists(string $listId)
     {
         $groups = [];
         $list = $this->api->get('lists/' . $listId . '/interest-categories/');
@@ -95,7 +96,7 @@ class ApiService
      * @param string $interestId
      * @return array
      */
-    public function getCategories($listId, $interestId)
+    public function getCategories(string $listId, string $interestId)
     {
         $groupData = $this->api->get('lists/' . $listId . '/interest-categories/' . $interestId . '/');
         $result = [
@@ -121,7 +122,7 @@ class ApiService
      * @throws GeneralException
      * @throws MemberExistsException
      */
-    public function register($listId, FormDto $form, bool $doubleOptIn = true)
+    public function register(string $listId, FormDto $form, bool $doubleOptIn = true)
     {
         $data = $this->getRegistrationData($listId, $form, $doubleOptIn);
         $response = $this->api->post("lists/$listId/members", $data);
@@ -148,7 +149,7 @@ class ApiService
      * @param bool $doubleOptIn
      * @return array
      */
-    protected function getRegistrationData($listId, FormDto $form, bool $doubleOptIn)
+    protected function getRegistrationData(string $listId, FormDto $form, bool $doubleOptIn)
     {
         $data = [
             'email_address' => $form->getEmail(),

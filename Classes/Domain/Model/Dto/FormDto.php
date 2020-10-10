@@ -70,7 +70,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $firstName
      */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
     }
@@ -86,7 +86,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $lastName
      */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
     }
@@ -102,7 +102,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $email
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
@@ -118,7 +118,7 @@ class FormDto extends AbstractEntity
     /**
      * @param array $interests
      */
-    public function setInterests($interests)
+    public function setInterests(array $interests)
     {
         $this->interests = $interests;
     }
@@ -134,7 +134,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $interest
      */
-    public function setInterest($interest)
+    public function setInterest(string $interest)
     {
         $this->interest = $interest;
     }
@@ -150,7 +150,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField1
      */
-    public function setMergeField1($mergeField1)
+    public function setMergeField1(string $mergeField1)
     {
         $this->mergeField1 = $mergeField1;
     }
@@ -166,7 +166,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField2
      */
-    public function setMergeField2($mergeField2)
+    public function setMergeField2(string $mergeField2)
     {
         $this->mergeField2 = $mergeField2;
     }
@@ -182,7 +182,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField3
      */
-    public function setMergeField3($mergeField3)
+    public function setMergeField3(string $mergeField3)
     {
         $this->mergeField3 = $mergeField3;
     }
@@ -198,7 +198,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField4
      */
-    public function setMergeField4($mergeField4)
+    public function setMergeField4(string $mergeField4)
     {
         $this->mergeField4 = $mergeField4;
     }
@@ -214,7 +214,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField5
      */
-    public function setMergeField5($mergeField5)
+    public function setMergeField5(string $mergeField5)
     {
         $this->mergeField5 = $mergeField5;
     }
@@ -230,7 +230,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField6
      */
-    public function setMergeField6($mergeField6)
+    public function setMergeField6(string $mergeField6)
     {
         $this->mergeField6 = $mergeField6;
     }
@@ -246,7 +246,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField7
      */
-    public function setMergeField7($mergeField7)
+    public function setMergeField7(string $mergeField7)
     {
         $this->mergeField7 = $mergeField7;
     }
@@ -262,7 +262,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField8
      */
-    public function setMergeField8($mergeField8)
+    public function setMergeField8(string $mergeField8)
     {
         $this->mergeField8 = $mergeField8;
     }
@@ -278,7 +278,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField9
      */
-    public function setMergeField9($mergeField9)
+    public function setMergeField9(string $mergeField9)
     {
         $this->mergeField9 = $mergeField9;
     }
@@ -294,7 +294,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $mergeField10
      */
-    public function setMergeField10($mergeField10)
+    public function setMergeField10(string $mergeField10)
     {
         $this->mergeField10 = $mergeField10;
     }
@@ -310,7 +310,7 @@ class FormDto extends AbstractEntity
     /**
      * @param string $formName
      */
-    public function setFormName($formName)
+    public function setFormName(string $formName)
     {
         $this->formName = $formName;
     }
