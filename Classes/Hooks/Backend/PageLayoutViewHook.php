@@ -4,6 +4,7 @@ namespace Sup7even\Mailchimp\Hooks\Backend;
 
 use Sup7even\Mailchimp\Domain\Model\Dto\ExtensionConfiguration;
 use Sup7even\Mailchimp\Service\ApiService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -21,7 +22,7 @@ class PageLayoutViewHook
      *
      * @var string
      */
-    const LLPATH = 'LLL:EXT:mailchimp/Resources/Private/Language/locallang.xml:';
+    const LLPATH = 'LLL:EXT:mailchimp/Resources/Private/Language/locallang.xlf:';
 
     /**
      * Table information
@@ -143,7 +144,7 @@ class PageLayoutViewHook
     /**
      * Return language service instance
      *
-     * @return \TYPO3\CMS\Lang\LanguageService
+     * @return LanguageService
      */
     public function getLanguageService()
     {
@@ -194,7 +195,7 @@ class PageLayoutViewHook
     }
 
     /**
-     * @return ApiService
+     * @return void
      */
     private function initializeApi()
     {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0" standalone="yes">
+  <file source-language="en" datatype="plaintext" original="messages" data="2020-09-25T11-01-40" product-name="mailchimp">
+    <header/>
+    <body>
+      <trans-unit id="plugin.title" xml:space="preserve">
+        <source>MailChimp</source>
+      </trans-unit>
+      <trans-unit id="plugin.description" xml:space="preserve">
+        <source>Create a form to let users register to a specific MailChimp list.</source>
+      </trans-unit>
+      <trans-unit id="flexform.title" xml:space="preserve">
+        <source>Title</source>
+      </trans-unit>
+      <trans-unit id="flexform.apiKey" xml:space="preserve">
+        <source>Used API</source>
+      </trans-unit>
+      <trans-unit id="flexform.list" xml:space="preserve">
+        <source>List</source>
+      </trans-unit>
+      <trans-unit id="flexform.interests" xml:space="preserve">
+        <source>Interests</source>
+      </trans-unit>
+      <trans-unit id="flexform.useAjax" xml:space="preserve">
+        <source>Use Ajax (EXT:typoscript_rendering required)</source>
+      </trans-unit>
+      <trans-unit id="flexform.identifier" xml:space="preserve">
+        <source>Optional identifier for further processing</source>
+      </trans-unit>
+      <trans-unit id="extMgm.apiKey" xml:space="preserve">
+        <source>API keys:You get the API key at mailchimp.com &gt; Account &gt; Extras &gt; API keys. For multiple accounts use key1:label1,key2:label2,key3:label3</source>
+      </trans-unit>
+      <trans-unit id="extMgm.proxy" xml:space="preserve">
+        <source>If you have to use a proxy for curl enter it here</source>
+      </trans-unit>
+      <trans-unit id="extMgm.proxyPort" xml:space="preserve">
+        <source>Enter the proxy port for here</source>
+      </trans-unit>
+      <trans-unit id="extMgm.forceIp4" xml:space="preserve">
+        <source>Force IP4 usage in API</source>
+      </trans-unit>
+      <trans-unit id="field.email" xml:space="preserve">
+        <source>Email</source>
+      </trans-unit>
+      <trans-unit id="field.firstName" xml:space="preserve">
+        <source>First name</source>
+      </trans-unit>
+      <trans-unit id="field.lastName" xml:space="preserve">
+        <source>Last name</source>
+      </trans-unit>
+      <trans-unit id="field.interests" xml:space="preserve">
+        <source>Interests</source>
+      </trans-unit>
+      <trans-unit id="error.memberExists" xml:space="preserve">
+        <source>You are already registered with this email address!</source>
+      </trans-unit>
+      <trans-unit id="error.general" xml:space="preserve">
+        <source>A general error occurred, sorry!</source>
+      </trans-unit>
+      <trans-unit id="error.form.email.1221560718" xml:space="preserve">
+        <source>Please provide an email address!</source>
+      </trans-unit>
+      <trans-unit id="error.form.email.1221559976" xml:space="preserve">
+        <source>The provided email address is invalid!</source>
+      </trans-unit>
+      <trans-unit id="success.title" xml:space="preserve">
+        <source>You have successfully registered!</source>
+      </trans-unit>
+      <trans-unit id="success.description" xml:space="preserve">
+        <source>Please check your emails to activate the registration!</source>
+      </trans-unit>
+      <trans-unit id="form.submit" xml:space="preserve">
+        <source>Submit</source>
+      </trans-unit>
+      <trans-unit id="memberCount" xml:space="preserve">
+        <source>Count of members</source>
+      </trans-unit>
+      <trans-unit id="ajaxEnabledWithoutExtension" xml:space="preserve">
+        <source>Ajax is enabled but the extension "typoscript_rendering" is not installed!</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

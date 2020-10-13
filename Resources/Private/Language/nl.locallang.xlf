@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0" standalone="yes">
+  <file source-language="en" target-language="nl" datatype="plaintext" original="messages" data="2020-09-25T11-01-40" product-name="mailchimp">
+    <header/>
+    <body>
+      <trans-unit id="field.email" xml:space="preserve">
+        <source>Email</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="field.firstName" xml:space="preserve">
+        <source>First name</source>
+        <target>Voornaam</target>
+      </trans-unit>
+      <trans-unit id="field.lastName" xml:space="preserve">
+        <source>Last name</source>
+        <target>Achternaam</target>
+      </trans-unit>
+      <trans-unit id="field.interests" xml:space="preserve">
+        <source>Interests</source>
+        <target>Interesses</target>
+      </trans-unit>
+      <trans-unit id="error.memberExists" xml:space="preserve">
+        <source>You are already registered with this email address!</source>
+        <target>U bent al geregistreerd met dit e-mailadres!</target>
+      </trans-unit>
+      <trans-unit id="error.general" xml:space="preserve">
+        <source>A general error occurred, sorry!</source>
+        <target>Er heeft zich een fout voorgedaan, sorry!</target>
+      </trans-unit>
+      <trans-unit id="error.form.email.1221560718" xml:space="preserve">
+        <source>Please provide an email address!</source>
+        <target>Geef een e-mailadres op!</target>
+      </trans-unit>
+      <trans-unit id="error.form.email.1221559976" xml:space="preserve">
+        <source>The provided email address is invalid!</source>
+        <target>Het opgegeven e-mailadres is ongeldig!</target>
+      </trans-unit>
+      <trans-unit id="success.title" xml:space="preserve">
+        <source>You have successfully registered!</source>
+        <target>U bent geregistreerd!</target>
+      </trans-unit>
+      <trans-unit id="success.description" xml:space="preserve">
+        <source>Please check your emails to activate the registration!</source>
+        <target>Controleer uw e-mailbox om de registratie te activeren!</target>
+      </trans-unit>
+      <trans-unit id="form.submit" xml:space="preserve">
+        <source>Submit</source>
+        <target>Verzenden</target>
+      </trans-unit>
+      <trans-unit id="memberCount" xml:space="preserve">
+        <source>Count of members</source>
+        <target>Aantal leden</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
