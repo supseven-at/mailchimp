@@ -60,7 +60,7 @@ class ExtensionConfiguration implements SingletonInterface
      * @param string $hash
      * @return string
      */
-    public function getApiKeyByHash($hash)
+    public function getApiKeyByHash(string $hash)
     {
         $settings = $this->getApiKeyConfiguration($hash);
         return $settings['key'];
@@ -70,7 +70,7 @@ class ExtensionConfiguration implements SingletonInterface
      * @param string $hash
      * @return string
      */
-    public function getApiKeyLabel($hash)
+    public function getApiKeyLabel(string $hash)
     {
         $settings = $this->getApiKeyConfiguration($hash);
         return $settings['label'];
@@ -80,7 +80,7 @@ class ExtensionConfiguration implements SingletonInterface
      * @param string $hash
      * @return array
      */
-    private function getApiKeyConfiguration($hash)
+    private function getApiKeyConfiguration(string $hash)
     {
         if (!isset($this->apiKeys[$hash])) {
             throw new \UnexpectedValueException(sprintf('For hash "%s" no API key found', $hash), 1513232660);
@@ -108,7 +108,7 @@ class ExtensionConfiguration implements SingletonInterface
      * @param string $apiKey
      * @return ExtensionConfiguration
      */
-    private function setApiKeys($apiKey)
+    private function setApiKeys(string $apiKey)
     {
         $keys = GeneralUtility::trimExplode(',', $apiKey, true);
         if (count($keys) === 1) {
@@ -144,7 +144,7 @@ class ExtensionConfiguration implements SingletonInterface
      * @param string $proxy
      * @return ExtensionConfiguration
      */
-    private function setProxy($proxy)
+    private function setProxy(string $proxy)
     {
         $this->proxy = $proxy;
         return $this;
@@ -154,7 +154,7 @@ class ExtensionConfiguration implements SingletonInterface
      * @param string $proxyPort
      * @return ExtensionConfiguration
      */
-    private function setProxyPort($proxyPort)
+    private function setProxyPort(string $proxyPort)
     {
         $this->proxyPort = $proxyPort;
         return $this;

@@ -1,80 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.0" standalone="yes">
-  <file source-language="en" target-language="de" datatype="plaintext" original="messages" data="2020-09-25T11-01-40" product-name="mailchimp">
-    <header/>
-    <body>
-      <trans-unit id="plugin.title" xml:space="preserve">
-        <source>MailChimp</source>
-        <target>MailChimp</target>
-      </trans-unit>
-      <trans-unit id="plugin.description" xml:space="preserve">
-        <source>Create a form to let users register to a specific MailChimp list.</source>
-        <target>Erstelle ein Formular mit dem sich Benutzer in einer MailChimp Liste eintragen können.</target>
-      </trans-unit>
-      <trans-unit id="flexform.apiKey" xml:space="preserve">
-        <source>Used API</source>
-        <target>Benutzte API</target>
-      </trans-unit>
-      <trans-unit id="flexform.title" xml:space="preserve">
-        <source>Title</source>
-        <target>Titel</target>
-      </trans-unit>
-      <trans-unit id="flexform.list" xml:space="preserve">
-        <source>List</source>
-        <target>Liste</target>
-      </trans-unit>
-      <trans-unit id="flexform.interests" xml:space="preserve">
-        <source>Interests</source>
-        <target>Interessen</target>
-      </trans-unit>
-      <trans-unit id="flexform.identifier" xml:space="preserve">
-        <source>Optional identifier for further processing</source>
-        <target>Optionaler Identifier für weitere Verarbeitungen</target>
-      </trans-unit>
-      <trans-unit id="field.firstName" xml:space="preserve">
-        <source>First name</source>
-        <target>Vorname</target>
-      </trans-unit>
-      <trans-unit id="field.lastName" xml:space="preserve">
-        <source>Last name</source>
-        <target>Nachname</target>
-      </trans-unit>
-      <trans-unit id="field.email" xml:space="preserve">
-        <source>Email</source>
-        <target>Email</target>
-      </trans-unit>
-      <trans-unit id="field.interests" xml:space="preserve">
-        <source>Interests</source>
-        <target>Interessen</target>
-      </trans-unit>
-      <trans-unit id="error.memberExists" xml:space="preserve">
-        <source>You are already registered with this email address!</source>
-        <target>Sie haben sich mit dieser Email-Adresse bereits registriert!</target>
-      </trans-unit>
-      <trans-unit id="error.general" xml:space="preserve">
-        <source>A general error occurred, sorry!</source>
-        <target>Ein Fehler ist aufgetreten, es tut uns leid!</target>
-      </trans-unit>
-      <trans-unit id="error.form.email.1221560718" xml:space="preserve">
-        <source>Please provide an email address!</source>
-        <target>Bitte geben Sie Ihre Emailadresse an!</target>
-      </trans-unit>
-      <trans-unit id="error.form.email.1221559976" xml:space="preserve">
-        <source>The provided email address is invalid!</source>
-        <target>Die angegebene Emailadresse ist leider ungültig!</target>
-      </trans-unit>
-      <trans-unit id="success.title" xml:space="preserve">
-        <source>You have successfully registered!</source>
-        <target>Sie haben sich erfolgreich registriert!</target>
-      </trans-unit>
-      <trans-unit id="success.description" xml:space="preserve">
-        <source>Please check your emails to activate the registration!</source>
-        <target>Bitte prüfen Sie ihre Emails um die Registrierung zu aktivieren.</target>
-      </trans-unit>
-      <trans-unit id="form.submit" xml:space="preserve">
-        <source>Submit</source>
-        <target>Abschicken</target>
-      </trans-unit>
-    </body>
-  </file>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+ <file source-language="en" target-language="de" original="messages" product-name="mailchimp" date="2020-10-13T20:00:30+02:00">
+  <header></header>
+  <body>
+   <trans-unit id="error.form.email.1221559976" resname="error.form.email.1221559976">
+    <source>The provided email address is invalid!</source>
+    <target>Die angegebene E-Mailadresse ist leider ungültig!</target>
+   </trans-unit>
+   <trans-unit id="error.form.email.1221560718" resname="error.form.email.1221560718">
+    <source>Please provide an email address!</source>
+    <target>Bitte geben Sie Ihre E-Mailadresse an!</target>
+   </trans-unit>
+   <trans-unit id="error.general" resname="error.general">
+    <source>A general error occurred, sorry!</source>
+    <target>Ein Fehler ist aufgetreten, es tut uns leid!</target>
+   </trans-unit>
+   <trans-unit id="error.memberExists" resname="error.memberExists">
+    <source>You are already registered with this email address!</source>
+    <target>Sie haben sich mit dieser E-Mailadresse bereits registriert!</target>
+   </trans-unit>
+   <trans-unit id="field.email" resname="field.email">
+    <source>Email</source>
+    <target>E-Mail</target>
+   </trans-unit>
+   <trans-unit id="field.firstName" resname="field.firstName">
+    <source>First name</source>
+    <target>Vorname</target>
+   </trans-unit>
+   <trans-unit id="field.interests" resname="field.interests">
+    <source>Interests</source>
+    <target>Interessen</target>
+   </trans-unit>
+   <trans-unit id="field.lastName" resname="field.lastName">
+    <source>Last name</source>
+    <target>Nachname</target>
+   </trans-unit>
+   <trans-unit id="flexform.apiKey" resname="flexform.apiKey">
+    <source>Used API</source>
+    <target>Benutzte API</target>
+   </trans-unit>
+   <trans-unit id="flexform.identifier" resname="flexform.identifier">
+    <source>Optional identifier for further processing</source>
+    <target>Optionaler Identifier für weitere Verarbeitungen</target>
+   </trans-unit>
+   <trans-unit id="flexform.interests" resname="flexform.interests">
+    <source>Interests</source>
+    <target>Interessen</target>
+   </trans-unit>
+   <trans-unit id="flexform.list" resname="flexform.list">
+    <source>List</source>
+    <target>Liste</target>
+   </trans-unit>
+   <trans-unit id="flexform.title" resname="flexform.title">
+    <source>Title</source>
+    <target>Titel</target>
+   </trans-unit>
+   <trans-unit id="form.submit" resname="form.submit">
+    <source>Submit</source>
+    <target>Abschicken</target>
+   </trans-unit>
+   <trans-unit id="memberCount" resname="memberCount">
+    <source>Count of members</source>
+    <target>Anzahl der Mitglieder</target>
+   </trans-unit>
+   <trans-unit id="plugin.description" resname="plugin.description">
+    <source>Create a form to let users register to a specific MailChimp list.</source>
+    <target>Erstelle ein Formular mit dem sich Benutzer in einer MailChimp Liste eintragen können.</target>
+   </trans-unit>
+   <trans-unit id="plugin.title" resname="plugin.title">
+    <source>MailChimp</source>
+    <target>MailChimp</target>
+   </trans-unit>
+   <trans-unit id="success.description" resname="success.description">
+    <source>Please check your emails to activate the registration!</source>
+    <target>Bitte prüfen Sie Ihre E-Mails um die Registrierung zu aktivieren.</target>
+   </trans-unit>
+   <trans-unit id="success.title" resname="success.title">
+    <source>You have successfully registered!</source>
+    <target>Sie haben sich erfolgreich registriert!</target>
+   </trans-unit>
+  </body>
+ </file>
 </xliff>

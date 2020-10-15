@@ -130,9 +130,10 @@ class PageLayoutViewHook
 
     /**
      * @param string $string
+     * @param bool $hsc
      * @return string
      */
-    protected function getLabel($string, $hsc = true)
+    protected function getLabel(string $string, bool $hsc = true)
     {
         $label = $this->getLanguageService()->sL(self::LLPATH . $string);
         if ($hsc) {
@@ -179,7 +180,7 @@ class PageLayoutViewHook
      * @param string $sheet name of the sheet
      * @return string|NULL if nothing found, value if found
      */
-    protected function getFieldFromFlexform($key, $sheet = 'sDEF')
+    protected function getFieldFromFlexform(string $key, $sheet = 'sDEF')
     {
         $flexform = $this->flexformData;
         if (isset($flexform['data'])) {
@@ -194,9 +195,6 @@ class PageLayoutViewHook
         return null;
     }
 
-    /**
-     * @return void
-     */
     private function initializeApi()
     {
         $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
