@@ -16,7 +16,7 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\
 $iconRegistry->registerIcon(
     'ext-mailchimp-wizard-icon',
     \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-    ['source' => 'EXT:mailchimp/ext_icon.png']
+    ['source' => 'EXT:mailchimp/Resources/Public/Icons/Extension.png']
 );
 
 // Page module hook
