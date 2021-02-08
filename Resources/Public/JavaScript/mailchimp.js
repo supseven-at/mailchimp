@@ -1,22 +1,27 @@
+$(function () {
+    let $extMailchimpForms = $('form.mailchimp-form');
 
-$(document).on('submit', '#mailchimp-form', function (e) {
-    'use strict';
+    if ($extMailchimpForms.length) {
 
-    let $this = $(this),
-        url = $this.data('url');
+        $extMailchimpForms.on('submit', function (e) {
 
-    if (url) {
-        e.preventDefault();
+            let $this = $(this),
+                url = $this.data('url');
 
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: $this.serialize(),
-            dataType: 'html',
-            encode: false
-        })
-            .done(function (data) {
-                $('#mailchimp-ajax-response').html(data);
-            });
+            if (url) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: $this.serialize(),
+                    dataType: 'html',
+                    encode: false
+                })
+                    .done(function (data) {
+                        $('.mailchimp-ajax-response', $this).html(data);
+                    });
+            }
+        });
     }
 });
