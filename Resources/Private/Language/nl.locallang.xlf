@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
  <file source-language="en" target-language="nl" original="messages" product-name="mailchimp" date="2020-10-13T20:00:30+02:00">
-  <header></header>
+  <header/>
   <body>
    <trans-unit id="error.form.email.1221559976" resname="error.form.email.1221559976">
     <source>The provided email address is invalid!</source>
