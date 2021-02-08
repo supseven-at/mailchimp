@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
  <file source-language="en" target-language="de" original="messages" product-name="mailchimp" date="2020-10-13T20:00:30+02:00">
-  <header></header>
+  <header/>
   <body>
    <trans-unit id="error.form.email.1221559976" resname="error.form.email.1221559976">
     <source>The provided email address is invalid!</source>
-    <target>Die angegebene E-Mailadresse ist leider ungültig!</target>
+    <target>Die angegebene E-Mail-Adresse ist leider ungültig!</target>
    </trans-unit>
    <trans-unit id="error.form.email.1221560718" resname="error.form.email.1221560718">
     <source>Please provide an email address!</source>
-    <target>Bitte geben Sie Ihre E-Mailadresse an!</target>
+    <target>Bitte geben Sie Ihre E-Mail-Adresse an!</target>
    </trans-unit>
    <trans-unit id="error.general" resname="error.general">
     <source>A general error occurred, sorry!</source>
@@ -17,7 +17,7 @@
    </trans-unit>
    <trans-unit id="error.memberExists" resname="error.memberExists">
     <source>You are already registered with this email address!</source>
-    <target>Sie haben sich mit dieser E-Mailadresse bereits registriert!</target>
+    <target>Sie haben sich bereits mit dieser E-Mail-Adresse registriert!</target>
    </trans-unit>
    <trans-unit id="field.email" resname="field.email">
     <source>Email</source>
@@ -65,7 +65,7 @@
    </trans-unit>
    <trans-unit id="plugin.description" resname="plugin.description">
     <source>Create a form to let users register to a specific MailChimp list.</source>
-    <target>Erstelle ein Formular mit dem sich Benutzer in einer MailChimp Liste eintragen können.</target>
+    <target>Erstelle ein Formular, mit dem sich Benutzer in einer MailChimp-Liste eintragen können.</target>
    </trans-unit>
    <trans-unit id="plugin.title" resname="plugin.title">
     <source>MailChimp</source>
@@ -73,7 +73,7 @@
    </trans-unit>
    <trans-unit id="success.description" resname="success.description">
     <source>Please check your emails to activate the registration!</source>
-    <target>Bitte prüfen Sie Ihre E-Mails um die Registrierung zu aktivieren.</target>
+    <target>Bitte prüfen Sie Ihre E-Mails, um die Registrierung zu aktivieren.</target>
    </trans-unit>
    <trans-unit id="success.title" resname="success.title">
     <source>You have successfully registered!</source>

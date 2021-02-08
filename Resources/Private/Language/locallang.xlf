@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
  <file source-language="en" original="messages" product-name="mailchimp" date="2020-10-13T20:00:30+02:00">
-  <header></header>
+  <header/>
   <body>
    <trans-unit id="ajaxEnabledWithoutExtension" resname="ajaxEnabledWithoutExtension">
     <source>Ajax is enabled but the extension &#34;typoscript_rendering&#34; is not installed!</source>
