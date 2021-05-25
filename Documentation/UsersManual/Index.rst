@@ -23,7 +23,7 @@ If you have already created a list at mailchimp.com, you can skip this section, 
 Interest group
 ^^^^^^^^^^^^^^
 
-Interest groups allow people to subscribe to different topics which can be used later on to send different newsletters. Those topics are called **Intererst Groups**. The creation is really simple:
+Interest groups allow people to subscribe to different topics which can be used later on to send different newsletters. Those topics are called **Interest Groups**. The creation is really simple:
 
 1) Login at https://www.mailchimp.com.
 2) Switch to *List* and select the list you want to create interest groups.
