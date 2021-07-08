@@ -8,7 +8,7 @@ defined('TYPO3_MODE') or die();
         'Form' => 'index,response,ajaxResponse'
     ],
     [
-        'Form' => 'index,response,ajaxResponse'
+        'Form' => 'response,ajaxResponse'
     ]
 );
 
