@@ -1,0 +1,63 @@
+imports:
+  - { resource: "./Finishers/Mailchimp.yaml" }
+
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            translationFiles:
+              1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
+          formEngine:
+            translationFiles:
+              1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
+          formElementsDefinition:
+            Form:
+              formEditor:
+                editors:
+                  900:
+                    identifier: finishers
+                    templateName: Inspector-FinishersEditor
+                    label: formEditor.elements.Form.editor.finishers.label
+                    selectOptions:
+                      1627404338:
+                        value: Mailchimp
+                        label: formEditor.elements.Form.editor.finishers.Mailchimp.label
+                propertyCollections:
+                  finishers:
+                    1627404338:
+                      identifier: Mailchimp
+                      editors:
+                        100:
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                          label: formEditor.elements.Form.finisher.Mailchimp.editor.header.label
+                        200:
+                          identifier: first_name
+                          templateName: Inspector-TextEditor
+                          label: formEditor.elements.Form.finisher.Mailchimp.editor.first_name.label
+                          propertyPath: options.first_name
+                          enableFormelementSelectionButton: true
+                        300:
+                          identifier: last_name
+                          templateName: Inspector-TextEditor
+                          label: formEditor.elements.Form.finisher.Mailchimp.editor.last_name.label
+                          propertyPath: options.last_name
+                          enableFormelementSelectionButton: true
+                        400:
+                          identifier: email
+                          templateName: Inspector-TextEditor
+                          label: formEditor.elements.Form.finisher.Mailchimp.editor.email.label
+                          propertyPath: options.email
+                          enableFormelementSelectionButton: true
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
+              renderingOptions:
+                translation:
+                  translationFiles:
+                    1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
+      formManager:
+        translationFiles:
+          1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'

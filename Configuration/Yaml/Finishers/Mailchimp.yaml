@@ -1,0 +1,35 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          finishersDefinition:
+            Mailchimp:
+              implementationClassName: Sup7even\Mailchimp\Domain\Finishers\MailchimpFinisher
+              options: 
+                first_name: ''
+                last_name: ''
+                email: ''
+              formEditor:
+                iconIdentifier: form-finisher
+                label: formEditor.elements.Form.finisher.Mailchimp.editor.header.label
+                predefinedDefaults:
+                  options:
+                    first_name: ''
+                    last_name: ''
+                    email: ''
+              FormEngine:
+                label: formEditor.elements.Form.finisher.Mailchimp.editor.header.label
+                elements:
+                  first_name:
+                    label: formEditor.elements.Form.finisher.Mailchimp.editor.first_name.label
+                    config:
+                      type: input
+                  last_name:
+                    label: formEditor.elements.Form.finisher.Mailchimp.editor.last_name.label
+                    config:
+                      type: input
+                  email:
+                    label: formEditor.elements.Form.finisher.Mailchimp.editor.email.label
+                    config:
+                      type: input
