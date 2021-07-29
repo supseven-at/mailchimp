@@ -6,30 +6,60 @@ TYPO3:
           finishersDefinition:
             Mailchimp:
               implementationClassName: Sup7even\Mailchimp\Domain\Finishers\MailchimpFinisher
-              options: 
-                first_name: ''
-                last_name: ''
-                email: ''
+              options:
+                templateName: Response
+                templateRootPaths:
+                  10: 'EXT:mailchimp/Resources/Private/Templates/Form/'
               formEditor:
                 iconIdentifier: form-finisher
-                label: formEditor.elements.Form.finisher.Mailchimp.editor.header.label
+                label: plugin.title
                 predefinedDefaults:
                   options:
                     first_name: ''
                     last_name: ''
                     email: ''
+                    skip_double_optin: false
+                    api_key: ''
+                    list_id: ''
+                    interest_id: ''
               FormEngine:
-                label: formEditor.elements.Form.finisher.Mailchimp.editor.header.label
+                label: plugin.title
                 elements:
                   first_name:
-                    label: formEditor.elements.Form.finisher.Mailchimp.editor.first_name.label
+                    label: field.firstName
                     config:
                       type: input
                   last_name:
-                    label: formEditor.elements.Form.finisher.Mailchimp.editor.last_name.label
+                    label: field.lastName
                     config:
                       type: input
                   email:
-                    label: formEditor.elements.Form.finisher.Mailchimp.editor.email.label
+                    label: field.email
                     config:
                       type: input
+                  skip_double_optin:
+                    label: field.skipDoubleOptin
+                    config:
+                      type: check
+                      default: 0
+                  api_key:
+                    label: flexform.apiKey
+                    config:
+                      type: select
+                      renderType: selectSingle
+                      itemsProcFunc:
+                        'Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getApiKeys'
+                  list_id:
+                    label: flexform.list
+                    config:
+                      type: select
+                      renderType: selectSingle
+                      itemsProcFunc:
+                        'Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getLists'
+                  interest_id:
+                    label: flexform.interests
+                    config:
+                      type: select
+                      renderType: selectSingle
+                      itemsProcFunc:
+                        'Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests'

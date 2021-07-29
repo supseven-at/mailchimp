@@ -78,20 +78,8 @@
    <trans-unit id="success.title" resname="success.title">
     <source>You have successfully registered!</source>
    </trans-unit>
-   <trans-unit id="formEditor.elements.Form.finisher.Mailchimp.editor.header.label" resname="formEditor.elements.Form.finisher.Mailchimp.editor.header.label">
-    <source>Mailchimp</source>
-   </trans-unit>
-   <trans-unit id="formEditor.elements.Form.editor.finishers.Mailchimp.label" resname="formEditor.elements.Form.editor.finishers.Mailchimp.label">
-    <source>Mailchimp</source>
-   </trans-unit>
-   <trans-unit id="formEditor.elements.Form.finisher.Mailchimp.editor.first_name.label" resname="formEditor.elements.Form.finisher.Mailchimp.editor.first_name.label">
-    <source>First name</source>
-   </trans-unit>
-   <trans-unit id="formEditor.elements.Form.finisher.Mailchimp.editor.last_name.label" resname="formEditor.elements.Form.finisher.Mailchimp.editor.last_name.label">
-    <source>Last name</source>
-   </trans-unit>
-   <trans-unit id="formEditor.elements.Form.finisher.Mailchimp.editor.email.label" resname="formEditor.elements.Form.finisher.Mailchimp.editor.email.label">
-    <source>Email address</source>
+   <trans-unit id="field.skipDoubleOptin">
+    <source>Skip double opt-in</source>
    </trans-unit>
   </body>
  </file>

@@ -17,13 +17,10 @@ TYPO3:
               formEditor:
                 editors:
                   900:
-                    identifier: finishers
-                    templateName: Inspector-FinishersEditor
-                    label: formEditor.elements.Form.editor.finishers.label
                     selectOptions:
                       1627404338:
                         value: Mailchimp
-                        label: formEditor.elements.Form.editor.finishers.Mailchimp.label
+                        label: plugin.title
                 propertyCollections:
                   finishers:
                     1627404338:
@@ -32,25 +29,30 @@ TYPO3:
                         100:
                           identifier: header
                           templateName: Inspector-CollectionElementHeaderEditor
-                          label: formEditor.elements.Form.finisher.Mailchimp.editor.header.label
+                          label: plugin.title
                         200:
                           identifier: first_name
                           templateName: Inspector-TextEditor
-                          label: formEditor.elements.Form.finisher.Mailchimp.editor.first_name.label
+                          label: field.firstName
                           propertyPath: options.first_name
                           enableFormelementSelectionButton: true
                         300:
                           identifier: last_name
                           templateName: Inspector-TextEditor
-                          label: formEditor.elements.Form.finisher.Mailchimp.editor.last_name.label
+                          label: field.lastName
                           propertyPath: options.last_name
                           enableFormelementSelectionButton: true
                         400:
                           identifier: email
                           templateName: Inspector-TextEditor
-                          label: formEditor.elements.Form.finisher.Mailchimp.editor.email.label
+                          label: field.email
                           propertyPath: options.email
                           enableFormelementSelectionButton: true
+                        500:
+                          identifier: skip_double_optin
+                          templateName: Inspector-CheckboxEditor
+                          label: field.skipDoubleOptin
+                          propertyPath: options.skip_double_optin
                         9999:
                           identifier: removeButton
                           templateName: Inspector-RemoveElementEditor
