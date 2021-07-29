@@ -44,7 +44,8 @@ class ItemsProcFunc
             $elementId = (int)$config['row']['uid'];
             if ($elementId > 0) {
                 $settings = $this->extractSettingsFromRecord($elementId);
-                $apiKeyHash = $settings['apiKey'] ?? null;
+                $settings['apiKey'] = $settings['apiKey'] ?? $settings['finishers']['Mailchimp']['api_key'];
+                $apiKeyHash = isset($settings['apiKey']) ? $settings['apiKey'] : null;
             }
 
             $api = $this->getApiService($apiKeyHash);
@@ -63,6 +64,7 @@ class ItemsProcFunc
         $elementId = (int)$config['row']['uid'];
         if ($elementId > 0) {
             $settings = $this->extractSettingsFromRecord($elementId);
+            $settings['listId'] = $settings['listId'] ?? $settings['finishers']['Mailchimp']['list_id'];
 
             if ($settings['listId'] ?? false) {
                 try {

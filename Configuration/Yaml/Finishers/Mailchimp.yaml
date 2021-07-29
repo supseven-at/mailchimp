@@ -44,16 +44,24 @@ TYPO3:
                       default: 0
                   api_key:
                     label: flexform.apiKey
+                    onChange: reload
                     config:
                       type: select
                       renderType: selectSingle
+                      items:
+                        10:
+                          -
                       itemsProcFunc:
                         'Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getApiKeys'
                   list_id:
                     label: flexform.list
+                    onChange: reload
                     config:
                       type: select
                       renderType: selectSingle
+                      items:
+                        10:
+                          -
                       itemsProcFunc:
                         'Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getLists'
                   interest_id:
@@ -61,5 +69,8 @@ TYPO3:
                     config:
                       type: select
                       renderType: selectSingle
+                      items:
+                        10:
+                          -
                       itemsProcFunc:
                         'Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests'
