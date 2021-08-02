@@ -1,5 +1,6 @@
 imports:
   - { resource: "./Finishers/Mailchimp.yaml" }
+  - { resource: "./FormElements/Interests.yaml" }
 
 TYPO3:
   CMS:
@@ -9,6 +10,9 @@ TYPO3:
           formEditor:
             translationFiles:
               1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                1627661598: 'TYPO3/CMS/Mailchimp/Backend/FormEditor/ViewModel'
           formEngine:
             translationFiles:
               1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
@@ -53,10 +57,18 @@ TYPO3:
                           templateName: Inspector-CheckboxEditor
                           label: field.skipDoubleOptin
                           propertyPath: options.skip_double_optin
+                        600:
+                          identifier: interests
+                          templateName: Inspector-TextEditor
+                          label: field.interestChoices
+                          propertyPath: options.interests
+                          enableFormelementSelectionButton: true
                         9999:
                           identifier: removeButton
                           templateName: Inspector-RemoveElementEditor
               renderingOptions:
+                partialRootPaths:
+                  1627662229: 'EXT:mailchimp/Resources/Private/Partials/Form/'
                 translation:
                   translationFiles:
                     1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'

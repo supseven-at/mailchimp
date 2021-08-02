@@ -20,7 +20,18 @@ class MailchimpFinisher extends AbstractFinisher
         $form->setEmail($this->parseOption('email'));
         $form->setFirstName($this->parseOption('first_name'));
         $form->setLastName($this->parseOption('last_name'));
-        $form->setInterest($this->parseOption('interest') ?? '');
+
+        $interests = $this->parseOption('interests');
+
+        if (is_string($interests)) {
+            $form->setInterest($interests);
+        } else {
+            $remapInterests = array();
+            foreach ($interests as $interest) {
+                $remapInterests[$interest] = true;
+            }
+            $form->setInterests($remapInterests);
+        }
 
         return $this->handleRegistration($form);
     }
@@ -58,5 +69,13 @@ class MailchimpFinisher extends AbstractFinisher
         ]);
 
         return $view->render();
+    }
+
+    public function getCategories()
+    {
+        return $this->getApiService($this->options['api_key'])->getCategories(
+            $this->options['list_id'], 
+            $this->options['interest_id']
+        );
     }
 }

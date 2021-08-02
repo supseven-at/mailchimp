@@ -10,6 +10,7 @@ TYPO3:
                 templateName: Response
                 templateRootPaths:
                   10: 'EXT:mailchimp/Resources/Private/Templates/Form/'
+                interests: ''
               formEditor:
                 iconIdentifier: form-finisher
                 label: plugin.title
@@ -22,6 +23,7 @@ TYPO3:
                     api_key: ''
                     list_id: ''
                     interest_id: ''
+                    interests: ''
               FormEngine:
                 label: plugin.title
                 elements:
@@ -74,3 +76,7 @@ TYPO3:
                           -
                       itemsProcFunc:
                         'Sup7even\Mailchimp\Hooks\Backend\ItemsProcFunc->getInterests'
+                  interests:
+                    label: Interest choices
+                    config:
+                      type: input

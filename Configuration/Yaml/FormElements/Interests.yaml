@@ -1,0 +1,33 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Interests:
+              formEditor:
+                predefinedDefaults:
+                  properties:
+                    requiredFields: []
+                editors:
+                  100:
+                    identifier: header
+                    templateName: Inspector-FormElementHeaderEditor
+                  200:
+                    identifier: label
+                    templateName: Inspector-TextEditor
+                    label: formEditor.elements.FormElement.editor.label.label
+                    propertyPath: label
+                  9999:
+                    identifier: removeButton
+                    templateName: Inspector-RemoveElementEditor
+                label: field.interests
+                group: select
+                groupSorting: 600
+                iconIdentifier: form-checkbox
+              renderingOptions:
+                
+              implementationClassName: Sup7even\Mailchimp\Domain\Model\FormElements\Interests
+          formEditor:
+            formEditorPartials:
+              FormElement-Interests: Stage/SimpleTemplate

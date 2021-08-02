@@ -78,8 +78,11 @@
    <trans-unit id="success.title" resname="success.title">
     <source>You have successfully registered!</source>
    </trans-unit>
-   <trans-unit id="field.skipDoubleOptin">
+   <trans-unit id="field.skipDoubleOptin" resname="field.skipDoubleOptin">
     <source>Skip double opt-in</source>
+   </trans-unit>
+   <trans-unit id="field.interestChoices" resname="field.interestChoices">
+    <source>Interest choices</source>
    </trans-unit>
   </body>
  </file>
