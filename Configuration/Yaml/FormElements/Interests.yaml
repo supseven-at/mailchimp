@@ -9,6 +9,7 @@ TYPO3:
                 predefinedDefaults:
                   properties:
                     requiredFields: []
+                    useGroupName: false
                 editors:
                   100:
                     identifier: header
@@ -18,9 +19,66 @@ TYPO3:
                     templateName: Inspector-TextEditor
                     label: formEditor.elements.FormElement.editor.label.label
                     propertyPath: label
+                  210:
+                    identifier: useGroupName
+                    templateName: Inspector-CheckboxEditor
+                    label: formEditor.elements.FormElement.editor.useGroupName.label
+                    propertyPath: properties.useGroupName
+                    fieldExplanationText: formEditor.elements.FormElement.editor.useGroupName.fieldExplanationText
+                  230:
+                    identifier: elementDescription
+                    templateName: Inspector-TextEditor
+                    label: formEditor.elements.FormElement.editor.elementDescription.label
+                    propertyPath: properties.elementDescription
+                  900:
+                    identifier: validators
+                    templateName: Inspector-ValidatorsEditor
+                    label: formEditor.elements.MultiSelectionMixin.editor.validators.label
+                    selectOptions:
+                      10:
+                        value: ''
+                        label: formEditor.elements.MultiSelectionMixin.editor.validators.EmptyValue.label
+                      20:
+                        value: Count
+                        label: formEditor.elements.MultiSelectionMixin.editor.validators.Count.label
                   9999:
                     identifier: removeButton
                     templateName: Inspector-RemoveElementEditor
+                propertyCollections:
+                  validators:
+                    10:
+                      identifier: Count
+                      editors:
+                        100:
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                          label: formEditor.elements.MultiSelectionMixin.validators.Count.editor.header.label
+                        200:
+                          identifier: minimum
+                          templateName: Inspector-TextEditor
+                          label: formEditor.elements.MinimumMaximumEditorsMixin.editor.minimum.label
+                          propertyPath: options.minimum
+                          propertyValidators:
+                            10: Integer
+                        300:
+                          identifier: maximum
+                          templateName: Inspector-TextEditor
+                          label: formEditor.elements.MinimumMaximumEditorsMixin.editor.maximum.label
+                          propertyPath: options.maximum
+                          propertyValidators:
+                            10: Integer
+                        400:
+                          identifier: validationErrorMessage
+                          templateName: Inspector-ValidationErrorMessageEditor
+                          label: formEditor.elements.MultiSelectionMixin.validators.Count.editor.validationErrorMessage.label
+                          fieldExplanationText: formEditor.elements.MultiSelectionMixin.validators.Count.editor.validationErrorMessage.fieldExplanationText
+                          errorCodes:
+                            10: 1627938559
+                            20: 1627938566
+                          propertyPath: properties.validationErrorMessages
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
                 label: field.interests
                 group: select
                 groupSorting: 600

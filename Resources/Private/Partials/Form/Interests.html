@@ -4,7 +4,6 @@
       data-namespace-typo3-fluid="true">
 
     <f:variable name="interests">{element.properties}</f:variable>
-
     <formvh:renderRenderable renderable="{element}">
         <f:render partial="Field/Field" arguments="{element: element}" contentAs="elementContent">
             <f:if condition="{interests}">
@@ -74,7 +73,6 @@
 
     <f:section name="interestType-dropdown">
         <div class="form-group">
-            <label class="col-sm-3 control-label">{interests.title}</label>
             <div class="col-sm-9">
                 <f:form.select
                     property="{element.identifier}"

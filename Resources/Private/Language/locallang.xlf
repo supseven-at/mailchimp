@@ -84,6 +84,12 @@
    <trans-unit id="field.interestChoices" resname="field.interestChoices">
     <source>Interest choices</source>
    </trans-unit>
+   <trans-unit id="formEditor.elements.FormElement.editor.useGroupName.label" resname="formEditor.elements.FormElement.editor.useGroupName.label">
+    <source>Use group name as label</source>
+   </trans-unit>
+   <trans-unit id="formEditor.elements.FormElement.editor.useGroupName.fieldExplanationText" resname="formEditor.elements.FormElement.editor.useGroupName.fieldExplanationText">
+    <source>Use the group name in Mailchimp's interface instead of the label field</source>
+   </trans-unit>
   </body>
  </file>
 </xliff>

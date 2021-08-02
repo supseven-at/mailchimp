@@ -12,4 +12,9 @@ class Interests extends AbstractFormElement
     {
         parent::initializeFormElement();
     }
+
+    public function useGroupNameAsLabel()
+    {
+        return $this->properties['useGroupName'];
+    }
 }

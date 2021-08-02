@@ -28,6 +28,11 @@ class Form
                     $renderable->setProperty('options', $categories['options']);
                     $renderable->setProperty('title', $categories['title']);
                     $renderable->setProperty('type', $categories['type']);
+
+                    $useGroupName = $renderable->useGroupNameAsLabel();
+                    if ($useGroupName) {
+                        $renderable->setLabel($categories['title']);
+                    }
                 }
             }
         
