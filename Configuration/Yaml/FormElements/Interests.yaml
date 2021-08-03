@@ -79,7 +79,7 @@ TYPO3:
                         9999:
                           identifier: removeButton
                           templateName: Inspector-RemoveElementEditor
-                label: field.interests
+                label: formEditor.elements.Interests.label
                 group: select
                 groupSorting: 600
                 iconIdentifier: form-checkbox

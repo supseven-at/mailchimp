@@ -90,6 +90,9 @@
    <trans-unit id="formEditor.elements.FormElement.editor.useGroupName.fieldExplanationText" resname="formEditor.elements.FormElement.editor.useGroupName.fieldExplanationText">
     <source>Use the group name in Mailchimp's interface instead of the label field</source>
    </trans-unit>
+   <trans-unit id="formEditor.elements.Interests.label" resname="formEditor.elements.Interests.label" xml:space="preserve">
+    <source>Mailchimp Interests</source>
+    </trans-unit>
   </body>
  </file>
 </xliff>
