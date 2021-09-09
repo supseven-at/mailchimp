@@ -75,10 +75,10 @@ class FormController extends ActionController
             $apiService->register($this->settings['listId'], $form, $doublOptIn);
         } catch (MemberExistsException $e) {
             $this->view->assign('error', 'memberExists');
-            $this->view->assign('exception, $e);
+            $this->view->assign('exception', $e);
         } catch (GeneralException $e) {
             $this->view->assign('error', 'general');
-            $this->view->assign('exception, $e);
+            $this->view->assign('exception', $e);
         }
 
         $this->view->assignMultiple([
