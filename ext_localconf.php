@@ -8,7 +8,7 @@ defined('TYPO3_MODE') or die();
         \Sup7even\Mailchimp\Controller\FormController::class => 'index,response,ajaxResponse'
     ],
     [
-        \Sup7even\Mailchimp\Controller\FormController::class => 'index,response,ajaxResponse'
+        \Sup7even\Mailchimp\Controller\FormController::class => 'response,ajaxResponse'
     ]
 );
 
