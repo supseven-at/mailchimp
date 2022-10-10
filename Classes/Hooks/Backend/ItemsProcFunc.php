@@ -52,7 +52,7 @@ class ItemsProcFunc
             $elementId = (int)$config['row']['uid'];
             if ($elementId > 0) {
                 $settings = $this->extractSettingsFromRecord($elementId);
-                $apiKeyHash = isset($settings['apiKey']) ? $settings['apiKey'] : null;
+                $apiKeyHash = $settings['apiKey'] ?? null;
             }
 
             $api = $this->getApiService($apiKeyHash);
@@ -79,7 +79,7 @@ class ItemsProcFunc
 
             if ($settings['listId']) {
                 try {
-                    $apiKeyHash = isset($settings['apiKey']) ? $settings['apiKey'] : null;
+                    $apiKeyHash = $settings['apiKey'] ?? null;
                     $api = $this->getApiService($apiKeyHash);
                     $interests = $api->getInterestLists($settings['listId']);
                     if (is_array($interests) && !empty($interests)) {
