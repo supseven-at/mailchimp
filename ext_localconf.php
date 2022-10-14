@@ -2,13 +2,13 @@
 defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Sup7even.Mailchimp',
+    'Mailchimp',
     'Registration',
     [
-        'Form' => 'index,response,ajaxResponse'
+        \Sup7even\Mailchimp\Controller\FormController::class => 'index,response,ajaxResponse'
     ],
     [
-        'Form' => 'index,response,ajaxResponse'
+        \Sup7even\Mailchimp\Controller\FormController::class => 'index,response,ajaxResponse'
     ]
 );
 
