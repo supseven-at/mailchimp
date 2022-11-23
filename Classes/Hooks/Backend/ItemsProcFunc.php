@@ -77,7 +77,7 @@ class ItemsProcFunc
         if ($elementId > 0) {
             $settings = $this->extractSettingsFromRecord($elementId);
 
-            if ($settings['listId']) {
+            if ($settings['listId'] ?? false) {
                 try {
                     $apiKeyHash = $settings['apiKey'] ?? null;
                     $api = $this->getApiService($apiKeyHash);
