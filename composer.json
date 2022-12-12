@@ -22,9 +22,6 @@
     "drewm/mailchimp-api": "^2",
     "helhum/typoscript-rendering": "^2"
   },
-  "require-dev": {
-    "phpunit/phpunit": "~5.3.0"
-  },
   "autoload": {
     "psr-4": {
       "Sup7even\\Mailchimp\\": "Classes"
@@ -32,13 +29,16 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Sup7even\\Mailchimp\\Tests\\": "Tests",
-      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
+      "Sup7even\\Mailchimp\\Tests\\": "Tests"
     }
   },
   "config": {
     "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
+    "bin-dir": ".Build/bin",
+    "allow-plugins": {
+      "typo3/cms-composer-installers": true,
+      "typo3/class-alias-loader": true
+    }
   },
   "scripts": {
     "post-autoload-dump": [
@@ -49,8 +49,8 @@
   "extra": {
     "typo3/cms": {
       "extension-key": "mailchimp",
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web"
+      "app-dir": ".Build",
+      "web-dir": ".Build/web"
     }
   }
 }
