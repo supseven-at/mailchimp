@@ -48,12 +48,12 @@ class ExtensionConfiguration implements SingletonInterface
     /**
      * Get 1st API key configuration
      *
-     * @return array
+     * @return string
      */
     public function getFirstApiKey()
     {
         $firstItem = current($this->apiKeys);
-        return $firstItem['key'];
+        return $firstItem['key'] ?? '';
     }
 
     /**
@@ -167,5 +167,4 @@ class ExtensionConfiguration implements SingletonInterface
     {
         return $this->forceIp4;
     }
-
 }

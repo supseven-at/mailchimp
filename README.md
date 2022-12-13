@@ -6,9 +6,10 @@ This extension implements the most important feature of MailChimp: Let the users
 
 ## Requirements
 
-- TYPO3 CMS 9.5 - 10.4
+- TYPO3 CMS 10.4 - 11.5
 - MailChimp API key
 - License: GPL 2
+- jQuery in Frontend
 
 ## Manual
 

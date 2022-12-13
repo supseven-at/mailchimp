@@ -64,18 +64,18 @@ class PageLayoutViewHook
 
     protected function getApiKey()
     {
-
         $apiKeyHash = $this->getFieldFromFlexform('settings.apiKey');
-        $this->tableData[] = [
-            $this->getLabel('flexform.apiKey'),
-            $this->extensionConfiguration->getApiKeyLabel($apiKeyHash)
-        ];
+        if ($apiKeyHash) {
+            $this->tableData[] = [
+                $this->getLabel('flexform.apiKey'),
+                $this->extensionConfiguration->getApiKeyLabel($apiKeyHash)
+            ];
+        }
     }
 
     protected function getAjaxUsage()
     {
         $usage = (bool)$this->getFieldFromFlexform('settings.useAjax');
-
         if ($usage) {
             $this->tableData[] = [
                 $this->getLabel('flexform.useAjax'),
