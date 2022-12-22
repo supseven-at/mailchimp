@@ -129,7 +129,7 @@ class ApiService
 
         if ($response['status'] === 400 || $response['status'] === 401 || $response['status'] === 404) {
             $this->logger->error($response['status'] . ' ' . $response['detail']);
-            $this->logger->error($response['detail'], (array)$response['errors']);
+            $this->logger->error($response['detail'], (array)($response['errors'] ?? []));
             if ($response['title'] === 'Member Exists') {
                 $getResponse = $this->api->get("lists/$listId/members/" . $this->api->subscriberHash($data['email_address']));
                 if ($getResponse['status'] !== 'subscribed') {
