@@ -56,13 +56,14 @@ class MailChimp
             throw new \Exception('Invalid MailChimp API key supplied.');
         }
 
-        list(, $data_center) = explode('-', $this->api_key);
+        [, $data_center] = explode('-', $this->api_key);
         $this->api_endpoint  = str_replace('<dc>', $data_center, $this->api_endpoint);
 
         $this->last_response = ['headers' => null, 'body' => null];
     }
 
-    public function forceIpAddressv4() {
+    public function forceIpAddressv4(): void
+    {
         $this->forceIp4 = true;
     }
 
@@ -218,7 +219,7 @@ class MailChimp
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Accept: application/vnd.api+json',
             'Content-Type: application/vnd.api+json',
-            'Authorization: apikey ' . $this->api_key
+            'Authorization: apikey ' . $this->api_key,
         ]);
         curl_setopt($ch, CURLOPT_USERAGENT, 'DrewM/MailChimp-API/3.0 (github.com/drewm/mailchimp-api)');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -286,7 +287,7 @@ class MailChimp
      * @param   resource $ch cURL session handle, used by reference
      * @param   array $data Assoc array of data to attach
      */
-    private function attachRequestPayload(&$ch, $data)
+    private function attachRequestPayload(&$ch, $data): void
     {
         $encoded = json_encode($data);
         $this->last_request['body'] = $encoded;

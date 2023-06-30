@@ -3,69 +3,69 @@
 namespace Sup7even\Mailchimp\Tests\Unit\Domain\Model\Dto;
 
 use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class FormDtoTest extends UnitTestCase
 {
     /**
      * @test
      */
-    public function firstNameCanBeSet()
+    public function firstNameCanBeSet(): void
     {
         $domainModelInstance = new FormDto();
         $subject = 'Max';
         $domainModelInstance->setFirstName($subject);
-        $this->assertEquals($subject, $domainModelInstance->getFirstName());
+        self::assertEquals($subject, $domainModelInstance->getFirstName());
     }
 
     /**
      * @test
      */
-    public function lastNameCanBeSet()
+    public function lastNameCanBeSet(): void
     {
         $domainModelInstance = new FormDto();
         $subject = 'Mustermann';
         $domainModelInstance->setLastName($subject);
-        $this->assertEquals($subject, $domainModelInstance->getLastName());
+        self::assertEquals($subject, $domainModelInstance->getLastName());
     }
 
     /**
      * @test
      */
-    public function emailCanBeSet()
+    public function emailCanBeSet(): void
     {
         $domainModelInstance = new FormDto();
         $subject = 'fo@bar.com';
         $domainModelInstance->setEmail($subject);
-        $this->assertEquals($subject, $domainModelInstance->getEmail());
+        self::assertEquals($subject, $domainModelInstance->getEmail());
     }
 
     /**
      * @test
      */
-    public function interestsCanBeSet()
+    public function interestsCanBeSet(): void
     {
         $domainModelInstance = new FormDto();
         $subject = ['fo', 'bar'];
         $domainModelInstance->setInterests($subject);
-        $this->assertEquals($subject, $domainModelInstance->getInterests());
+        self::assertEquals($subject, $domainModelInstance->getInterests());
     }
 
     /**
      * @test
      */
-    public function interestCanBeSet()
+    public function interestCanBeSet(): void
     {
         $domainModelInstance = new FormDto();
         $subject = '12345';
         $domainModelInstance->setInterest($subject);
-        $this->assertEquals($subject, $domainModelInstance->getInterest());
+        self::assertEquals($subject, $domainModelInstance->getInterest());
     }
 
     /**
      * @test
      */
-    public function mergeFieldsCanBeTest()
+    public function mergeFieldsCanBeTest(): void
     {
         $domainModelInstance = new FormDto();
         for ($i = 1; $i <= 10; $i++) {
@@ -74,7 +74,7 @@ class FormDtoTest extends UnitTestCase
             $setter = 'setMergeField' . $i;
 
             $domainModelInstance->$setter($subject);
-            $this->assertEquals($subject, $domainModelInstance->$getter());
+            self::assertEquals($subject, $domainModelInstance->$getter());
         }
     }
 }

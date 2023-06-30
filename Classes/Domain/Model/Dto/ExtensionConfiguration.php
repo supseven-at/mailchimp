@@ -3,41 +3,26 @@
 namespace Sup7even\Mailchimp\Domain\Model\Dto;
 
 use Sup7even\Mailchimp\Exception\ApiKeyMissingException;
-use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class ExtensionConfiguration implements SingletonInterface
+class ExtensionConfiguration
 {
-
-    /** @var array */
-    protected $apiKeys = [];
-
-    /** @var string */
-    protected $proxy = '';
-
-    /** @var string */
-    protected $proxyPort = '';
-
-    /** @var bool */
-    protected $forceIp4 = false;
+    protected array $apiKeys = [];
+    protected string $proxy = '';
+    protected string $proxyPort = '';
+    protected bool $forceIp4 = false;
 
     public function __construct()
     {
         $settings = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('mailchimp');
 
-        $this->setApiKeys($settings['apiKey'])
-            ->setProxy($settings['proxy'])
-            ->setProxyPort($settings['proxyPort']);
-        $this->forceIp4 = (bool)$settings['forceIp4'];
+        $this->setApiKeys($settings['apiKey'] ?? '')
+            ->setProxy($settings['proxy'] ?? '')
+            ->setProxyPort($settings['proxyPort'] ?? '');
+        $this->forceIp4 = (bool)($settings['forceIp4'] ?? false);
     }
 
-    /**
-     * Get all API key configurations
-     *
-     * @return array
-     * @throws ApiKeyMissingException
-     */
-    public function getApiKeys()
+    public function getApiKeys(): array
     {
         if (empty($this->apiKeys)) {
             throw new ApiKeyMissingException('API key is missing');
@@ -45,42 +30,25 @@ class ExtensionConfiguration implements SingletonInterface
         return $this->apiKeys;
     }
 
-    /**
-     * Get 1st API key configuration
-     *
-     * @return string
-     */
-    public function getFirstApiKey()
+    public function getFirstApiKey(): string
     {
         $firstItem = current($this->apiKeys);
         return $firstItem['key'] ?? '';
     }
 
-    /**
-     * @param string $hash
-     * @return string
-     */
-    public function getApiKeyByHash(string $hash)
+    public function getApiKeyByHash(string $hash): string
     {
         $settings = $this->getApiKeyConfiguration($hash);
         return $settings['key'];
     }
 
-    /**
-     * @param string $hash
-     * @return string
-     */
-    public function getApiKeyLabel(string $hash)
+    public function getApiKeyLabel(string $hash): string
     {
         $settings = $this->getApiKeyConfiguration($hash);
         return $settings['label'];
     }
 
-    /**
-     * @param string $hash
-     * @return array
-     */
-    private function getApiKeyConfiguration(string $hash)
+    private function getApiKeyConfiguration(string $hash): array
     {
         if (!isset($this->apiKeys[$hash])) {
             throw new \UnexpectedValueException(sprintf('For hash "%s" no API key found', $hash), 1513232660);
@@ -88,27 +56,17 @@ class ExtensionConfiguration implements SingletonInterface
         return $this->apiKeys[$hash];
     }
 
-    /**
-     * @return string
-     */
-    public function getProxy()
+    public function getProxy(): string
     {
         return $this->proxy;
     }
 
-    /**
-     * @return string
-     */
-    public function getProxyPort()
+    public function getProxyPort(): string
     {
         return $this->proxyPort;
     }
 
-    /**
-     * @param string $apiKey
-     * @return ExtensionConfiguration
-     */
-    private function setApiKeys(string $apiKey)
+    private function setApiKeys(string $apiKey): self
     {
         $keys = GeneralUtility::trimExplode(',', $apiKey, true);
         if (count($keys) === 1) {
@@ -131,38 +89,27 @@ class ExtensionConfiguration implements SingletonInterface
         return $this;
     }
 
-    private function addApiKey($key, $label = 'default')
+    private function addApiKey($key, $label = 'default'): void
     {
         $hash = md5($key);
         $this->apiKeys[$hash] = [
             'key' => $key,
-            'label' => $label
+            'label' => $label,
         ];
     }
 
-    /**
-     * @param string $proxy
-     * @return ExtensionConfiguration
-     */
-    private function setProxy(string $proxy)
+    private function setProxy(string $proxy): self
     {
         $this->proxy = $proxy;
         return $this;
     }
 
-    /**
-     * @param string $proxyPort
-     * @return ExtensionConfiguration
-     */
-    private function setProxyPort(string $proxyPort)
+    private function setProxyPort(string $proxyPort): self
     {
         $this->proxyPort = $proxyPort;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isForceIp4(): bool
     {
         return $this->forceIp4;

@@ -8,13 +8,12 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class SimplifyLabelViewHelper extends AbstractViewHelper
 {
-
     use CompileWithRenderStatic;
 
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('label', 'string', 'label', false, '');
         $this->registerArgument('toLowerCase', 'bool', 'should it be lowered', false, false);

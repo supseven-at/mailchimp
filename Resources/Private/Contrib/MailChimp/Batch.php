@@ -25,9 +25,8 @@ class Batch
      * Add an HTTP DELETE request operation to the batch - for deleting data
      * @param   string $id ID for the operation within the batch
      * @param   string $method URL of the API request method
-     * @return  void
      */
-    public function delete($id, $method)
+    public function delete($id, $method): void
     {
         $this->queue_operation('DELETE', $id, $method);
     }
@@ -37,9 +36,8 @@ class Batch
      * @param   string $id ID for the operation within the batch
      * @param   string $method URL of the API request method
      * @param   array $args Assoc array of arguments (usually your data)
-     * @return  void
      */
-    public function get($id, $method, $args = [])
+    public function get($id, $method, $args = []): void
     {
         $this->queue_operation('GET', $id, $method, $args);
     }
@@ -49,9 +47,8 @@ class Batch
      * @param   string $id ID for the operation within the batch
      * @param   string $method URL of the API request method
      * @param   array $args Assoc array of arguments (usually your data)
-     * @return  void
      */
-    public function patch($id, $method, $args = [])
+    public function patch($id, $method, $args = []): void
     {
         $this->queue_operation('PATCH', $id, $method, $args);
     }
@@ -61,9 +58,8 @@ class Batch
      * @param   string $id ID for the operation within the batch
      * @param   string $method URL of the API request method
      * @param   array $args Assoc array of arguments (usually your data)
-     * @return  void
      */
-    public function post($id, $method, $args = [])
+    public function post($id, $method, $args = []): void
     {
         $this->queue_operation('POST', $id, $method, $args);
     }
@@ -73,9 +69,8 @@ class Batch
      * @param   string $id ID for the operation within the batch
      * @param   string $method URL of the API request method
      * @param   array $args Assoc array of arguments (usually your data)
-     * @return  void
      */
-    public function put($id, $method, $args = [])
+    public function put($id, $method, $args = []): void
     {
         $this->queue_operation('PUT', $id, $method, $args);
     }
@@ -119,9 +114,8 @@ class Batch
      * @param   string $id ID for the operation within the batch
      * @param   string $method URL of the API request method
      * @param   array $args Assoc array of arguments (usually your data)
-     * @return  void
      */
-    private function queue_operation($http_verb, $id, $method, $args = null)
+    private function queue_operation($http_verb, $id, $method, $args = null): void
     {
         $operation = [
             'operation_id' => $id,

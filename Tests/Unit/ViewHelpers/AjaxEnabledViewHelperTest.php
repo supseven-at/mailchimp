@@ -3,16 +3,15 @@
 namespace Sup7even\Mailchimp\Tests\Unit\ViewHelpers;
 
 use Sup7even\Mailchimp\ViewHelpers\AjaxEnabledViewHelper;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class AjaxEnabledViewHelperTest extends UnitTestCase
 {
-
     /**
      * @test
      * @dataProvider ajaxEnabledWorksDataProvider
      */
-    public function ajaxEnabledWorks($setting, $extIsLoaded, $expeted)
+    public function ajaxEnabledWorks($setting, $extIsLoaded, $expeted): void
     {
         $viewHelper = $this->getAccessibleMock(AjaxEnabledViewHelper::class, ['renderChildren'], [], '', false);
         $viewHelper->method('renderChildren')->willReturn($code);
@@ -29,8 +28,8 @@ class AjaxEnabledViewHelperTest extends UnitTestCase
     {
         return [
             'nothing enabled' => [
-                ['0', false, false]
-            ]
+                ['0', false, false],
+            ],
         ];
     }
 }

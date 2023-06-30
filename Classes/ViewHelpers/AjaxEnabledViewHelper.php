@@ -1,18 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sup7even\Mailchimp\ViewHelpers;
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
-/**
- * Class AjaxEnabledViewHelper
- */
 class AjaxEnabledViewHelper extends AbstractConditionViewHelper
 {
-    /**
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('isEnabled', 'bool', 'Is enabled');
         parent::initializeArguments();

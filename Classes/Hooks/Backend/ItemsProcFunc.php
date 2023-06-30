@@ -12,9 +12,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ItemsProcFunc
 {
-
-    /** @var ExtensionConfiguration */
-    protected $extensionConfiguration;
+    protected ExtensionConfiguration $extensionConfiguration;
 
     public function __construct()
     {
@@ -24,10 +22,9 @@ class ItemsProcFunc
     /**
      * Get API keys and its labels
      *
-     * @param array $config
      * @throws ApiKeyMissingException
      */
-    public function getApiKeys(array &$config)
+    public function getApiKeys(array &$config): void
     {
         $keyList = $this->extensionConfiguration->getApiKeys();
         foreach ($keyList as $hash => $item) {
@@ -35,17 +32,12 @@ class ItemsProcFunc
             $label = $label ?: $item['label'];
             $config['items'][] = [
                 $label,
-                $hash
+                $hash,
             ];
         }
     }
 
-    /**
-     * Get lists
-     *
-     * @param array $config
-     */
-    public function getLists(array &$config)
+    public function getLists(array &$config): void
     {
         $apiKeyHash = null;
         try {
@@ -66,12 +58,7 @@ class ItemsProcFunc
         }
     }
 
-    /**
-     * Get interests of a given list
-     *
-     * @param array $config
-     */
-    public function getInterests(array &$config)
+    public function getInterests(array &$config): void
     {
         $elementId = (int)$config['row']['uid'];
         if ($elementId > 0) {
@@ -96,10 +83,8 @@ class ItemsProcFunc
 
     /**
      * Get settings from given content element uid
-     * @param int $elementId
-     * @return array
      */
-    private function extractSettingsFromRecord(int $elementId)
+    private function extractSettingsFromRecord(int $elementId): array
     {
         $contentElement = BackendUtility::getRecord('tt_content', $elementId);
         $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
@@ -119,10 +104,7 @@ class ItemsProcFunc
         return GeneralUtility::makeInstance(ApiService::class, $hash);
     }
 
-    /**
-     * @return LanguageService
-     */
-    private function getLanguageService()
+    private function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

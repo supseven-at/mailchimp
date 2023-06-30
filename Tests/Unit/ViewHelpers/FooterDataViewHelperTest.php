@@ -4,15 +4,14 @@ namespace Sup7even\Mailchimp\Tests\Unit\ViewHelpers;
 
 use Sup7even\Mailchimp\ViewHelpers\FooterDataViewHelper;
 use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class FooterDataViewHelperTest extends UnitTestCase
 {
-
     /**
      * @test
      */
-    public function footerDataIsAdded()
+    public function footerDataIsAdded(): void
     {
         $code = '<script>alert(1)</script>';
         $viewHelper = $this->getAccessibleMock(FooterDataViewHelper::class, ['renderChildren'], [], '', false);

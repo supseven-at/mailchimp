@@ -11,11 +11,11 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '4.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.99-12.4.99'
+            'typo3' => '11.5.99-12.4.99',
         ],
         'conflicts' => [],
         'suggests' => [
-            'typoscript_rendering' => '2.0.5-2.99.999'
+            'typoscript_rendering' => '2.0.5-2.99.999',
         ],
     ],
 ];

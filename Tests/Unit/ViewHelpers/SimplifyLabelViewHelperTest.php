@@ -3,22 +3,21 @@
 namespace Sup7even\Mailchimp\Tests\Unit\ViewHelpers;
 
 use Sup7even\Mailchimp\ViewHelpers\SimplifyLabelViewHelper;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class SimplifyLabelViewHelperTest extends UnitTestCase
 {
-
     /**
      * @param string $input
      * @param string $expected
      * @dataProvider checkViewHelperOutputDataProvider
      * @test
      */
-    public function checkViewHelperOutput($input, $expected)
+    public function checkViewHelperOutput($input, $expected): void
     {
         $viewHelper = new SimplifyLabelViewHelper();
 
-        $this->assertEquals($expected, $viewHelper->render($input));
+        self::assertEquals($expected, $viewHelper->render($input));
     }
 
     /**
@@ -28,10 +27,10 @@ class SimplifyLabelViewHelperTest extends UnitTestCase
     {
         return [
             'simply text' => [
-                'A normal Label', 'AnormalLabel'
+                'A normal Label', 'AnormalLabel',
             ],
             'umlauts' => [
-                'Ein Jäger überfällt ein ', 'EinJaegerueberfaelltein'
+                'Ein Jäger überfällt ein ', 'EinJaegerueberfaelltein',
             ],
         ];
     }

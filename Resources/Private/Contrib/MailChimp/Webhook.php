@@ -10,20 +10,20 @@ namespace DrewM\MailChimp;
  */
 class Webhook
 {
-    private static $eventSubscriptions = array();
-    private static $receivedWebhook    = null;
+    private static $eventSubscriptions = [];
+    private static $receivedWebhook;
 
     /**
      * Subscribe to an incoming webhook request. The callback will be invoked when a matching webhook is received.
      *
      * @param string   $event    Name of the webhook event, e.g. subscribe, unsubscribe, campaign
      * @param callable $callback A callable function to invoke with the data from the received webhook
-     *
-     * @return void
      */
-    public static function subscribe($event, callable $callback)
+    public static function subscribe($event, callable $callback): void
     {
-        if (!isset(self::$eventSubscriptions[$event])) self::$eventSubscriptions[$event] = array();
+        if (!isset(self::$eventSubscriptions[$event])) {
+            self::$eventSubscriptions[$event] = [];
+        }
         self::$eventSubscriptions[$event][] = $callback;
 
         self::receive();
@@ -42,7 +42,7 @@ class Webhook
             if (self::$receivedWebhook !== null) {
                 $input = self::$receivedWebhook;
             } else {
-                $input = file_get_contents("php://input");
+                $input = file_get_contents('php://input');
             }
         }
 
@@ -77,17 +77,15 @@ class Webhook
      *
      * @param string $event The name of the callback event
      * @param array  $data  An associative array of the webhook data
-     *
-     * @return void
      */
-    private static function dispatchWebhookEvent($event, $data)
+    private static function dispatchWebhookEvent($event, $data): void
     {
         if (isset(self::$eventSubscriptions[$event])) {
             foreach (self::$eventSubscriptions[$event] as $callback) {
                 $callback($data);
             }
             // reset subscriptions
-            self::$eventSubscriptions[$event] = array();
+            self::$eventSubscriptions[$event] = [];
         }
     }
 }

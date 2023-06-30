@@ -62,57 +62,57 @@ class PageLayoutViewHook
         return $result;
     }
 
-    protected function getApiKey()
+    protected function getApiKey(): void
     {
         $apiKeyHash = $this->getFieldFromFlexform('settings.apiKey');
         if ($apiKeyHash) {
             $this->tableData[] = [
                 $this->getLabel('flexform.apiKey'),
-                $this->extensionConfiguration->getApiKeyLabel($apiKeyHash)
+                $this->extensionConfiguration->getApiKeyLabel($apiKeyHash),
             ];
         }
     }
 
-    protected function getAjaxUsage()
+    protected function getAjaxUsage(): void
     {
         $usage = (bool)$this->getFieldFromFlexform('settings.useAjax');
         if ($usage) {
             $this->tableData[] = [
                 $this->getLabel('flexform.useAjax'),
-                '<i class="fa fa-check"></i>'
+                '<i class="fa fa-check"></i>',
             ];
 
             if (!ExtensionManagementUtility::isLoaded('typoscript_rendering')) {
                 $this->tableData[] = [
                     '',
-                    '<div class="alert alert-warning typo3-message message-danger">' . $this->getLabel('ajaxEnabledWithoutExtension') . '</div>'
+                    '<div class="alert alert-warning typo3-message message-danger">' . $this->getLabel('ajaxEnabledWithoutExtension') . '</div>',
                 ];
             }
         }
     }
 
-    protected function getListInformation()
+    protected function getListInformation(): void
     {
         $listId = $this->getFieldFromFlexform('settings.listId');
         if (!$listId) {
             $this->tableData[] = [
                 $this->getLabel('flexform.list'),
-                '<div class="alert alert-warning">No list selected</div>'
+                '<div class="alert alert-warning">No list selected</div>',
             ];
         } else {
             $list = $this->api->getList($listId);
             $this->tableData[] = [
                 $this->getLabel('flexform.list'),
-                sprintf('<strong>%s</strong>', htmlspecialchars($list['name']))
+                sprintf('<strong>%s</strong>', htmlspecialchars($list['name'])),
             ];
             $this->tableData[] = [
                 $this->getLabel('memberCount'),
-                (int)$list['stats']['member_count']
+                (int)$list['stats']['member_count'],
             ];
         }
     }
 
-    protected function getInterestGroupInformation()
+    protected function getInterestGroupInformation(): void
     {
         $interestId = $this->getFieldFromFlexform('settings.interestId');
         $listId = $this->getFieldFromFlexform('settings.listId');
@@ -122,7 +122,7 @@ class PageLayoutViewHook
             if ($interests) {
                 $this->tableData[] = [
                     $this->getLabel('flexform.interests'),
-                    $interests['title']
+                    $interests['title'],
                 ];
             }
         }
@@ -178,7 +178,7 @@ class PageLayoutViewHook
      *
      * @param string $key name of the key
      * @param string $sheet name of the sheet
-     * @return string|NULL if nothing found, value if found
+     * @return string|null if nothing found, value if found
      */
     protected function getFieldFromFlexform(string $key, $sheet = 'sDEF')
     {
@@ -195,7 +195,7 @@ class PageLayoutViewHook
         return null;
     }
 
-    private function initializeApi()
+    private function initializeApi(): void
     {
         $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
 
