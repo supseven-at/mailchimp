@@ -1,56 +1,61 @@
 {
-  "name": "sup7even/mailchimp",
-  "type": "typo3-cms-extension",
-  "description": "Simple MailChimp integration to let users register to a specific list",
-  "keywords": [
-    "TYPO3",
-    "extension",
-    "mailchimp",
-    "newsletter"
-  ],
-  "homepage": "https://ringer.it",
-  "authors": [
-    {
-      "name": "Georg Ringer",
-      "role": "Developer",
-      "homepage": "https://ringer.it"
+    "name": "sup7even/mailchimp",
+    "type": "typo3-cms-extension",
+    "description": "Simple MailChimp integration to let users register to a specific list",
+    "keywords": [
+        "TYPO3",
+        "extension",
+        "mailchimp",
+        "newsletter"
+    ],
+    "homepage": "https://ringer.it",
+    "authors": [
+        {
+            "name": "Georg Ringer",
+            "role": "Developer",
+            "homepage": "https://ringer.it"
+        }
+    ],
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require": {
+        "php": "^8.1",
+        "typo3/cms-core": "^11.5 || ^12",
+        "drewm/mailchimp-api": "^2"
+    },
+    "suggest": {
+        "helhum/typoscript-rendering": "Improved TypoScript rendering"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sup7even\\Mailchimp\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sup7even\\Mailchimp\\Tests\\": "Tests"
+        }
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin",
+        "allow-plugins": {
+            "typo3/cms-composer-installers": true,
+            "typo3/class-alias-loader": true
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "mkdir -p .Build/Web/typo3conf/ext/",
+            "[ -L .Build/Web/typo3conf/ext/mailchimp ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/mailchimp"
+        ]
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "mailchimp",
+            "app-dir": ".Build",
+            "web-dir": ".Build/web"
+        }
     }
-  ],
-  "license": ["GPL-2.0-or-later"],
-  "require": {
-    "typo3/cms-core": "^10.4 || ^11.5",
-    "drewm/mailchimp-api": "^2",
-    "helhum/typoscript-rendering": "^2"
-  },
-  "autoload": {
-    "psr-4": {
-      "Sup7even\\Mailchimp\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Sup7even\\Mailchimp\\Tests\\": "Tests"
-    }
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin",
-    "allow-plugins": {
-      "typo3/cms-composer-installers": true,
-      "typo3/class-alias-loader": true
-    }
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/mailchimp ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/mailchimp"
-    ]
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "mailchimp",
-      "app-dir": ".Build",
-      "web-dir": ".Build/web"
-    }
-  }
 }
