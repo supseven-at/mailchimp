@@ -56,24 +56,25 @@ class FormController extends ActionController
     /**
      * @param FormDto|null $form
      */
-    public function responseAction(FormDto $form = null): void
+    public function responseAction(FormDto $form = null)
     {
         if ($form === null) {
             $this->redirect('index');
         }
 
         $this->handleRegistration($form);
+        return $this->htmlResponse();
     }
 
     protected function handleRegistration(FormDto $form = null): void
     {
-        $doublOptIn = true;
+        $doubleOptIn = true;
         if (isset($this->settings['skipDoubleOptIn']) && $this->settings['skipDoubleOptIn'] == 1) {
-            $doublOptIn = false;
+            $doubleOptIn = false;
         }
         try {
             $apiService = $this->getApiService($this->settings['apiKey'] ?? '');
-            $apiService->register($this->settings['listId'], $form, $doublOptIn);
+            $apiService->register($this->settings['listId'], $form, $doubleOptIn);
         } catch (MemberExistsException $e) {
             $this->view->assign('error', 'memberExists');
             $this->view->assign('exception', $e);
