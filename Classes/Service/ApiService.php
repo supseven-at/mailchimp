@@ -127,12 +127,15 @@ class ApiService
         $data = $this->getRegistrationData($listId, $form, $doubleOptIn);
         $response = $this->api->post("lists/$listId/members", $data);
 
+        if (!$response) {
+            throw new GeneralException('Member registration failed with error: ' . $this->api->getLastError());
+        }
         if ($response['status'] === 400 || $response['status'] === 401 || $response['status'] === 404) {
             $this->logger->error($response['status'] . ' ' . $response['detail']);
             $this->logger->error($response['detail'], (array)($response['errors'] ?? []));
             if ($response['title'] === 'Member Exists') {
                 $getResponse = $this->api->get("lists/$listId/members/" . $this->api->subscriberHash($data['email_address']));
-                if ($getResponse['status'] !== 'subscribed') {
+                if ($getResponse && $getResponse['status'] !== 'subscribed') {
                     $this->api->put("lists/$listId/members/" . $this->api->subscriberHash($data['email_address']), $data);
                 } else {
                     throw new MemberExistsException($response['detail']);
