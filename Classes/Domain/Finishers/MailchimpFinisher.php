@@ -2,13 +2,13 @@
 
 namespace Sup7even\Mailchimp\Domain\Finishers;
 
-use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
+use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
+use Sup7even\Mailchimp\Exception\GeneralException;
+use Sup7even\Mailchimp\Exception\MemberExistsException;
+use Sup7even\Mailchimp\Service\ApiService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
-use Sup7even\Mailchimp\Domain\Model\Dto\FormDto;
-use Sup7even\Mailchimp\Service\ApiService;
-use Sup7even\Mailchimp\Exception\MemberExistsException;
-use Sup7even\Mailchimp\Exception\GeneralException;
+use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 class MailchimpFinisher extends AbstractFinisher
 {
@@ -26,7 +26,7 @@ class MailchimpFinisher extends AbstractFinisher
         if (is_string($interests)) {
             $form->setInterest($interests);
         } else {
-            $remapInterests = array();
+            $remapInterests = [];
             foreach ($interests as $interest) {
                 $remapInterests[$interest] = true;
             }
@@ -65,7 +65,7 @@ class MailchimpFinisher extends AbstractFinisher
         }
 
         $view->assignMultiple([
-            'form' => $form
+            'form' => $form,
         ]);
 
         return $view->render();
@@ -74,7 +74,7 @@ class MailchimpFinisher extends AbstractFinisher
     public function getCategories()
     {
         return $this->getApiService($this->options['api_key'])->getCategories(
-            $this->options['list_id'], 
+            $this->options['list_id'],
             $this->options['interest_id']
         );
     }
