@@ -1,0 +1,77 @@
+imports:
+  - { resource: "./Finishers/Mailchimp.yaml" }
+  - { resource: "./FormElements/Interests.yaml" }
+
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            translationFiles:
+              1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                1627661598: 'TYPO3/CMS/Mailchimp/Backend/FormEditor/ViewModel'
+          formEngine:
+            translationFiles:
+              1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
+          formElementsDefinition:
+            Form:
+              formEditor:
+                editors:
+                  900:
+                    selectOptions:
+                      1627404338:
+                        value: Mailchimp
+                        label: plugin.title
+                propertyCollections:
+                  finishers:
+                    1627404338:
+                      identifier: Mailchimp
+                      editors:
+                        100:
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                          label: plugin.title
+                        200:
+                          identifier: first_name
+                          templateName: Inspector-TextEditor
+                          label: field.firstName
+                          propertyPath: options.first_name
+                          enableFormelementSelectionButton: true
+                        300:
+                          identifier: last_name
+                          templateName: Inspector-TextEditor
+                          label: field.lastName
+                          propertyPath: options.last_name
+                          enableFormelementSelectionButton: true
+                        400:
+                          identifier: email
+                          templateName: Inspector-TextEditor
+                          label: field.email
+                          propertyPath: options.email
+                          enableFormelementSelectionButton: true
+                        500:
+                          identifier: skip_double_optin
+                          templateName: Inspector-CheckboxEditor
+                          label: field.skipDoubleOptin
+                          propertyPath: options.skip_double_optin
+                        600:
+                          identifier: interests
+                          templateName: Inspector-TextEditor
+                          label: field.interestChoices
+                          propertyPath: options.interests
+                          enableFormelementSelectionButton: true
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
+              renderingOptions:
+                partialRootPaths:
+                  1627662229: 'EXT:mailchimp/Resources/Private/Partials/Form/'
+                translation:
+                  translationFiles:
+                    1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
+      formManager:
+        translationFiles:
+          1627404338: 'EXT:mailchimp/Resources/Private/Language/locallang.xlf'
